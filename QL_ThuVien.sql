@@ -656,28 +656,29 @@ FROM NhanVien
 END
 GO
 	exec sp_LayDanhSachNhanVien
--- Proc tìm kiếm nhan vien  theo tên gần đúng
---CREATE PROCEDURE sp_TimKiemNhanVienTheoTen
---@tenNhanVien NVARCHAR(50)
---AS
---BEGIN
---SELECT 
---	maNhanVien,
---	hoTenNhanVien,
---	ngaySinh,
---	gioiTinh,
---	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
---	soDienThoai,
---	email,
---	CASE
---	WHEN chucVu = 0 THEN 'Admin'
---	ELSE 'Staff'
---	END  AS  chucVu,
---	ngayLamViec,
---	diachiChiTiet
---FROM NhanVien
---WHERE 
---        dbo.fn_ConvertToUnsign(hoTenNhanVien) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenNhanVien) + '%';
---END
---GO
+ --Proc tìm kiếm nhan vien  theo tên gần đúng
+CREATE PROCEDURE sp_TimKiemNhanVienTheoTen
+@tenNhanVien NVARCHAR(50)
+AS
+BEGIN
+SELECT 
+	maNhanVien,
+	hoTenNhanVien,
+	ngaySinh,
+	gioiTinh,
+	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
+	soDienThoai,
+	email,
+	CASE
+	WHEN chucVu = 0 THEN 'Admin'
+	ELSE 'Staff'
+	END  AS  chucVu,
+	ngayLamViec,
+	diachiChiTiet
+FROM NhanVien
+WHERE 
+        dbo.fn_ConvertToUnsign(hoTenNhanVien) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenNhanVien) + '%';
+END
+GO
 
+drop proc sp_TimKiemNhanVienTheoTen

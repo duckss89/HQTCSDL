@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "D:\\ThuVien\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\usercontrols\\ucnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\usercontrols\\ucthemdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucthemdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\usercontrols\\ucnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\usercontrols\\ucnhanvien.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucnhanvien.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\dao\\nhanvien_dao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\dao\\nhanvien_dao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\dto\\nhanvien_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\dto\\nhanvien_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\dao\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\dao\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\dao\\docgia_dao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,6 +37,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\usercontrols\\ucdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\dto\\docgia_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\dto\\docgia_dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|d:\\thuvien\\ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\usercontrols\\ucthemdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucthemdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|solutionrelative:ql_thuvien\\usercontrols\\ucsuadocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51303AFA-94F0-4783-A8DA-3DC5F6DED2D2}|QL_ThuVien\\QL_ThuVien.csproj|D:\\ThuVien\\ql_thuvien\\usercontrols\\ucthemdocgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -55,19 +83,134 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UCSuaDocGia.cs",
-              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
-              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
-              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
-              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAkAAAAdAAAA",
+              "Title": "UCNhanVien.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCNhanVien.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCNhanVien.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCNhanVien.cs",
+              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCNhanVien.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAA9wDEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T10:31:58.144Z",
+              "WhenOpened": "2024-11-06T20:12:29.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UCNhanVien.cs [Design]",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCNhanVien.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCNhanVien.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCNhanVien.cs [Design]",
+              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCNhanVien.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:12:09.564Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DataProvider.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\DAO\\DataProvider.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\DAO\\DataProvider.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\DAO\\DataProvider.cs",
+              "RelativeToolTip": "QL_ThuVien\\DAO\\DataProvider.cs",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAowBwAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:00:56.329Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "UCNhanVien.Designer.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCNhanVien.Designer.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCNhanVien.Designer.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCNhanVien.Designer.cs",
+              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCNhanVien.Designer.cs",
+              "ViewState": "AQIAAIYAAAAAAAAAAAAqwJQAAACKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:59:09.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NhanVien_DAO.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\DAO\\NhanVien_DAO.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\DAO\\NhanVien_DAO.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\DAO\\NhanVien_DAO.cs",
+              "RelativeToolTip": "QL_ThuVien\\DAO\\NhanVien_DAO.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAkwCEAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:11:11.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DocGia_DAO.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\DAO\\DocGia_DAO.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\DAO\\DocGia_DAO.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\DAO\\DocGia_DAO.cs",
+              "RelativeToolTip": "QL_ThuVien\\DAO\\DocGia_DAO.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAcwCoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T08:15:05.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NhanVien_DTO.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\DTO\\NhanVien_DTO.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\DTO\\NhanVien_DTO.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\DTO\\NhanVien_DTO.cs",
+              "RelativeToolTip": "QL_ThuVien\\DTO\\NhanVien_DTO.cs",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAuwBEAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:08:59.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UCDocGia.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCDocGia.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs",
+              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCDocGia.cs",
+              "ViewState": "AQIAAIsAAAAAAAAAAAAcwJgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T08:37:22.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UCDocGia.cs [Design]",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCDocGia.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs [Design]",
+              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCDocGia.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T08:21:20.305Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DocGia_DTO.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\DTO\\DocGia_DTO.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\DTO\\DocGia_DTO.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\DTO\\DocGia_DTO.cs",
+              "RelativeToolTip": "QL_ThuVien\\DTO\\DocGia_DTO.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:18:10.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "UCSuaDocGia.cs [Design]",
               "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
               "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
@@ -77,7 +220,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
+              "Title": "UCSuaDocGia.cs",
+              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
+              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
+              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
+              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCSuaDocGia.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAkAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T10:31:58.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "UCThemDocGia.cs",
               "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCThemDocGia.cs",
               "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCThemDocGia.cs",
@@ -89,19 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UCDocGia.cs",
-              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs",
-              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCDocGia.cs",
-              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs",
-              "RelativeToolTip": "QL_ThuVien\\UserControls\\UCDocGia.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAADwv7gAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:37:22.267Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "UCThemDocGia.cs [Design]",
               "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCThemDocGia.cs",
               "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCThemDocGia.cs",
@@ -111,29 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UCDocGia.cs [Design]",
-              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs",
-              "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCDocGia.cs",
-              "ToolTip": "C:\\Users\\admin\\ThuVien\\QL_ThuVien\\UserControls\\UCDocGia.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:21:20.305Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DocGia_DAO.cs",
-              "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\DAO\\DocGia_DAO.cs",
-              "RelativeDocumentMoniker": "QL_ThuVien\\DAO\\DocGia_DAO.cs",
-              "ToolTip": "D:\\ThuVien\\QL_ThuVien\\DAO\\DocGia_DAO.cs",
-              "RelativeToolTip": "QL_ThuVien\\DAO\\DocGia_DAO.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAiwFkAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:15:05.814Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "UCTrangChu.cs",
               "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\UserControls\\UCTrangChu.cs",
               "RelativeDocumentMoniker": "QL_ThuVien\\UserControls\\UCTrangChu.cs",
@@ -145,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\frmMain.cs",
               "RelativeDocumentMoniker": "QL_ThuVien\\frmMain.cs",
@@ -155,7 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\ThuVien\\QL_ThuVien\\Form1.cs",
               "RelativeDocumentMoniker": "QL_ThuVien\\Form1.cs",
