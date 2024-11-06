@@ -109,6 +109,12 @@
     <Compile Include="UserControls\UCNhaXuatBan.Designer.cs">
       <DependentUpon>UCNhaXuatBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCSuaDocGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSuaDocGia.Designer.cs">
+      <DependentUpon>UCSuaDocGia.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCTacGiaTheLoai.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCNhaXuatBan.resx">
       <DependentUpon>UCNhaXuatBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSuaDocGia.resx">
+      <DependentUpon>UCSuaDocGia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCTacGiaTheLoai.resx">
       <DependentUpon>UCTacGiaTheLoai.cs</DependentUpon>

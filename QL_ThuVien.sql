@@ -524,3 +524,114 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_ThemDocGia
+    @ho NVARCHAR(10),
+    @hoLot NVARCHAR(20) = NULL,
+    @ten NVARCHAR(10),
+    @ngaySinh DATE,
+    @gioiTinh NVARCHAR(10),
+    @tenDuong NVARCHAR(100),
+    @phuongXa NVARCHAR(100),
+    @quanHuyen NVARCHAR(100),
+    @tinhThanhPho NVARCHAR(100),
+    @soDienThoai VARCHAR(10),
+    @email VARCHAR(50)
+AS
+BEGIN
+    DECLARE @maxID INT;
+
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maDocGia, 3, LEN(maDocGia) - 2) AS INT)), 0) + 1 
+    FROM DocGia;
+
+    DECLARE @newMaDocGia VARCHAR(10);
+    SET @newMaDocGia = 'DG' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+    DECLARE @hoTen NVARCHAR(50);
+    SET @hoTen = @ho + ISNULL(' ' + @hoLot, '') + ' ' + @ten;
+
+    INSERT INTO DocGia (
+        [maDocGia], [hoTen], [ho], [hoLot], [ten], [ngaySinh], [gioiTinh], 
+        [diaChiChiTiet], [tenDuong], [phuongXa], [quanHuyen], 
+        [tinhThanhPho], [soDienThoai], [email], [ngayDangKy]
+    )
+    VALUES (
+        @newMaDocGia, @hoTen, @ho, @hoLot, @ten,
+        @ngaySinh, @gioiTinh, 
+        @tenDuong + ', ' + @phuongXa + ', ' + @quanHuyen + ', ' + @tinhThanhPho, 
+        @tenDuong, @phuongXa, @quanHuyen, 
+        @tinhThanhPho, @soDienThoai, @email, GETDATE()
+    )
+
+    IF @@ROWCOUNT > 0 
+        RETURN 1
+    ELSE 
+        RETURN 0;
+END
+GO
+
+-- Lấy thông tin đọc giả theo mã đọc giả
+CREATE PROCEDURE sp_LayThongTinDocGiaTheoMa
+	@maDocGia varchar(10)
+AS
+BEGIN
+    SELECT 
+		maDocGia,
+        hoTen,
+        ho,
+        hoLot,
+        ten,
+        ngaySinh, 
+        gioiTinh, 
+        diaChiChiTiet, 
+        tenDuong,
+        phuongXa,
+        quanHuyen,
+        tinhThanhPho,
+        soDienThoai, 
+        email,
+        ngayDangKy
+    FROM 
+        DocGia
+	WHERE maDocGia = @maDocGia
+END
+GO
+
+CREATE PROC sp_SuaThongTinDocGia
+    @MaDocGia VARCHAR(10),
+    @Ho Nvarchar(10),
+    @HoLot Nvarchar(20) = null,
+    @Ten Nvarchar(10),
+    @NgaySinh Date,
+    @GioiTinh Nvarchar(10),
+    @TenDuong Nvarchar(100),
+    @PhuongXa Nvarchar(100),
+    @QuanHuyen Nvarchar(100),
+    @TinhThanhPho Nvarchar(100),
+    @SoDienThoai VARCHAR(10),
+    @Email VARCHAR(50)
+AS
+BEGIN
+    UPDATE DocGia
+    SET
+		hoTen = @ho + ISNULL(' ' + @hoLot, '') + ' ' + @ten,
+        ho = @Ho,
+        hoLot = @HoLot,
+        ten = @Ten,
+        ngaySinh = @NgaySinh,
+        gioiTinh = @GioiTinh,
+        diaChiChiTiet =  @tenDuong + ', ' + @phuongXa + ', ' + @quanHuyen + ', ' + @tinhThanhPho, 
+        tenDuong = @TenDuong,
+        phuongXa = @PhuongXa,
+        quanHuyen = @QuanHuyen,
+        tinhThanhPho = @TinhThanhPho,
+        soDienThoai = @SoDienThoai,
+        email = @Email
+    WHERE MaDocGia = @MaDocGia;
+
+    IF @@ROWCOUNT > 0
+        RETURN 1;
+    ELSE
+        RETURN 0;
+END
+GO
+

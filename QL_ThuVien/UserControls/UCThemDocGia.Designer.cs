@@ -310,10 +310,11 @@
             this.dtpNgaySinh.BorderRadius = 10;
             this.dtpNgaySinh.BorderThickness = 1;
             this.dtpNgaySinh.Checked = true;
+            this.dtpNgaySinh.CustomFormat = "dd/MM/yyy";
             this.dtpNgaySinh.FillColor = System.Drawing.Color.White;
             this.dtpNgaySinh.FocusedColor = System.Drawing.Color.White;
             this.dtpNgaySinh.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgaySinh.HoverState.FillColor = System.Drawing.Color.White;
             this.dtpNgaySinh.Location = new System.Drawing.Point(449, 72);
             this.dtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -399,6 +400,7 @@
             this.txtSoDienThoai.SelectedText = "";
             this.txtSoDienThoai.Size = new System.Drawing.Size(308, 36);
             this.txtSoDienThoai.TabIndex = 8;
+            this.txtSoDienThoai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoDienThoai_KeyPress);
             // 
             // label3
             // 
@@ -432,6 +434,7 @@
             this.txtTen.SelectedText = "";
             this.txtTen.Size = new System.Drawing.Size(308, 36);
             this.txtTen.TabIndex = 4;
+            this.txtTen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTen_KeyPress);
             // 
             // label2
             // 
@@ -465,6 +468,7 @@
             this.txtHoLot.SelectedText = "";
             this.txtHoLot.Size = new System.Drawing.Size(308, 36);
             this.txtHoLot.TabIndex = 2;
+            this.txtHoLot.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoLot_KeyPress);
             // 
             // label1
             // 
@@ -498,6 +502,7 @@
             this.txtHo.SelectedText = "";
             this.txtHo.Size = new System.Drawing.Size(308, 36);
             this.txtHo.TabIndex = 0;
+            this.txtHo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHo_KeyPress);
             // 
             // pnlTool
             // 
@@ -551,6 +556,7 @@
             this.btnResetText.Size = new System.Drawing.Size(99, 100);
             this.btnResetText.TabIndex = 1;
             this.btnResetText.UseVisualStyleBackColor = false;
+            this.btnResetText.Click += new System.EventHandler(this.btnResetText_Click);
             // 
             // btnSave
             // 
@@ -569,6 +575,7 @@
             this.btnSave.Size = new System.Drawing.Size(99, 100);
             this.btnSave.TabIndex = 0;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // UCThemDocGia
             // 
