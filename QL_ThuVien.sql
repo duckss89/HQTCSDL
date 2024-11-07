@@ -393,10 +393,10 @@ VALUES
 GO
 
 -- 14. Bảng Xuất Sách
-INSERT INTO XuatSach (maXuatSach, maNhanVien, tongGiaBan) 
+INSERT INTO XuatSach (maXuatSach, maNhanVien, ngayXuat, tongGiaBan) 
 VALUES 
-('XS001', 'NV001', 1000000),
-('XS002', 'NV002', 500000)
+('XS001', 'NV001', GETDATE(), 1000000),
+('XS002', 'NV002', GETDATE(), 500000)
 GO
 
 -- 15. Bảng Chi Tiết Xuất Sách
@@ -635,3 +635,16 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_LayDanhSachXuatSach
+AS
+BEGIN
+    SELECT 
+        XuatSach.maXuatSach,
+		NhanVien.hoTenNhanVien,
+		XuatSach.ngayXuat,
+		XuatSach.tongGiaBan
+    FROM 
+        NhanVien,XuatSach
+	where NhanVien.maNhanVien = XuatSach.maNhanVien
+END
+GO
