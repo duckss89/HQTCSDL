@@ -524,3 +524,23 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_LayDanhSachNhapSach
+AS
+BEGIN
+    SELECT 
+        NhapSach.maNhapSach,             -- Chỉ định bảng NhapSach
+        NhanVien.hoTenNhanVien,                  -- Lấy tên nhân viên từ bảng NhanVien
+        CONVERT(VARCHAR(10), NhapSach.ngayNhap, 103) AS ngayNhap,  -- Chuyển đổi ngày nhập sang định dạng dd/MM/yyyy
+        NhapSach.nguonNhap,              -- Chỉ định bảng NhapSach
+        NhapSach.soDienThoai,            -- Chỉ định bảng NhapSach
+        NhapSach.email,                  -- Chỉ định bảng NhapSach
+        NhapSach.diaChiChiTiet,           -- Chỉ định bảng NhapSach
+		NhapSach.tongTien
+    FROM 
+        NhapSach, NhanVien               -- Kết nối hai bảng NhapSach và NhanVien
+    WHERE 
+        NhapSach.maNhanVien = NhanVien.maNhanVien  -- Điều kiện kết nối
+END
+GO
+
+drop PROCEDURE sp_LayDanhSachNhapSach
