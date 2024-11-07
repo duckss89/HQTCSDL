@@ -524,6 +524,28 @@ BEGIN
 END
 GO
 
+<<<<<<< HEAD
+CREATE PROCEDURE sp_LayDanhSachNhapSach
+AS
+BEGIN
+    SELECT 
+        NhapSach.maNhapSach,             -- Chỉ định bảng NhapSach
+        NhanVien.hoTenNhanVien,                  -- Lấy tên nhân viên từ bảng NhanVien
+        CONVERT(VARCHAR(10), NhapSach.ngayNhap, 103) AS ngayNhap,  -- Chuyển đổi ngày nhập sang định dạng dd/MM/yyyy
+        NhapSach.nguonNhap,              -- Chỉ định bảng NhapSach
+        NhapSach.soDienThoai,            -- Chỉ định bảng NhapSach
+        NhapSach.email,                  -- Chỉ định bảng NhapSach
+        NhapSach.diaChiChiTiet,           -- Chỉ định bảng NhapSach
+		NhapSach.tongTien
+    FROM 
+        NhapSach, NhanVien               -- Kết nối hai bảng NhapSach và NhanVien
+    WHERE 
+        NhapSach.maNhanVien = NhanVien.maNhanVien  -- Điều kiện kết nối
+END
+GO
+
+drop PROCEDURE sp_LayDanhSachNhapSach
+=======
 CREATE PROCEDURE sp_ThemDocGia
     @ho NVARCHAR(10),
     @hoLot NVARCHAR(20) = NULL,
@@ -635,6 +657,7 @@ BEGIN
 END
 GO
 
+<<<<<<< HEAD
 CREATE PROCEDURE sp_LayDanhSachXuatSach
 AS
 BEGIN
@@ -648,3 +671,53 @@ BEGIN
 	where NhanVien.maNhanVien = XuatSach.maNhanVien
 END
 GO
+=======
+CREATE PROCEDURE sp_LayDanhSachNhanVien
+AS
+BEGIN
+SELECT 
+	maNhanVien,
+	hoTenNhanVien,
+	ngaySinh,
+	gioiTinh,
+	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
+	soDienThoai,
+	email,
+	CASE
+	WHEN chucVu = 0 THEN 'Admin'
+	ELSE 'Staff'
+	END  AS  chucVu,
+	ngayLamViec,
+	diachiChiTiet
+FROM NhanVien
+END
+GO
+	exec sp_LayDanhSachNhanVien
+ --Proc tìm kiếm nhan vien  theo tên gần đúng
+CREATE PROCEDURE sp_TimKiemNhanVienTheoTen
+@tenNhanVien NVARCHAR(50)
+AS
+BEGIN
+SELECT 
+	maNhanVien,
+	hoTenNhanVien,
+	ngaySinh,
+	gioiTinh,
+	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
+	soDienThoai,
+	email,
+	CASE
+	WHEN chucVu = 0 THEN 'Admin'
+	ELSE 'Staff'
+	END  AS  chucVu,
+	ngayLamViec,
+	diachiChiTiet
+FROM NhanVien
+WHERE 
+        dbo.fn_ConvertToUnsign(hoTenNhanVien) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenNhanVien) + '%';
+END
+GO
+
+drop proc sp_TimKiemNhanVienTheoTen
+>>>>>>> d5337e655a15b1ceb5843f675d95931ce08556f0
+>>>>>>> d2c43db5298675c2c0b5b720635efdc4513297c0

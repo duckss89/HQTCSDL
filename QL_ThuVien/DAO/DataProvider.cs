@@ -24,7 +24,15 @@ namespace QL_ThuVien.DAO
         }
         private DataProvider(){}
 
+<<<<<<< HEAD
         private string connectionSTR = "Data Source=LAPTOP-C7GQBDEN;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
+=======
+<<<<<<< HEAD
+        private string connectionSTR = "Data Source=DESKTOP-0JJTT2J;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
+=======
+        private string connectionSTR = "Data Source=DESKTOP-OU2KH3G;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
+>>>>>>> d5337e655a15b1ceb5843f675d95931ce08556f0
+>>>>>>> d2c43db5298675c2c0b5b720635efdc4513297c0
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
