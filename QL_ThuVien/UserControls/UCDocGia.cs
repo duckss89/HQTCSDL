@@ -43,6 +43,20 @@ namespace QL_ThuVien.UserControls
         {
             dgvDocGia.DataSource = DocGia_DAO.Instance.GetListDocGia();
             SetUpDocGiaDataGridView();
+            if (dgvDocGia.Rows.Count > 0)
+            {
+                DataGridViewRow row = dgvDocGia.Rows[0];
+
+                lblTenDocGia.Text = row.Cells["hoTen"].Value.ToString();
+                lblNgaySinh.Text = row.Cells["ngaySinh"].Value.ToString();
+                lblGioiTinh.Text = row.Cells["gioiTinh"].Value.ToString();
+                lblDiaChi.Text = row.Cells["diaChiChiTiet"].Value.ToString();
+                lblSoDienThoai.Text = row.Cells["soDienThoai"].Value.ToString();
+                lblEmail.Text = row.Cells["email"].Value.ToString();
+                lblNgayDangKy.Text = row.Cells["ngayDangKy"].Value.ToString();
+
+                maDocGia = dgvDocGia.Rows[0].Cells["maDocGia"].Value.ToString();
+            }
         }
 
         List<DocGia_DTO> TimKiemDocGiaTheoTen(string tenDocGia)
@@ -138,7 +152,7 @@ namespace QL_ThuVien.UserControls
             string tenDocGia = txtSearch.Text.Trim();
             TimKiemDocGia(tenDocGia);
         }
-        #endregion
+       
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
@@ -159,5 +173,20 @@ namespace QL_ThuVien.UserControls
                 }
             }    
         }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(maDocGia))
+            {
+                MessageBox.Show("Vui lòng chọn độc giả để sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            UCSuaDocGia uc = new UCSuaDocGia(maDocGia);
+            addUserControl(uc);
+        }
+        #endregion
+
+
     }
 }

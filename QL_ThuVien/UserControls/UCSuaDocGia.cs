@@ -1,4 +1,5 @@
 ﻿using QL_ThuVien.DAO;
+using QL_ThuVien.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,26 +12,48 @@ using System.Windows.Forms;
 
 namespace QL_ThuVien.UserControls
 {
-    public partial class UCThemDocGia : UserControl
+    public partial class UCSuaDocGia : UserControl
     {
-        public UCThemDocGia()
+        private string maDocGia;
+        public UCSuaDocGia(string maDocGia)
         {
             InitializeComponent();
-            dtpNgaySinh.Value = DateTime.Now;
+            this.maDocGia = maDocGia;
+            LoadThongTinDocGia();
         }
 
         #region Method
+        public void LoadThongTinDocGia()
+        {
+            if (string.IsNullOrEmpty(maDocGia) == false)
+            {
+                List<DocGia_DTO> listDocGia = DocGia_DAO.Instance.LayThongTinDocGiaTheoMaDG(maDocGia);
+                foreach (DocGia_DTO item in listDocGia)
+                {
+                    txtHo.Text = item.Ho;
+                    txtHoLot.Text = item.HoLot;
+                    txtTen.Text = item.Ten;
+                    txtTenDuong.Text = item.TenDuong;
+                    txtQuanHuyen.Text = item.QuanHuyen;
+                    txtPhuongXa.Text = item.PhuongXa;
+                    txtTinhThanhPho.Text = item.TinhThanhPho;
+                    dtpNgaySinh.Value = ((DateTime)item.NgaySinh);
+                    if (item.GioiTinh == "Nữ")
+                        rdoNu.Checked = true;
+                    else
+                        rdoNam.Checked = true;
+                    txtEmail.Text = item.Email;
+                    txtSoDienThoai.Text = item.SoDienThoai;
+                }
+            }
+        }
+
         private void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
             pnlDesktop.Controls.Clear();
             pnlDesktop.Controls.Add(userControl);
             userControl.BringToFront();
-        }
-
-        void addControlDesktop()
-        {
-            this.pnlDesktop.Controls.Add(this.pnlTool);
         }
 
         private bool IsValidEmail(string email)
@@ -48,10 +71,10 @@ namespace QL_ThuVien.UserControls
         #endregion
 
         #region Event
-        private void btnReturn_Click_1(object sender, EventArgs e)
+        private void btnReturn_Click(object sender, EventArgs e)
         {
-            UCDocGia uCDocGia = new UCDocGia();
-            addUserControl(uCDocGia);
+            UCDocGia uc = new UCDocGia();
+            addUserControl(uc);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -96,27 +119,14 @@ namespace QL_ThuVien.UserControls
                 return;
             }
 
-            if (DocGia_DAO.Instance.ThemDocGia(ho, hoLot, ten, ngaySinh, gioiTinh, tenDuong, phuongXa, quanHuyen, tinhThanhPho, soDienThoai, email))
+            if (DocGia_DAO.Instance.SuaDocGia(maDocGia, ho, hoLot, ten, ngaySinh, gioiTinh, tenDuong, phuongXa, quanHuyen, tinhThanhPho, soDienThoai, email))
             {
-                MessageBox.Show(string.Format("Bạn đã thêm thành công độc giả {0} {1} {2}", ho, hoLot, ten), "Thông báo");
-
-                txtHo.Clear();
-                txtHoLot.Clear();
-                txtTen.Clear();
-                dtpNgaySinh.Value = DateTime.Now;
-                txtEmail.Clear();
-                txtSoDienThoai.Clear();
-                txtTenDuong.Clear();
-                txtPhuongXa.Clear();
-                txtQuanHuyen.Clear();
-                txtTinhThanhPho.Clear();
-                if (rdoNam.Checked)
-                    rdoNam.Checked = false;
-                else
-                    rdoNu.Checked = false;
+                MessageBox.Show(string.Format("Bạn đã sửa thành công thông tin độc giả {0} {1} {2}", ho, hoLot, ten), "Thông báo");
+                UCDocGia uc = new UCDocGia();
+                addUserControl(uc);
             }
             else
-                MessageBox.Show("Có lỗi khi thêm khách hàng!", "Thông báo");
+                MessageBox.Show(string.Format("Có lỗi thi sửa thông tin độc giả {0} {1} {2}", ho, hoLot, ten), "Thông báo");
         }
 
         private void txtHo_KeyPress(object sender, KeyPressEventArgs e)
@@ -181,24 +191,6 @@ namespace QL_ThuVien.UserControls
             {
                 e.Handled = true;
             }
-        }
-
-        private void btnResetText_Click(object sender, EventArgs e)
-        {
-            txtHo.Clear();
-            txtHoLot.Clear();
-            txtTen.Clear();
-            dtpNgaySinh.Value = DateTime.Now;
-            txtEmail.Clear();
-            txtSoDienThoai.Clear();
-            txtTenDuong.Clear();
-            txtPhuongXa.Clear();
-            txtQuanHuyen.Clear();
-            txtTinhThanhPho.Clear();
-            if (rdoNam.Checked)
-                rdoNam.Checked = false;
-            else
-                rdoNu.Checked = false;
         }
         #endregion
     }

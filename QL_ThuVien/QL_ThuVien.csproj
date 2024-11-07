@@ -64,9 +64,15 @@
   <ItemGroup>
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\DocGia_DAO.cs" />
+<<<<<<< HEAD
     <Compile Include="DAO\NhapSach_DAO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\NhapSach_DTO.cs" />
+=======
+    <Compile Include="DAO\NhanVien_DAO.cs" />
+    <Compile Include="DTO\DocGia_DTO.cs" />
+    <Compile Include="DTO\NhanVien_DTO.cs" />
+>>>>>>> d5337e655a15b1ceb5843f675d95931ce08556f0
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,12 @@
     </Compile>
     <Compile Include="UserControls\UCNhaXuatBan.Designer.cs">
       <DependentUpon>UCNhaXuatBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCSuaDocGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSuaDocGia.Designer.cs">
+      <DependentUpon>UCSuaDocGia.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCTacGiaTheLoai.cs">
       <SubType>UserControl</SubType>
@@ -224,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCNhaXuatBan.resx">
       <DependentUpon>UCNhaXuatBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSuaDocGia.resx">
+      <DependentUpon>UCSuaDocGia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCTacGiaTheLoai.resx">
       <DependentUpon>UCTacGiaTheLoai.cs</DependentUpon>

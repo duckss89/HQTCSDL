@@ -1,6 +1,6 @@
 ﻿namespace QL_ThuVien.UserControls
 {
-    partial class UCThemDocGia
+    partial class UCSuaDocGia
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,20 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlDesktop = new System.Windows.Forms.Panel();
-            this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtTinhThanhPho = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtPhuongXa = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtQuanHuyen = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtTenDuong = new Guna.UI2.WinForms.Guna2TextBox();
-            this.grThongTinCaNhan = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.btnReturn = new FontAwesome.Sharp.IconButton();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.pnlTool = new Guna.UI2.WinForms.Guna2Panel();
             this.rdoNu = new Guna.UI2.WinForms.Guna2RadioButton();
             this.rdoNam = new Guna.UI2.WinForms.Guna2RadioButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.grThongTinCaNhan = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,207 +47,75 @@
             this.txtHoLot = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtHo = new Guna.UI2.WinForms.Guna2TextBox();
-            this.pnlTool = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnReturn = new FontAwesome.Sharp.IconButton();
-            this.btnResetText = new FontAwesome.Sharp.IconButton();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.txtTenDuong = new Guna.UI2.WinForms.Guna2TextBox();
+            this.pnlDesktop = new System.Windows.Forms.Panel();
+            this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTinhThanhPho = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPhuongXa = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtQuanHuyen = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pnlTool.SuspendLayout();
+            this.grThongTinCaNhan.SuspendLayout();
             this.pnlDesktop.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
-            this.grThongTinCaNhan.SuspendLayout();
-            this.pnlTool.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlDesktop
+            // btnReturn
             // 
-            this.pnlDesktop.Controls.Add(this.guna2GroupBox1);
-            this.pnlDesktop.Controls.Add(this.grThongTinCaNhan);
-            this.pnlDesktop.Controls.Add(this.pnlTool);
-            this.pnlDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDesktop.Location = new System.Drawing.Point(0, 0);
-            this.pnlDesktop.Name = "pnlDesktop";
-            this.pnlDesktop.Size = new System.Drawing.Size(920, 556);
-            this.pnlDesktop.TabIndex = 0;
+            this.btnReturn.BackColor = System.Drawing.Color.Transparent;
+            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReturn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnReturn.FlatAppearance.BorderSize = 0;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReturn.IconChar = FontAwesome.Sharp.IconChar.RotateBackward;
+            this.btnReturn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.btnReturn.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnReturn.IconSize = 50;
+            this.btnReturn.Location = new System.Drawing.Point(0, 456);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(99, 100);
+            this.btnReturn.TabIndex = 2;
+            this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // guna2GroupBox1
+            // btnSave
             // 
-            this.guna2GroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.guna2GroupBox1.Controls.Add(this.label8);
-            this.guna2GroupBox1.Controls.Add(this.txtTinhThanhPho);
-            this.guna2GroupBox1.Controls.Add(this.label9);
-            this.guna2GroupBox1.Controls.Add(this.txtPhuongXa);
-            this.guna2GroupBox1.Controls.Add(this.label10);
-            this.guna2GroupBox1.Controls.Add(this.txtQuanHuyen);
-            this.guna2GroupBox1.Controls.Add(this.label11);
-            this.guna2GroupBox1.Controls.Add(this.txtTenDuong);
-            this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.guna2GroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2GroupBox1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.guna2GroupBox1.Location = new System.Drawing.Point(0, 279);
-            this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(821, 279);
-            this.guna2GroupBox1.TabIndex = 10;
-            this.guna2GroupBox1.Text = "Địa chỉ";
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btnSave.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.IconSize = 50;
+            this.btnSave.Location = new System.Drawing.Point(0, 0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(99, 100);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label8
+            // pnlTool
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(452, 157);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(123, 16);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Tinh thành phố :";
-            // 
-            // txtTinhThanhPho
-            // 
-            this.txtTinhThanhPho.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.txtTinhThanhPho.BorderRadius = 10;
-            this.txtTinhThanhPho.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTinhThanhPho.DefaultText = "";
-            this.txtTinhThanhPho.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTinhThanhPho.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTinhThanhPho.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTinhThanhPho.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTinhThanhPho.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTinhThanhPho.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTinhThanhPho.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTinhThanhPho.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTinhThanhPho.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTinhThanhPho.Location = new System.Drawing.Point(449, 178);
-            this.txtTinhThanhPho.Name = "txtTinhThanhPho";
-            this.txtTinhThanhPho.PasswordChar = '\0';
-            this.txtTinhThanhPho.PlaceholderText = "";
-            this.txtTinhThanhPho.SelectedText = "";
-            this.txtTinhThanhPho.Size = new System.Drawing.Size(308, 36);
-            this.txtTinhThanhPho.TabIndex = 10;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(452, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 16);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Phường xã :";
-            // 
-            // txtPhuongXa
-            // 
-            this.txtPhuongXa.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.txtPhuongXa.BorderRadius = 10;
-            this.txtPhuongXa.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPhuongXa.DefaultText = "";
-            this.txtPhuongXa.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtPhuongXa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtPhuongXa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPhuongXa.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPhuongXa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtPhuongXa.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhuongXa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtPhuongXa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtPhuongXa.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtPhuongXa.Location = new System.Drawing.Point(449, 95);
-            this.txtPhuongXa.Name = "txtPhuongXa";
-            this.txtPhuongXa.PasswordChar = '\0';
-            this.txtPhuongXa.PlaceholderText = "";
-            this.txtPhuongXa.SelectedText = "";
-            this.txtPhuongXa.Size = new System.Drawing.Size(308, 36);
-            this.txtPhuongXa.TabIndex = 8;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(66, 157);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 16);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Quận huyện :";
-            // 
-            // txtQuanHuyen
-            // 
-            this.txtQuanHuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.txtQuanHuyen.BorderRadius = 10;
-            this.txtQuanHuyen.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtQuanHuyen.DefaultText = "";
-            this.txtQuanHuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtQuanHuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtQuanHuyen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtQuanHuyen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtQuanHuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtQuanHuyen.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuanHuyen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtQuanHuyen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtQuanHuyen.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtQuanHuyen.Location = new System.Drawing.Point(63, 178);
-            this.txtQuanHuyen.Name = "txtQuanHuyen";
-            this.txtQuanHuyen.PasswordChar = '\0';
-            this.txtQuanHuyen.PlaceholderText = "";
-            this.txtQuanHuyen.SelectedText = "";
-            this.txtQuanHuyen.Size = new System.Drawing.Size(308, 36);
-            this.txtQuanHuyen.TabIndex = 4;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(66, 74);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 16);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Tên đường :";
-            // 
-            // txtTenDuong
-            // 
-            this.txtTenDuong.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.txtTenDuong.BorderRadius = 10;
-            this.txtTenDuong.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTenDuong.DefaultText = "";
-            this.txtTenDuong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTenDuong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTenDuong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTenDuong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTenDuong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTenDuong.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenDuong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTenDuong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTenDuong.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtTenDuong.Location = new System.Drawing.Point(63, 95);
-            this.txtTenDuong.Name = "txtTenDuong";
-            this.txtTenDuong.PasswordChar = '\0';
-            this.txtTenDuong.PlaceholderText = "";
-            this.txtTenDuong.SelectedText = "";
-            this.txtTenDuong.Size = new System.Drawing.Size(308, 36);
-            this.txtTenDuong.TabIndex = 2;
-            // 
-            // grThongTinCaNhan
-            // 
-            this.grThongTinCaNhan.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.grThongTinCaNhan.Controls.Add(this.rdoNu);
-            this.grThongTinCaNhan.Controls.Add(this.rdoNam);
-            this.grThongTinCaNhan.Controls.Add(this.label7);
-            this.grThongTinCaNhan.Controls.Add(this.dtpNgaySinh);
-            this.grThongTinCaNhan.Controls.Add(this.label6);
-            this.grThongTinCaNhan.Controls.Add(this.label4);
-            this.grThongTinCaNhan.Controls.Add(this.txtEmail);
-            this.grThongTinCaNhan.Controls.Add(this.label5);
-            this.grThongTinCaNhan.Controls.Add(this.txtSoDienThoai);
-            this.grThongTinCaNhan.Controls.Add(this.label3);
-            this.grThongTinCaNhan.Controls.Add(this.txtTen);
-            this.grThongTinCaNhan.Controls.Add(this.label2);
-            this.grThongTinCaNhan.Controls.Add(this.txtHoLot);
-            this.grThongTinCaNhan.Controls.Add(this.label1);
-            this.grThongTinCaNhan.Controls.Add(this.txtHo);
-            this.grThongTinCaNhan.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.grThongTinCaNhan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grThongTinCaNhan.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grThongTinCaNhan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.grThongTinCaNhan.Location = new System.Drawing.Point(0, 0);
-            this.grThongTinCaNhan.Name = "grThongTinCaNhan";
-            this.grThongTinCaNhan.Size = new System.Drawing.Size(821, 279);
-            this.grThongTinCaNhan.TabIndex = 9;
-            this.grThongTinCaNhan.Text = "Thông tin cá nhân";
+            this.pnlTool.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlTool.BorderColor = System.Drawing.Color.White;
+            this.pnlTool.BorderRadius = 10;
+            this.pnlTool.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.pnlTool.BorderThickness = 2;
+            this.pnlTool.Controls.Add(this.btnReturn);
+            this.pnlTool.Controls.Add(this.btnSave);
+            this.pnlTool.CustomBorderThickness = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.pnlTool.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlTool.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.pnlTool.Location = new System.Drawing.Point(821, 0);
+            this.pnlTool.Name = "pnlTool";
+            this.pnlTool.Size = new System.Drawing.Size(99, 556);
+            this.pnlTool.TabIndex = 8;
             // 
             // rdoNu
             // 
@@ -303,6 +164,34 @@
             this.label7.Size = new System.Drawing.Size(75, 16);
             this.label7.TabIndex = 14;
             this.label7.Text = "Giới tính :";
+            // 
+            // grThongTinCaNhan
+            // 
+            this.grThongTinCaNhan.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.grThongTinCaNhan.Controls.Add(this.rdoNu);
+            this.grThongTinCaNhan.Controls.Add(this.rdoNam);
+            this.grThongTinCaNhan.Controls.Add(this.label7);
+            this.grThongTinCaNhan.Controls.Add(this.dtpNgaySinh);
+            this.grThongTinCaNhan.Controls.Add(this.label6);
+            this.grThongTinCaNhan.Controls.Add(this.label4);
+            this.grThongTinCaNhan.Controls.Add(this.txtEmail);
+            this.grThongTinCaNhan.Controls.Add(this.label5);
+            this.grThongTinCaNhan.Controls.Add(this.txtSoDienThoai);
+            this.grThongTinCaNhan.Controls.Add(this.label3);
+            this.grThongTinCaNhan.Controls.Add(this.txtTen);
+            this.grThongTinCaNhan.Controls.Add(this.label2);
+            this.grThongTinCaNhan.Controls.Add(this.txtHoLot);
+            this.grThongTinCaNhan.Controls.Add(this.label1);
+            this.grThongTinCaNhan.Controls.Add(this.txtHo);
+            this.grThongTinCaNhan.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.grThongTinCaNhan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grThongTinCaNhan.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grThongTinCaNhan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.grThongTinCaNhan.Location = new System.Drawing.Point(0, 0);
+            this.grThongTinCaNhan.Name = "grThongTinCaNhan";
+            this.grThongTinCaNhan.Size = new System.Drawing.Size(821, 279);
+            this.grThongTinCaNhan.TabIndex = 9;
+            this.grThongTinCaNhan.Text = "Thông tin cá nhân";
             // 
             // dtpNgaySinh
             // 
@@ -504,117 +393,211 @@
             this.txtHo.TabIndex = 0;
             this.txtHo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHo_KeyPress);
             // 
-            // pnlTool
+            // txtTenDuong
             // 
-            this.pnlTool.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlTool.BorderColor = System.Drawing.Color.White;
-            this.pnlTool.BorderRadius = 10;
-            this.pnlTool.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.pnlTool.BorderThickness = 2;
-            this.pnlTool.Controls.Add(this.btnReturn);
-            this.pnlTool.Controls.Add(this.btnResetText);
-            this.pnlTool.Controls.Add(this.btnSave);
-            this.pnlTool.CustomBorderThickness = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.pnlTool.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTool.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.pnlTool.Location = new System.Drawing.Point(821, 0);
-            this.pnlTool.Name = "pnlTool";
-            this.pnlTool.Size = new System.Drawing.Size(99, 556);
-            this.pnlTool.TabIndex = 8;
+            this.txtTenDuong.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.txtTenDuong.BorderRadius = 10;
+            this.txtTenDuong.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTenDuong.DefaultText = "";
+            this.txtTenDuong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTenDuong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTenDuong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTenDuong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTenDuong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTenDuong.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenDuong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTenDuong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTenDuong.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTenDuong.Location = new System.Drawing.Point(63, 95);
+            this.txtTenDuong.Name = "txtTenDuong";
+            this.txtTenDuong.PasswordChar = '\0';
+            this.txtTenDuong.PlaceholderText = "";
+            this.txtTenDuong.SelectedText = "";
+            this.txtTenDuong.Size = new System.Drawing.Size(308, 36);
+            this.txtTenDuong.TabIndex = 2;
             // 
-            // btnReturn
+            // pnlDesktop
             // 
-            this.btnReturn.BackColor = System.Drawing.Color.Transparent;
-            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReturn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnReturn.FlatAppearance.BorderSize = 0;
-            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReturn.IconChar = FontAwesome.Sharp.IconChar.RotateBackward;
-            this.btnReturn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.btnReturn.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnReturn.IconSize = 50;
-            this.btnReturn.Location = new System.Drawing.Point(0, 456);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(99, 100);
-            this.btnReturn.TabIndex = 2;
-            this.btnReturn.UseVisualStyleBackColor = false;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click_1);
+            this.pnlDesktop.Controls.Add(this.guna2GroupBox1);
+            this.pnlDesktop.Controls.Add(this.grThongTinCaNhan);
+            this.pnlDesktop.Controls.Add(this.pnlTool);
+            this.pnlDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDesktop.Location = new System.Drawing.Point(0, 0);
+            this.pnlDesktop.Name = "pnlDesktop";
+            this.pnlDesktop.Size = new System.Drawing.Size(920, 556);
+            this.pnlDesktop.TabIndex = 1;
             // 
-            // btnResetText
+            // guna2GroupBox1
             // 
-            this.btnResetText.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetText.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnResetText.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnResetText.FlatAppearance.BorderSize = 0;
-            this.btnResetText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetText.IconChar = FontAwesome.Sharp.IconChar.Remove;
-            this.btnResetText.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.btnResetText.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnResetText.IconSize = 50;
-            this.btnResetText.Location = new System.Drawing.Point(0, 100);
-            this.btnResetText.Name = "btnResetText";
-            this.btnResetText.Size = new System.Drawing.Size(99, 100);
-            this.btnResetText.TabIndex = 1;
-            this.btnResetText.UseVisualStyleBackColor = false;
-            this.btnResetText.Click += new System.EventHandler(this.btnResetText_Click);
+            this.guna2GroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.guna2GroupBox1.Controls.Add(this.label8);
+            this.guna2GroupBox1.Controls.Add(this.txtTinhThanhPho);
+            this.guna2GroupBox1.Controls.Add(this.label9);
+            this.guna2GroupBox1.Controls.Add(this.txtPhuongXa);
+            this.guna2GroupBox1.Controls.Add(this.label10);
+            this.guna2GroupBox1.Controls.Add(this.txtQuanHuyen);
+            this.guna2GroupBox1.Controls.Add(this.label11);
+            this.guna2GroupBox1.Controls.Add(this.txtTenDuong);
+            this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.guna2GroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2GroupBox1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.guna2GroupBox1.Location = new System.Drawing.Point(0, 279);
+            this.guna2GroupBox1.Name = "guna2GroupBox1";
+            this.guna2GroupBox1.Size = new System.Drawing.Size(821, 279);
+            this.guna2GroupBox1.TabIndex = 10;
+            this.guna2GroupBox1.Text = "Địa chỉ";
             // 
-            // btnSave
+            // label8
             // 
-            this.btnSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btnSave.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.IconSize = 50;
-            this.btnSave.Location = new System.Drawing.Point(0, 0);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(99, 100);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(452, 157);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(123, 16);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Tinh thành phố :";
             // 
-            // UCThemDocGia
+            // txtTinhThanhPho
+            // 
+            this.txtTinhThanhPho.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.txtTinhThanhPho.BorderRadius = 10;
+            this.txtTinhThanhPho.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTinhThanhPho.DefaultText = "";
+            this.txtTinhThanhPho.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTinhThanhPho.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTinhThanhPho.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTinhThanhPho.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTinhThanhPho.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTinhThanhPho.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTinhThanhPho.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTinhThanhPho.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTinhThanhPho.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtTinhThanhPho.Location = new System.Drawing.Point(449, 178);
+            this.txtTinhThanhPho.Name = "txtTinhThanhPho";
+            this.txtTinhThanhPho.PasswordChar = '\0';
+            this.txtTinhThanhPho.PlaceholderText = "";
+            this.txtTinhThanhPho.SelectedText = "";
+            this.txtTinhThanhPho.Size = new System.Drawing.Size(308, 36);
+            this.txtTinhThanhPho.TabIndex = 10;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(452, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 16);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Phường xã :";
+            // 
+            // txtPhuongXa
+            // 
+            this.txtPhuongXa.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.txtPhuongXa.BorderRadius = 10;
+            this.txtPhuongXa.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPhuongXa.DefaultText = "";
+            this.txtPhuongXa.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtPhuongXa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtPhuongXa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPhuongXa.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPhuongXa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtPhuongXa.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhuongXa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtPhuongXa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtPhuongXa.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtPhuongXa.Location = new System.Drawing.Point(449, 95);
+            this.txtPhuongXa.Name = "txtPhuongXa";
+            this.txtPhuongXa.PasswordChar = '\0';
+            this.txtPhuongXa.PlaceholderText = "";
+            this.txtPhuongXa.SelectedText = "";
+            this.txtPhuongXa.Size = new System.Drawing.Size(308, 36);
+            this.txtPhuongXa.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(66, 157);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 16);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Quận huyện :";
+            // 
+            // txtQuanHuyen
+            // 
+            this.txtQuanHuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.txtQuanHuyen.BorderRadius = 10;
+            this.txtQuanHuyen.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtQuanHuyen.DefaultText = "";
+            this.txtQuanHuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtQuanHuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtQuanHuyen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtQuanHuyen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtQuanHuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtQuanHuyen.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuanHuyen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtQuanHuyen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtQuanHuyen.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.txtQuanHuyen.Location = new System.Drawing.Point(63, 178);
+            this.txtQuanHuyen.Name = "txtQuanHuyen";
+            this.txtQuanHuyen.PasswordChar = '\0';
+            this.txtQuanHuyen.PlaceholderText = "";
+            this.txtQuanHuyen.SelectedText = "";
+            this.txtQuanHuyen.Size = new System.Drawing.Size(308, 36);
+            this.txtQuanHuyen.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(66, 74);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(92, 16);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Tên đường :";
+            // 
+            // UCSuaDocGia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlDesktop);
-            this.Name = "UCThemDocGia";
+            this.Name = "UCSuaDocGia";
             this.Size = new System.Drawing.Size(920, 556);
+            this.pnlTool.ResumeLayout(false);
+            this.grThongTinCaNhan.ResumeLayout(false);
+            this.grThongTinCaNhan.PerformLayout();
             this.pnlDesktop.ResumeLayout(false);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
-            this.grThongTinCaNhan.ResumeLayout(false);
-            this.grThongTinCaNhan.PerformLayout();
-            this.pnlTool.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlDesktop;
-        private Guna.UI2.WinForms.Guna2Panel pnlTool;
         private FontAwesome.Sharp.IconButton btnReturn;
-        private FontAwesome.Sharp.IconButton btnResetText;
         private FontAwesome.Sharp.IconButton btnSave;
+        private Guna.UI2.WinForms.Guna2Panel pnlTool;
+        private Guna.UI2.WinForms.Guna2RadioButton rdoNu;
+        private Guna.UI2.WinForms.Guna2RadioButton rdoNam;
+        private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2GroupBox grThongTinCaNhan;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgaySinh;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
+        private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2TextBox txtSoDienThoai;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtTen;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox txtHoLot;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2TextBox txtHo;
-        private System.Windows.Forms.Label label4;
-        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
-        private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2TextBox txtSoDienThoai;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgaySinh;
-        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2TextBox txtTenDuong;
+        private System.Windows.Forms.Panel pnlDesktop;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2TextBox txtTinhThanhPho;
@@ -623,9 +606,5 @@
         private System.Windows.Forms.Label label10;
         private Guna.UI2.WinForms.Guna2TextBox txtQuanHuyen;
         private System.Windows.Forms.Label label11;
-        private Guna.UI2.WinForms.Guna2TextBox txtTenDuong;
-        private Guna.UI2.WinForms.Guna2RadioButton rdoNam;
-        private System.Windows.Forms.Label label7;
-        private Guna.UI2.WinForms.Guna2RadioButton rdoNu;
     }
 }
