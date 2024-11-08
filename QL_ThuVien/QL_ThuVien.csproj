@@ -64,21 +64,15 @@
   <ItemGroup>
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\DocGia_DAO.cs" />
-<<<<<<< HEAD
     <Compile Include="DAO\XuatSach_DAO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\XuatSach_DTO.cs" />
-=======
-<<<<<<< HEAD
     <Compile Include="DAO\NhapSach_DAO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\NhapSach_DTO.cs" />
-=======
     <Compile Include="DAO\NhanVien_DAO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\NhanVien_DTO.cs" />
->>>>>>> d5337e655a15b1ceb5843f675d95931ce08556f0
->>>>>>> d2c43db5298675c2c0b5b720635efdc4513297c0
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

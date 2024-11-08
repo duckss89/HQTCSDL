@@ -27,5 +27,22 @@ namespace QL_ThuVien.DAO
             string query = "Exec sp_LayDanhSachNhapSach";
             return DataProvider.Instance.ExecuteQuery(query);
         }
+
+        public List<NhapSach_DTO> TimKiemNhapSachTheoMaSach(string maNhapSach)
+        {
+            List<NhapSach_DTO> list = new List<NhapSach_DTO>();
+
+            string query = "Exec sp_TimKiemNhapSach @maNhapSach = N'" + maNhapSach + "'";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow item in data.Rows)
+            {
+                NhapSach_DTO ns = new NhapSach_DTO(item);
+                list.Add(ns);
+            }
+
+            return list;
+        }
     }
 }

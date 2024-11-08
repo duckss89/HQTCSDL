@@ -524,7 +524,9 @@ BEGIN
 END
 GO
 
-<<<<<<< HEAD
+--======================================================================================================================================================================
+
+--Proc lấy danh sách nhập sách
 CREATE PROCEDURE sp_LayDanhSachNhapSach
 AS
 BEGIN
@@ -544,8 +546,43 @@ BEGIN
 END
 GO
 
-drop PROCEDURE sp_LayDanhSachNhapSach
-=======
+-- Proc tìm kiếm đọc giả theo tên gần đúng
+CREATE PROCEDURE sp_TimKiemNhapSach
+    @maNhapSach NVARCHAR(50)
+AS
+BEGIN
+    SELECT 
+        NhapSach.maNhapSach,             -- Chỉ định bảng NhapSach
+        NhanVien.hoTenNhanVien,                  -- Lấy tên nhân viên từ bảng NhanVien
+        CONVERT(VARCHAR(10), NhapSach.ngayNhap, 103) AS ngayNhap,  -- Chuyển đổi ngày nhập sang định dạng dd/MM/yyyy
+        NhapSach.nguonNhap,              -- Chỉ định bảng NhapSach
+        NhapSach.soDienThoai,            -- Chỉ định bảng NhapSach
+        NhapSach.email,                  -- Chỉ định bảng NhapSach
+        NhapSach.diaChiChiTiet,           -- Chỉ định bảng NhapSach
+        NhapSach.tongTien
+    FROM 
+        NhapSach, NhanVien
+    WHERE 
+        NhapSach.maNhanVien = NhanVien.maNhanVien AND dbo.fn_ConvertToUnsign(NhapSach.maNhapSach) LIKE N'%' + dbo.fn_ConvertToUnsign(@maNhapSach) + '%';
+END
+GO
+--======================================================================================================================================================================
+
+--Proc lấy danh sách xuất sách
+CREATE PROCEDURE sp_LayDanhSachXuatSach
+AS
+BEGIN
+    SELECT 
+        XuatSach.maXuatSach,
+		NhanVien.hoTenNhanVien,
+		XuatSach.ngayXuat,
+		XuatSach.tongGiaBan
+    FROM 
+        NhanVien,XuatSach
+	where NhanVien.maNhanVien = XuatSach.maNhanVien
+END
+GO
+
 CREATE PROCEDURE sp_ThemDocGia
     @ho NVARCHAR(10),
     @hoLot NVARCHAR(20) = NULL,
@@ -657,21 +694,8 @@ BEGIN
 END
 GO
 
-<<<<<<< HEAD
-CREATE PROCEDURE sp_LayDanhSachXuatSach
-AS
-BEGIN
-    SELECT 
-        XuatSach.maXuatSach,
-		NhanVien.hoTenNhanVien,
-		XuatSach.ngayXuat,
-		XuatSach.tongGiaBan
-    FROM 
-        NhanVien,XuatSach
-	where NhanVien.maNhanVien = XuatSach.maNhanVien
-END
-GO
-=======
+
+
 CREATE PROCEDURE sp_LayDanhSachNhanVien
 AS
 BEGIN
@@ -719,5 +743,3 @@ END
 GO
 
 drop proc sp_TimKiemNhanVienTheoTen
->>>>>>> d5337e655a15b1ceb5843f675d95931ce08556f0
->>>>>>> d2c43db5298675c2c0b5b720635efdc4513297c0

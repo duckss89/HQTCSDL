@@ -1,4 +1,5 @@
 ﻿using QL_ThuVien.DAO;
+using QL_ThuVien.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,17 @@ namespace QL_ThuVien.UserControls
             SetUpNhapSachDataGridView();
         }
 
+        List<NhapSach_DTO> TimKiemNhapSachTheoMaSach(string maNhapSach)
+        {
+            return NhapSach_DAO.Instance.TimKiemNhapSachTheoMaSach(maNhapSach);  // sửa lại gọi hàm mà không khai báo kiểu string ở đây
+        }
+
+        void TimKiemNhapSach(string maNhapSach)
+        {
+            dgvNhapSach.DataSource = TimKiemNhapSachTheoMaSach(maNhapSach); // gọi đúng phương thức
+            SetUpNhapSachDataGridView();
+        }
+
         void SetUpNhapSachDataGridView()
         {
             dgvNhapSach.Columns["maNhapSach"].HeaderText = "MÃ NHẬP SÁCH";
@@ -52,9 +64,17 @@ namespace QL_ThuVien.UserControls
             dgvNhapSach.Columns["soDienThoai"].HeaderText = "SỐ ĐIỆN THOẠI";
             dgvNhapSach.Columns["email"].HeaderText = "EMAIL";
             dgvNhapSach.Columns["ngayNhap"].HeaderText = "NGÀY NHẬP";
+            dgvNhapSach.Columns["tongTien"].HeaderText = "TỔNG TIỀN";
+
+            dgvNhapSach.Columns["maNhanVien"].Visible = false;
+            dgvNhapSach.Columns["tenDuong"].Visible = false;
+            dgvNhapSach.Columns["quanHuyen"].Visible = false;
+            dgvNhapSach.Columns["phuongXa"].Visible = false;
+            dgvNhapSach.Columns["tinhThanhPho"].Visible = false;
+
+
             dgvNhapSach.Columns["ngayNhap"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
-            dgvNhapSach.Columns["tongTien"].HeaderText = "TỔNG TIỀN";
             dgvNhapSach.AllowUserToAddRows = false;
             dgvNhapSach.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvNhapSach.AutoResizeColumns();
@@ -79,6 +99,31 @@ namespace QL_ThuVien.UserControls
                 maNhapSach = dgvNhapSach.Rows[e.RowIndex].Cells["maNhapSach"].Value.ToString();
             }
         }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Nhập tên mã sách cần tìm")
+            {
+                txtSearch.Text = null;
+                txtSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "")
+            {
+                txtSearch.Text = "Nhập tên mã sách cần tìm";
+                txtSearch.ForeColor = Color.FromArgb(125, 137, 149);
+            }
+        }
+
+        private void ptrTimKiem_Click(object sender, EventArgs e)
+        {
+            string maNhapSach = txtSearch.Text.Trim();
+            TimKiemNhapSach(maNhapSach);
+        }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
