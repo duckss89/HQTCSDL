@@ -100,23 +100,23 @@ namespace QL_ThuVien.UserControls
             }
 
             // Thực hiện thêm dữ liệu vào bảng NhapSach
-            if (NhapSach_DAO.Instance.ThemNhapSach( maNhanVien, nguonNhap, soDienThoai, email, tenDuong, phuongXa, quanHuyen, tinhThanhPho, tongTien, soLuong, donGia, ngayXuat, lyDo))
-            {
-                MessageBox.Show("Thêm thông tin nhập sách thành công!", "Thông báo", MessageBoxButtons.OK);
+            //if (NhapSach_DAO.Instance.ThemNhapSach( maNhanVien, nguonNhap, soDienThoai, email, tenDuong, phuongXa, quanHuyen, tinhThanhPho, tongTien, soLuong, donGia, ngayXuat, lyDo))
+            //{
+            //    MessageBox.Show("Thêm thông tin nhập sách thành công!", "Thông báo", MessageBoxButtons.OK);
 
-                // Xóa dữ liệu trong các textbox sau khi lưu thành công
-                cboNhanVien.SelectedIndex = -1;
-                cboSach.SelectedIndex = -1;
-                txtEmail.Clear();
-                txtSoDienThoai.Clear();
-                txtTenDuong.Clear();
-                txtPhuongXa.Clear();
-                txtQuanHuyen.Clear();
-                txtThanhPho.Clear();
-                txtTongTien.Clear();
-                txtDonGia.Clear();
-                numSoLuong.Value = 1;
-            }
+            //    // Xóa dữ liệu trong các textbox sau khi lưu thành công
+            //    cboNhanVien.SelectedIndex = -1;
+            //    cboSach.SelectedIndex = -1;
+            //    txtEmail.Clear();
+            //    txtSoDienThoai.Clear();
+            //    txtTenDuong.Clear();
+            //    txtPhuongXa.Clear();
+            //    txtQuanHuyen.Clear();
+            //    txtThanhPho.Clear();
+            //    txtTongTien.Clear();
+            //    txtDonGia.Clear();
+            //    numSoLuong.Value = 1;
+            //}
             else
             {
                 MessageBox.Show("Có lỗi khi thêm thông tin nhập sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

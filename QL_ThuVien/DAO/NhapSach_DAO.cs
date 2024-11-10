@@ -29,25 +29,15 @@ namespace QL_ThuVien.DAO
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-        public List<NhapSach_DTO> TimKiemNhapSachTheoMaSach(string maNhapSach)
+        public DataTable GetListNhapSachTheoMaSach(string maNhapSach)
         {
-            List<NhapSach_DTO> list = new List<NhapSach_DTO>();
-
-            string query = "Exec sp_TimKiemNhapSach @maNhapSach = N'" + maNhapSach + "'";
-
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                NhapSach_DTO ns = new NhapSach_DTO(item);
-                list.Add(ns);
-            }
-
-            return list;
+            string query = "Exec sp_TimKiemNhapSachTheoMaSach @maNhapSach = N'" + maNhapSach + "'";
+            return DataProvider.Instance.ExecuteQuery(query);
         }
+
         public bool XoaNhapSach(string maNhapSach)
         {
-            string query = "Delete DocGia Where maNhapSach = '" + maNhapSach + "'";
+            string query = "Delete NhapSach Where maNhapSach = '" + maNhapSach + "'";
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
@@ -70,23 +60,8 @@ namespace QL_ThuVien.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-        public List<NhapSach_DTO> LayThongTinDocGiaTheoMaDG(string maDocGia)
-        {
-            List<NhapSach_DTO> list = new List<NhapSach_DTO>();
-
-            string query = "EXEC sp_LayThongTinDocGiaTheoMa @maDocGia";
 
 
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                NhapSach_DTO ns = new NhapSach_DTO(item);
-                list.Add(ns);
-            }
-
-            return list;
-        }
         public bool SuaNhapSach(string maNhapSach, string maNhanVien, string nguonNhap, string soDienThoai, string email,
                          string diaChiChiTiet, string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho, decimal tongTien)
         {

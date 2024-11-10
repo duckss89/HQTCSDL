@@ -25,46 +25,20 @@ namespace QL_ThuVien.DAO
             string query = "Exec sp_layDanhSachNhanVien";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-        public List<NhanVien_DTO> TimKiemNhanVienTheoTen(string tenNhanVien)
+
+
+        public DataTable GetListNhanVienTheoTen(string tenNhanVien)
         {
-            List<NhanVien_DTO> list = new List<NhanVien_DTO>();
-
-            string query = "Exec sp_layDanhSachNhanVien @tenNhanVien= N'" + tenNhanVien + "'";
-
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);//
-
-            foreach (DataRow item in data.Rows)
-            {
-                NhanVien_DTO nv = new NhanVien_DTO(item);
-                list.Add(nv);
-            }
-
-            return list;
-        }
-        public List<NhanVien_DTO> sp_TimKiemNhanVienTheoTen(string tenNhanVien)
-        {
-            List<NhanVien_DTO> list = new List<NhanVien_DTO>();
-
             string query = "Exec sp_TimKiemNhanVienTheoTen @tenNhanVien= N'" + tenNhanVien + "'";
-
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                NhanVien_DTO nv = new NhanVien_DTO(item);
-                list.Add(nv);
-            }
-
-            return list;
+            return DataProvider.Instance.ExecuteQuery(query);
         }
 
         public bool XoaNhanVien(string maNhanVien)
         {
-            string query = "Delete  Where NhanVien maNhanVien = '" + maNhanVien + "'";
+            string query = "Delete NhanVien where maNhanVien = '" + maNhanVien + "'";
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-
 
     }
 }

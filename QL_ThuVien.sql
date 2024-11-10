@@ -154,13 +154,12 @@ Create Table NhapSach(
     nguonNhap Nvarchar(100),
     soDienThoai Varchar(10) Check (Len(soDienThoai) = 10),
     email Varchar(50) Unique,
-    diaChiChiTiet Nvarchar(255), -- Địa chỉ của nguồn nhập nếu có
+    diaChiChiTiet Nvarchar(255),
     tenDuong Nvarchar(100),
     phuongXa Nvarchar(100),
     quanHuyen Nvarchar(100),
     tinhThanhPho Nvarchar(100),
     tongTien Decimal(10,2) Default 0
-	--Thêm nhân viên nhập
 )
 Go
 
@@ -170,9 +169,16 @@ Create Table ChiTietNhapSach (
     maNhapSach varchar(10) Not Null,
     maSach varchar(10) Not Null,
     soLuongNhap Int Not Null,
-    giaNhap Decimal(10,2) Not Null -- Giá nhập cho từng cuốn sách
+    giaNhap Decimal(10,2) Not Null
 )
 Go
+
+CREATE PROCEDURE sp_LayDanhSacDocGia
+AS
+BEGIN
+	
+END
+GO
 
 --14. Bảng xuất sách
 Create Table XuatSach(
@@ -407,7 +413,7 @@ VALUES
     ('CTXS003', 'XS002', 'S002', 1, 120000, N'Mất')
 GO
 
---======================================================================================================================================================================
+--Đọc giả=============================================================================================================================================================
 
 --Proc lấy danh sách đọc giả
 CREATE PROCEDURE sp_LayDanhSacDocGia
@@ -524,243 +530,7 @@ BEGIN
 END
 GO
 
---======================================================================================================================================================================
-
---Proc lấy danh sách nhập sách
-CREATE PROCEDURE sp_LayDanhSachNhapSach
-AS
-BEGIN
-    SELECT 
-        ns.maNhapSach,
-        ns.maNhanVien,
-        (SELECT nv.hoTenNhanVien 
-         FROM NhanVien nv 
-         WHERE nv.maNhanVien = ns.maNhanVien) AS tenNhanVien,  -- Sử dụng subquery để lấy tên nhân viên
-        ns.ngayNhap,
-        ns.nguonNhap,
-        ns.soDienThoai,
-        ns.email,
-        ns.diaChiChiTiet,
-        ns.tenDuong,
-        ns.phuongXa,
-        ns.quanHuyen,
-        ns.tinhThanhPho,
-        ns.tongTien
-    FROM 
-        NhapSach ns               -- Kết nối hai bảng NhapSach và NhanVien
-END
-GO
-
--- Proc tìm kiếm nhập sách theo mã sách gần đúng
-CREATE PROCEDURE sp_TimKiemNhapSachTheoMaSach
-    @maNhapSach NVARCHAR(10)
-AS
-BEGIN
-    SELECT 
-        ns.maNhapSach,
-        ns.maNhanVien,
-        (SELECT nv.hoTenNhanVien 
-         FROM NhanVien nv 
-         WHERE nv.maNhanVien = ns.maNhanVien) AS tenNhanVien,  -- Sử dụng subquery để lấy tên nhân viên
-        ns.ngayNhap,
-        ns.nguonNhap,
-        ns.soDienThoai,
-        ns.email,
-        ns.diaChiChiTiet,
-        ns.tenDuong,
-        ns.phuongXa,
-        ns.quanHuyen,
-        ns.tinhThanhPho,
-        ns.tongTien
-    FROM 
-        NhapSach ns
-    WHERE 
-        dbo.fn_ConvertToUnsign(ns.maNhapSach) LIKE N'%' + dbo.fn_ConvertToUnsign(@maNhapSach) + '%';
-END
-GO
-    -- Thêm thông tin vào bảng NhapSach
-CREATE PROCEDURE sp_ThemNhapSach
-    @maNhapSach VARCHAR(10),
-    @maNhanVien VARCHAR(10),
-    @nguonNhap NVARCHAR(100),
-    @soDienThoai VARCHAR(10),
-    @email VARCHAR(50),
-    @diaChiChiTiet NVARCHAR(255),
-    @tenDuong NVARCHAR(100),
-    @phuongXa NVARCHAR(100),
-    @quanHuyen NVARCHAR(100),
-    @tinhThanhPho NVARCHAR(100),
-    @tongTien DECIMAL(10, 2)
-AS
-BEGIN
-    INSERT INTO NhapSach (
-        maNhapSach, 
-        maNhanVien, 
-        ngayNhap, 
-        nguonNhap, 
-        soDienThoai, 
-        email, 
-        diaChiChiTiet, 
-        tenDuong, 
-        phuongXa, 
-        quanHuyen, 
-        tinhThanhPho, 
-        tongTien
-    )
-    VALUES (
-        @maNhapSach, 
-        @maNhanVien, 
-        GETDATE(),  -- Ngày nhập mặc định là ngày hiện tại
-        @nguonNhap, 
-        @soDienThoai, 
-        @email, 
-        @diaChiChiTiet, 
-        @tenDuong, 
-        @phuongXa, 
-        @quanHuyen, 
-        @tinhThanhPho, 
-        @tongTien
-    );
-
-    IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
-    ELSE
-        RETURN 0;  -- Thêm không thành công
-END
-GO
-    -- Thêm thông tin vào bảng ChiTietsNhapSach
-
-CREATE PROCEDURE sp_ThemChiTietNhapSach
-    @maChiTietNhap VARCHAR(10),
-    @maNhapSach VARCHAR(10),
-    @maSach VARCHAR(10),
-    @soLuongNhap INT,
-    @giaNhap DECIMAL(10, 2)
-AS
-BEGIN
-    -- Thêm thông tin chi tiết nhập sách vào bảng ChiTietNhapSach
-    INSERT INTO ChiTietNhapSach (
-        maChiTietNhap,
-        maNhapSach,
-        maSach,
-        soLuongNhap,
-        giaNhap
-    )
-    VALUES (
-        @maChiTietNhap,
-        @maNhapSach,
-        @maSach,
-        @soLuongNhap,
-        @giaNhap
-    );
-
-    IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
-    ELSE
-        RETURN 0;  -- Thêm không thành công
-END
-GO
-
---======================================================================================================================================================================
-
---Proc lấy danh sách xuất sách
-
-CREATE PROCEDURE sp_LayDanhSachXuatSach
-AS
-BEGIN
-    SELECT 
-        xs.maXuatSach,
-        xs.maNhanVien,
-        (SELECT nv.hoTenNhanVien 
-         FROM NhanVien nv 
-         WHERE nv.maNhanVien = xs.maNhanVien) AS hoTenNhanVien,  -- Subquery lấy tên nhân viên
-        CONVERT(VARCHAR(10), xs.ngayXuat, 103) AS ngayXuat,  -- Chuyển đổi ngày xuất sang định dạng dd/MM/yyyy
-        xs.tongGiaBan
-    FROM 
-        XuatSach xs
-END
-GO
--- Proc tìm kiếm xuất sách theo mã sách gần đúng
-CREATE PROCEDURE sp_TimKiemXuatSach
-    @maXuatSach VARCHAR(10)
-AS
-BEGIN
-    SELECT 
-        xs.maXuatSach, 
-        xs.maNhanVien,
-        (SELECT nv.hoTenNhanVien 
-         FROM NhanVien nv 
-         WHERE nv.maNhanVien = xs.maNhanVien) AS hoTenNhanVien,  
-        CONVERT(VARCHAR(10), xs.ngayXuat, 103) AS ngayXuat, 
-        xs.tongGiaBan
-    FROM 
-        XuatSach xs
-    WHERE
-        dbo.fn_ConvertToUnsign(xs.maXuatSach) LIKE N'%' + dbo.fn_ConvertToUnsign(@maXuatSach) + '%';
-END
-GO
-    -- Thêm thông tin vào bảng XuatSach
-CREATE PROCEDURE sp_ThemXuatSach
-    @maXuatSach VARCHAR(10),
-    @maNhanVien VARCHAR(10),
-    @tongGiaBan DECIMAL(10, 2)
-AS
-BEGIN
-    INSERT INTO XuatSach (
-        maXuatSach, 
-        maNhanVien, 
-        ngayXuat, 
-        tongGiaBan
-    )
-    VALUES (
-        @maXuatSach, 
-        @maNhanVien, 
-        GETDATE(),  -- Ngày xuất mặc định là ngày hiện tại
-        @tongGiaBan
-    );
-
-    IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
-    ELSE
-        RETURN 0;  -- Thêm không thành công
-END
-GO
-
-CREATE PROCEDURE sp_ThemChiTietXuatSach
-    @maChiTietXuat VARCHAR(10),
-    @maXuatSach VARCHAR(10),
-    @maSach VARCHAR(10),
-    @soLuongXuat INT,
-    @giaBan DECIMAL(10, 2),
-    @lyDoXuat NVARCHAR(100)
-AS
-BEGIN
-    -- Thêm thông tin chi tiết xuất sách vào bảng ChiTietXuatSach
-    INSERT INTO ChiTietXuatSach (
-        maChiTietXuat, 
-        maXuatSach, 
-        maSach, 
-        soLuongXuat, 
-        giaBan, 
-        lyDoXuat
-    )
-    VALUES (
-        @maChiTietXuat, 
-        @maXuatSach, 
-        @maSach, 
-        @soLuongXuat, 
-        @giaBan, 
-        @lyDoXuat
-    );
-
-    IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
-    ELSE
-        RETURN 0;  -- Thêm không thành công
-END
-GO
-
-
+-- Thêm đọc giả
 CREATE PROCEDURE sp_ThemDocGia
     @ho NVARCHAR(10),
     @hoLot NVARCHAR(20) = NULL,
@@ -833,6 +603,8 @@ BEGIN
 END
 GO
 
+
+--Sửa thông tin đọc giả
 CREATE PROC sp_SuaThongTinDocGia
     @MaDocGia VARCHAR(10),
     @Ho Nvarchar(10),
@@ -872,51 +644,294 @@ BEGIN
 END
 GO
 
+--Nhập sách========================================================================================================
 
+--Proc lấy danh sách nhập sách
+CREATE PROCEDURE sp_LayDanhSachNhapSach
+AS
+BEGIN
+    SELECT 
+        ns.maNhapSach,
+        (SELECT nv.hoTenNhanVien 
+         FROM NhanVien nv 
+         WHERE nv.maNhanVien = ns.maNhanVien) AS tenNhanVien,
+        CONVERT(VARCHAR(10), ngayNhap, 103) AS ngayNhap,
+        ns.nguonNhap,
+        ns.soDienThoai,
+        ns.email,
+        ns.diaChiChiTiet,
+        ns.tongTien
+    FROM 
+        NhapSach ns       
+END
+GO
 
+-- Proc tìm kiếm nhập sách theo mã sách
+CREATE PROCEDURE sp_TimKiemNhapSachTheoMaSach
+    @maNhapSach NVARCHAR(10)
+AS
+BEGIN
+    SELECT 
+        ns.maNhapSach,
+        (SELECT nv.hoTenNhanVien 
+         FROM NhanVien nv 
+         WHERE nv.maNhanVien = ns.maNhanVien) AS tenNhanVien,
+         CONVERT(VARCHAR(10), ngayNhap, 103) AS ngayNhap,
+        ns.nguonNhap,
+        ns.soDienThoai,
+        ns.email,
+        ns.diaChiChiTiet,
+        ns.tongTien
+    FROM 
+        NhapSach ns
+    WHERE 
+        dbo.fn_ConvertToUnsign(ns.maNhapSach) LIKE N'%' + dbo.fn_ConvertToUnsign(@maNhapSach) + '%';
+END
+GO
+
+-- Thêm thông tin vào bảng NhapSach
+CREATE PROCEDURE sp_ThemNhapSach
+    @maNhapSach VARCHAR(10),
+    @maNhanVien VARCHAR(10),
+    @nguonNhap NVARCHAR(100),
+    @soDienThoai VARCHAR(10),
+    @email VARCHAR(50),
+    @diaChiChiTiet NVARCHAR(255),
+    @tenDuong NVARCHAR(100),
+    @phuongXa NVARCHAR(100),
+    @quanHuyen NVARCHAR(100),
+    @tinhThanhPho NVARCHAR(100),
+    @tongTien DECIMAL(10, 2)
+AS
+BEGIN
+    INSERT INTO NhapSach (
+        maNhapSach, 
+        maNhanVien, 
+        ngayNhap, 
+        nguonNhap, 
+        soDienThoai, 
+        email, 
+        diaChiChiTiet, 
+        tenDuong, 
+        phuongXa, 
+        quanHuyen, 
+        tinhThanhPho, 
+        tongTien
+    )
+    VALUES (
+        @maNhapSach, 
+        @maNhanVien, 
+        GETDATE(),  -- Ngày nhập mặc định là ngày hiện tại
+        @nguonNhap, 
+        @soDienThoai, 
+        @email, 
+        @diaChiChiTiet, 
+        @tenDuong, 
+        @phuongXa, 
+        @quanHuyen, 
+        @tinhThanhPho, 
+        @tongTien
+    );
+
+    IF @@ROWCOUNT > 0
+        RETURN 1;  -- Thêm thành công
+    ELSE
+        RETURN 0;  -- Thêm không thành công
+END
+GO
+
+--Chi tiết nhập sách========================================================================================================
+
+--Lấy chi tiết nhập sách theo mã nhập
+CREATE PROC sp_LayChiTietNhapSachTheoMaNhapSach
+@maNhapSach VARCHAR(10)
+AS
+BEGIN
+	SELECT
+		(SELECT tenSach FROM Sach WHERE Sach.maSach = ChiTietNhapSach.maSach) AS tenSach,
+		soLuongNhap,
+		giaNhap
+	FROM ChiTietNhapSach
+	WHERE maNhapSach = @maNhapSach
+END
+GO
+
+Exec sp_LayChiTietNhapSachTheoMaNhapSach @maNhapSach = 'NS002'
+
+-- Thêm thông tin vào bảng ChiTietNhapSach
+CREATE PROCEDURE sp_ThemChiTietNhapSach
+    @maChiTietNhap VARCHAR(10),
+    @maNhapSach VARCHAR(10),
+    @maSach VARCHAR(10),
+    @soLuongNhap INT,
+    @giaNhap DECIMAL(10, 2)
+AS
+BEGIN
+    -- Thêm thông tin chi tiết nhập sách vào bảng ChiTietNhapSach
+    INSERT INTO ChiTietNhapSach (
+        maChiTietNhap,
+        maNhapSach,
+        maSach,
+        soLuongNhap,
+        giaNhap
+    )
+    VALUES (
+        @maChiTietNhap,
+        @maNhapSach,
+        @maSach,
+        @soLuongNhap,
+        @giaNhap
+    );
+
+    IF @@ROWCOUNT > 0
+        RETURN 1;  -- Thêm thành công
+    ELSE
+        RETURN 0;  -- Thêm không thành công
+END
+GO
+
+--Xuất sách=======================================================================================================
+
+--Proc lấy danh sách xuất sách
+CREATE PROCEDURE sp_LayDanhSachXuatSach
+AS
+BEGIN
+    SELECT 
+        xs.maXuatSach,
+        xs.maNhanVien,
+        (SELECT nv.hoTenNhanVien 
+         FROM NhanVien nv 
+         WHERE nv.maNhanVien = xs.maNhanVien) AS hoTenNhanVien,
+        CONVERT(VARCHAR(10), xs.ngayXuat, 103) AS ngayXuat,
+        xs.tongGiaBan
+    FROM 
+        XuatSach xs
+END
+GO
+
+-- Proc tìm kiếm xuất sách theo mã sách gần đúng
+CREATE PROCEDURE sp_TimKiemXuatSach
+    @maXuatSach VARCHAR(10)
+AS
+BEGIN
+    SELECT 
+        xs.maXuatSach, 
+        xs.maNhanVien,
+        (SELECT nv.hoTenNhanVien 
+         FROM NhanVien nv 
+         WHERE nv.maNhanVien = xs.maNhanVien) AS hoTenNhanVien,  
+        CONVERT(VARCHAR(10), xs.ngayXuat, 103) AS ngayXuat, 
+        xs.tongGiaBan
+    FROM 
+        XuatSach xs
+    WHERE
+        dbo.fn_ConvertToUnsign(xs.maXuatSach) LIKE N'%' + dbo.fn_ConvertToUnsign(@maXuatSach) + '%';
+END
+GO
+
+-- Thêm thông tin vào bảng XuatSach
+CREATE PROCEDURE sp_ThemXuatSach
+    @maXuatSach VARCHAR(10),
+    @maNhanVien VARCHAR(10),
+    @tongGiaBan DECIMAL(10, 2)
+AS
+BEGIN
+    INSERT INTO XuatSach (
+        maXuatSach, 
+        maNhanVien, 
+        ngayXuat, 
+        tongGiaBan
+    )
+    VALUES (
+        @maXuatSach, 
+        @maNhanVien, 
+        GETDATE(),
+        @tongGiaBan
+    );
+
+    IF @@ROWCOUNT > 0
+        RETURN 1;  -- Thêm thành công
+    ELSE
+        RETURN 0;  -- Thêm không thành công
+END
+GO
+
+CREATE PROCEDURE sp_ThemChiTietXuatSach
+    @maChiTietXuat VARCHAR(10),
+    @maXuatSach VARCHAR(10),
+    @maSach VARCHAR(10),
+    @soLuongXuat INT,
+    @giaBan DECIMAL(10, 2),
+    @lyDoXuat NVARCHAR(100)
+AS
+BEGIN
+    INSERT INTO ChiTietXuatSach (
+        maChiTietXuat, 
+        maXuatSach, 
+        maSach, 
+        soLuongXuat, 
+        giaBan, 
+        lyDoXuat
+    )
+    VALUES (
+        @maChiTietXuat, 
+        @maXuatSach, 
+        @maSach, 
+        @soLuongXuat, 
+        @giaBan, 
+        @lyDoXuat
+    );
+
+    IF @@ROWCOUNT > 0
+        RETURN 1;
+    ELSE
+        RETURN 0;
+END
+GO
+
+--Nhân viên====================================================================================================
+
+-- Lấy danh sách nhân viên
 CREATE PROCEDURE sp_LayDanhSachNhanVien
 AS
 BEGIN
 SELECT 
-	maNhanVien,
-	hoTenNhanVien,
-	ngaySinh,
-	gioiTinh,
+	[maNhanVien],
+	[hoTenNhanVien],
 	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
-	soDienThoai,
-	email,
+	[gioiTinh],
+	[soDienThoai],
+	[email],
 	CASE
 	WHEN chucVu = 0 THEN 'Admin'
 	ELSE 'Staff'
 	END  AS  chucVu,
-	ngayLamViec,
-	diachiChiTiet
+	CONVERT(VARCHAR(10), ngayLamViec, 103) AS ngayLamViec, 
+	[diaChiChiTiet]
 FROM NhanVien
 END
 GO
-	exec sp_LayDanhSachNhanVien
+
  --Proc tìm kiếm nhan vien  theo tên gần đúng
 CREATE PROCEDURE sp_TimKiemNhanVienTheoTen
 @tenNhanVien NVARCHAR(50)
 AS
 BEGIN
-SELECT 
-	maNhanVien,
-	hoTenNhanVien,
-	ngaySinh,
-	gioiTinh,
-	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
-	soDienThoai,
-	email,
+SELECT
+	[maNhanVien],
+	[hoTenNhanVien],
+	[ngaySinh],
+	[gioiTinh],
+	[soDienThoai],
+	[email],
 	CASE
 	WHEN chucVu = 0 THEN 'Admin'
 	ELSE 'Staff'
 	END  AS  chucVu,
-	ngayLamViec,
-	diachiChiTiet
+	CONVERT(VARCHAR(10), ngayLamViec, 103) AS ngayLamViec, 
+	[diaChiChiTiet]
 FROM NhanVien
 WHERE 
         dbo.fn_ConvertToUnsign(hoTenNhanVien) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenNhanVien) + '%';
 END
 GO
-

@@ -14,30 +14,15 @@ namespace QL_ThuVien.UserControls
 {
     public partial class UCNhanVien : UserControl
     {
+
+        private string maNhanVien;
         public UCNhanVien()
         {
             InitializeComponent();
-            loadNhanVienList();
+            loadDanhSachNhanVien();
         }
 
-        private void txtSearch_Enter(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "Nhập tên nhân viên cần tìm")
-            {
-                txtSearch.Text = null;
-                txtSearch.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "")
-            {
-                txtSearch.Text = "Nhập tên nhân viên cần tìm";
-                txtSearch.ForeColor = Color.FromArgb(125, 137, 149);
-            }
-        }
-
+        #region Method
         private void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
@@ -46,17 +31,34 @@ namespace QL_ThuVien.UserControls
             userControl.BringToFront();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            UCThemNhanVien uc = new UCThemNhanVien();
-            addUserControl(uc);
-        }
-        void loadNhanVienList()
+        void loadDanhSachNhanVien()
         {
             dgvNhanVien.DataSource = NhanVien_DAO.Instance.GetListNhanVien();
-            SetUPNhanVienDataGridView();
+            SetUpNhanVienDataGridView();
+            if (dgvNhanVien.Rows.Count > 0)
+            {
+                DataGridViewRow row = dgvNhanVien.Rows[0];
+
+                lblChucVu.Text = row.Cells["chucVu"].Value.ToString();
+                lblDiaChi.Text = row.Cells["diachiChiTiet"].Value.ToString();
+                lblEmail.Text = row.Cells["email"].Value.ToString();
+                lblGioiTinh.Text = row.Cells["gioiTinh"].Value.ToString();
+                lblHoTen.Text = row.Cells["hoTenNhanVien"].Value.ToString();
+                lblNgayLamViec.Text = row.Cells["ngayLamViec"].Value.ToString();
+                lblNgaySinh.Text = row.Cells["ngaySinh"].Value.ToString();
+                lblSoDienThoai.Text = row.Cells["soDienThoai"].Value.ToString();
+
+                maNhanVien = dgvNhanVien.Rows[0].Cells["maNhanVien"].Value.ToString();
+            }
         }
-        void SetUPNhanVienDataGridView()
+
+        void loadDanhSachNhanVienTheoTen(string tenNhanVien)
+        {
+            dgvNhanVien.DataSource = NhanVien_DAO.Instance.GetListNhanVienTheoTen(tenNhanVien);
+            SetUpNhanVienDataGridView();
+        }
+
+        void SetUpNhanVienDataGridView()
         {
 
             dgvNhanVien.Columns["maNhanVien"].HeaderText = "MÃ NHÂN VIÊN ";
@@ -79,26 +81,60 @@ namespace QL_ThuVien.UserControls
             dgvNhanVien.RowTemplate.Height = 40;
         }
 
-        
-            
-        List<NhanVien_DTO> TimKiemNhanVienTheoTen(string tenNhanVien)
+        #endregion
+
+        #region Event
+        private void txtSearch_Enter(object sender, EventArgs e)
         {
-            return NhanVien_DAO.Instance.TimKiemNhanVienTheoTen(tenNhanVien);
+            if (txtSearch.Text == "Nhập tên nhân viên cần tìm")
+            {
+                txtSearch.Text = null;
+                txtSearch.ForeColor = Color.Black;
+            }
         }
 
-        void TimKiemNhanVien(string tenNhanVien)
+        private void txtSearch_Leave(object sender, EventArgs e)
         {
-            dgvNhanVien.DataSource = TimKiemNhanVienTheoTen(tenNhanVien);
-            SetUPNhanVienDataGridView();
+            if (txtSearch.Text == "")
+            {
+                txtSearch.Text = "Nhập tên nhân viên cần tìm";
+                txtSearch.ForeColor = Color.FromArgb(125, 137, 149);
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            UCThemNhanVien uc = new UCThemNhanVien();
+            addUserControl(uc);
         }
 
         private void ptrTimKiem_Click(object sender, EventArgs e)
         {
             string tenNhanVien = txtSearch.Text.Trim();
-            TimKiemNhanVien(tenNhanVien);
+            loadDanhSachNhanVienTheoTen(tenNhanVien);
         }
 
-        private void dgvNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (maNhanVien == null)
+                MessageBox.Show("Bạn chưa chọn nhân viên", "Thông báo!");
+            else
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này?", "Thông báo", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    if (NhanVien_DAO.Instance.XoaNhanVien(maNhanVien))
+                    {
+                        MessageBox.Show("Đã xóa thành công (1) nhân viên!", "Thông báo");
+                        loadDanhSachNhanVien();
+                    }
+                    else
+                        MessageBox.Show("Lỗi", "Thông báo");
+                }
+            }
+        }
+
+        private void dgvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -113,8 +149,10 @@ namespace QL_ThuVien.UserControls
                 lblNgaySinh.Text = row.Cells["ngaySinh"].Value.ToString();
                 lblSoDienThoai.Text = row.Cells["soDienThoai"].Value.ToString();
 
+                maNhanVien = dgvNhanVien.Rows[e.RowIndex].Cells["maNhanVien"].Value.ToString();
             }
         }
+        #endregion
     }
-    }
+}
 

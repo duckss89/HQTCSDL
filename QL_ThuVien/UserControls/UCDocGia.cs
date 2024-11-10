@@ -165,7 +165,7 @@ namespace QL_ThuVien.UserControls
                 {
                     if (DocGia_DAO.Instance.XoaDocGia(maDocGia))
                     {
-                        MessageBox.Show("Đã xóa thành công (1) khách hàng", "Thông báo");
+                        MessageBox.Show("Đã xóa thành công (1) đọc giả!", "Thông báo");
                         loadDocGiaList();
                     }
                     else

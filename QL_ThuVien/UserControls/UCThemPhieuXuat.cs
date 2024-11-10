@@ -13,6 +13,7 @@ namespace QL_ThuVien.UserControls
 {
     public partial class UCThemPhieuXuat : UserControl
     {
+        private string maXuatSach;
         public UCThemPhieuXuat()
         {
             InitializeComponent();
@@ -79,17 +80,17 @@ namespace QL_ThuVien.UserControls
                 return;
             }
 
-            if (NhapSach_DAO.Instance.ThemNhapSach(maXuatSach, maNhanVien, nguonNhap, tongTien, soLuong, donGia, ngayXuat, lyDo))
-            {
-                MessageBox.Show("Thêm thông tin nhập sách thành công!", "Thông báo", MessageBoxButtons.OK);
+            //if (NhapSach_DAO.Instance.ThemNhapSach(maXuatSach, maNhanVien, nguonNhap, tongTien, soLuong, donGia, ngayXuat, lyDo))
+            //{
+            //    MessageBox.Show("Thêm thông tin nhập sách thành công!", "Thông báo", MessageBoxButtons.OK);
 
-                cboNhanVien.SelectedIndex = -1;
-                cboSach.SelectedIndex = -1;
-                txtTongTien.Clear();
-                txtDonGia.Clear();
-                numSoLuong.Value = 1;
-                cboLyDo.SelectedIndex = -1;
-            }
+            //    cboNhanVien.SelectedIndex = -1;
+            //    cboSach.SelectedIndex = -1;
+            //    txtTongTien.Clear();
+            //    txtDonGia.Clear();
+            //    numSoLuong.Value = 1;
+            //    cboLyDo.SelectedIndex = -1;
+            //}
             else
             {
                 MessageBox.Show("Có lỗi khi thêm thông tin nhập sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

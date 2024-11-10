@@ -56,7 +56,7 @@
             this.lblNguonNhap = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.lsvChiTietMuon = new System.Windows.Forms.ListView();
+            this.lsvChiTietNhap = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -110,7 +110,7 @@
             this.dgvNhapSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
@@ -122,7 +122,6 @@
             this.dgvNhapSach.Name = "dgvNhapSach";
             this.dgvNhapSach.RowHeadersVisible = false;
             this.dgvNhapSach.RowHeadersWidth = 40;
-            this.dgvNhapSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.RowHeaderSelect;
             this.dgvNhapSach.Size = new System.Drawing.Size(593, 449);
             this.dgvNhapSach.TabIndex = 0;
             this.dgvNhapSach.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -166,11 +165,12 @@
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.Location = new System.Drawing.Point(36, 39);
+            this.iconPictureBox1.Location = new System.Drawing.Point(378, 40);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
             this.iconPictureBox1.TabIndex = 1;
@@ -182,7 +182,7 @@
             this.txtSearch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
             this.txtSearch.BorderRadius = 10;
             this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.DefaultText = "";
+            this.txtSearch.DefaultText = "Nhập mã phiếu nhập cần tìm";
             this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -196,9 +196,11 @@
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PlaceholderText = "";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(401, 36);
+            this.txtSearch.Size = new System.Drawing.Size(345, 36);
             this.txtSearch.TabIndex = 19;
-            this.txtSearch.TextOffset = new System.Drawing.Point(45, 0);
+            this.txtSearch.TextOffset = new System.Drawing.Point(5, 0);
+            this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter_1);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave_1);
             // 
             // pnlAdd
             // 
@@ -258,6 +260,7 @@
             this.btnRemove.Size = new System.Drawing.Size(60, 60);
             this.btnRemove.TabIndex = 17;
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click_1);
             // 
             // pnlThongTinMuon
             // 
@@ -276,7 +279,7 @@
             this.pnlThongTinMuon.Controls.Add(this.lblNguonNhap);
             this.pnlThongTinMuon.Controls.Add(this.lbl2);
             this.pnlThongTinMuon.Controls.Add(this.lbl1);
-            this.pnlThongTinMuon.Controls.Add(this.lsvChiTietMuon);
+            this.pnlThongTinMuon.Controls.Add(this.lsvChiTietNhap);
             this.pnlThongTinMuon.Controls.Add(this.iconPictureBox2);
             this.pnlThongTinMuon.Controls.Add(this.btnTimViTri);
             this.pnlThongTinMuon.Dock = System.Windows.Forms.DockStyle.Right;
@@ -431,27 +434,27 @@
             this.lbl1.TabIndex = 37;
             this.lbl1.Text = "Nguồn nhập :";
             // 
-            // lsvChiTietMuon
+            // lsvChiTietNhap
             // 
-            this.lsvChiTietMuon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.lsvChiTietMuon.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsvChiTietMuon.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lsvChiTietNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.lsvChiTietNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsvChiTietNhap.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.lsvChiTietMuon.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lsvChiTietMuon.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lsvChiTietMuon.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsvChiTietMuon.FullRowSelect = true;
-            this.lsvChiTietMuon.GridLines = true;
-            this.lsvChiTietMuon.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lsvChiTietMuon.HideSelection = false;
-            this.lsvChiTietMuon.Location = new System.Drawing.Point(0, 346);
-            this.lsvChiTietMuon.Name = "lsvChiTietMuon";
-            this.lsvChiTietMuon.Size = new System.Drawing.Size(327, 179);
-            this.lsvChiTietMuon.TabIndex = 31;
-            this.lsvChiTietMuon.UseCompatibleStateImageBehavior = false;
-            this.lsvChiTietMuon.View = System.Windows.Forms.View.Details;
+            this.lsvChiTietNhap.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.lsvChiTietNhap.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lsvChiTietNhap.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lsvChiTietNhap.FullRowSelect = true;
+            this.lsvChiTietNhap.GridLines = true;
+            this.lsvChiTietNhap.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lsvChiTietNhap.HideSelection = false;
+            this.lsvChiTietNhap.Location = new System.Drawing.Point(0, 346);
+            this.lsvChiTietNhap.Name = "lsvChiTietNhap";
+            this.lsvChiTietNhap.Size = new System.Drawing.Size(327, 179);
+            this.lsvChiTietNhap.TabIndex = 31;
+            this.lsvChiTietNhap.UseCompatibleStateImageBehavior = false;
+            this.lsvChiTietNhap.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -535,7 +538,7 @@
         private System.Windows.Forms.Label lblNguonNhap;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.ListView lsvChiTietMuon;
+        private System.Windows.Forms.ListView lsvChiTietNhap;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
