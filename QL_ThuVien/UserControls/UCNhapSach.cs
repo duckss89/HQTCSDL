@@ -106,10 +106,10 @@ namespace QL_ThuVien.UserControls
                 item.SubItems.Add(giaNhap);
 
                 lsvChiTietNhap.Items.Add(item);
-
-                lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
+
+            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         #endregion
 

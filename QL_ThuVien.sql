@@ -756,7 +756,6 @@ BEGIN
 END
 GO
 
-Exec sp_LayChiTietNhapSachTheoMaNhapSach @maNhapSach = 'NS002'
 
 -- Thêm thông tin vào bảng ChiTietNhapSach
 CREATE PROCEDURE sp_ThemChiTietNhapSach
@@ -810,13 +809,12 @@ GO
 
 
 -- Proc tìm kiếm xuất sách theo mã sách gần đúng
-CREATE PROCEDURE sp_TimKiemXuatSach
+CREATE PROCEDURE sp_TimKiemXuatSachTheoMaXuat
     @maXuatSach VARCHAR(10)
 AS
 BEGIN
     SELECT 
         xs.maXuatSach, 
-        xs.maNhanVien,
         (SELECT nv.hoTenNhanVien 
          FROM NhanVien nv 
          WHERE nv.maNhanVien = xs.maNhanVien) AS hoTenNhanVien,  
@@ -850,12 +848,14 @@ BEGIN
     );
 
     IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
+        RETURN 1;
     ELSE
-        RETURN 0;  -- Thêm không thành công
+        RETURN 0;
 END
 GO
+-- Chi tiết xuất sách =======================================================================================================
 
+--Thêm chi tiết xuất sách
 CREATE PROCEDURE sp_ThemChiTietXuatSach
     @maChiTietXuat VARCHAR(10),
     @maXuatSach VARCHAR(10),
@@ -886,6 +886,21 @@ BEGIN
         RETURN 1;
     ELSE
         RETURN 0;
+END
+GO
+
+--Lấy chi tiết xuất sách theo mã xuất
+CREATE PROC sp_LayChiTietXuatSachTheoMaXuatSach
+@maXuatSach VARCHAR(10)
+AS
+BEGIN
+	SELECT
+		(SELECT tenSach FROM Sach WHERE Sach.maSach = ChiTietXuatSach.maSach) AS tenSach,
+		soLuongXuat,
+		giaBan,
+		lyDoXuat
+	FROM ChiTietXuatSach
+	WHERE maXuatSach = @maXuatSach
 END
 GO
 

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlDesktop = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlDataGridView = new System.Windows.Forms.Panel();
@@ -49,7 +49,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblNgayXuat = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.lsvChiTietMuon = new System.Windows.Forms.ListView();
+            this.lsvChiTietXuat = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -99,27 +99,27 @@
             // 
             // dgvXuatSach
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dgvXuatSach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvXuatSach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvXuatSach.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvXuatSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvXuatSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvXuatSach.ColumnHeadersHeight = 30;
             this.dgvXuatSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvXuatSach.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvXuatSach.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvXuatSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvXuatSach.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvXuatSach.Location = new System.Drawing.Point(0, 0);
@@ -179,6 +179,7 @@
             this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
             this.iconPictureBox1.TabIndex = 1;
             this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
             // txtSearch
             // 
@@ -195,7 +196,7 @@
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.txtSearch.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.txtSearch.Location = new System.Drawing.Point(27, 36);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PlaceholderText = "";
@@ -274,7 +275,7 @@
             this.pnlThongTinMuon.Controls.Add(this.label7);
             this.pnlThongTinMuon.Controls.Add(this.lblNgayXuat);
             this.pnlThongTinMuon.Controls.Add(this.label6);
-            this.pnlThongTinMuon.Controls.Add(this.lsvChiTietMuon);
+            this.pnlThongTinMuon.Controls.Add(this.lsvChiTietXuat);
             this.pnlThongTinMuon.Controls.Add(this.iconPictureBox2);
             this.pnlThongTinMuon.Controls.Add(this.btnTimViTri);
             this.pnlThongTinMuon.Dock = System.Windows.Forms.DockStyle.Right;
@@ -349,28 +350,28 @@
             this.label6.TabIndex = 41;
             this.label6.Text = "Ngày xuất :";
             // 
-            // lsvChiTietMuon
+            // lsvChiTietXuat
             // 
-            this.lsvChiTietMuon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.lsvChiTietMuon.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsvChiTietMuon.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lsvChiTietXuat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            this.lsvChiTietXuat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsvChiTietXuat.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.lsvChiTietMuon.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lsvChiTietMuon.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lsvChiTietMuon.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsvChiTietMuon.FullRowSelect = true;
-            this.lsvChiTietMuon.GridLines = true;
-            this.lsvChiTietMuon.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lsvChiTietMuon.HideSelection = false;
-            this.lsvChiTietMuon.Location = new System.Drawing.Point(0, 262);
-            this.lsvChiTietMuon.Name = "lsvChiTietMuon";
-            this.lsvChiTietMuon.Size = new System.Drawing.Size(327, 263);
-            this.lsvChiTietMuon.TabIndex = 31;
-            this.lsvChiTietMuon.UseCompatibleStateImageBehavior = false;
-            this.lsvChiTietMuon.View = System.Windows.Forms.View.Details;
+            this.lsvChiTietXuat.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.lsvChiTietXuat.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lsvChiTietXuat.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lsvChiTietXuat.FullRowSelect = true;
+            this.lsvChiTietXuat.GridLines = true;
+            this.lsvChiTietXuat.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lsvChiTietXuat.HideSelection = false;
+            this.lsvChiTietXuat.Location = new System.Drawing.Point(0, 262);
+            this.lsvChiTietXuat.Name = "lsvChiTietXuat";
+            this.lsvChiTietXuat.Size = new System.Drawing.Size(327, 263);
+            this.lsvChiTietXuat.TabIndex = 31;
+            this.lsvChiTietXuat.UseCompatibleStateImageBehavior = false;
+            this.lsvChiTietXuat.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -467,7 +468,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblNgayXuat;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView lsvChiTietMuon;
+        private System.Windows.Forms.ListView lsvChiTietXuat;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

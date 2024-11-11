@@ -49,18 +49,19 @@ namespace QL_ThuVien.UserControls
 
                 lblTenNV.Text = row.Cells["hoTenNhanVien"].Value.ToString();
                 lblNgayXuat.Text = row.Cells["ngayXuat"].Value.ToString();
-                lblTongGiaBan.Text = row.Cells["tongGiaBan"].Value.ToString();
+                lblTongGiaBan.Text = row.Cells["tongGiaBan"].Value.ToString() + " VND";
 
-                maXuatSach = dgvXuatSach.Rows[0].Cells["maXuatSach"].Value.ToString() + " VND";
+                maXuatSach = dgvXuatSach.Rows[0].Cells["maXuatSach"].Value.ToString();
+
+                HienThiChiTietXuatSach(maXuatSach);
             }
         }
-
-
 
         void SetUpXuatSachDataGridView()
         {
             dgvXuatSach.Columns["maXuatSach"].HeaderText = "MÃ XUẤT SÁCH";
             dgvXuatSach.Columns["hoTenNhanVien"].HeaderText = "TÊN NHÂN VIÊN";
+            dgvXuatSach.Columns["hoTenNhanVien"].Width = 170;
             dgvXuatSach.Columns["ngayXuat"].HeaderText = "NGÀY XUẤT";
             dgvXuatSach.Columns["tongGiaBan"].HeaderText = "TỔNG GIÁ BÁN";
 
@@ -68,9 +69,41 @@ namespace QL_ThuVien.UserControls
 
             dgvXuatSach.AllowUserToAddRows = false;
             dgvXuatSach.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dgvXuatSach.AutoResizeColumns();
-            dgvXuatSach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //dgvXuatSach.AutoResizeColumns();
+            //dgvXuatSach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvXuatSach.RowTemplate.Height = 40;
+        }
+
+        private void HienThiChiTietXuatSach(string maXuatSach)
+        {
+            lsvChiTietXuat.Items.Clear();
+
+            ChiTietXuatSach_DAO dao = new ChiTietXuatSach_DAO();
+            DataTable dt = dao.GetListCtXuatSachTheoMaXuatSach(maXuatSach);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string tenSach = row["tenSach"].ToString();
+                string soLuongXuat = row["soLuongXuat"].ToString();
+                string giaBan = row["giaBan"].ToString();
+                string lyDoXuat = row["lyDoXuat"].ToString();
+
+                ListViewItem item = new ListViewItem(tenSach);
+                item.SubItems.Add(soLuongXuat);
+                item.SubItems.Add(giaBan);
+                item.SubItems.Add(lyDoXuat);
+
+                lsvChiTietXuat.Items.Add(item);
+            }
+            lsvChiTietXuat.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lsvChiTietXuat.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        void LoadDuLieuXuatSachTheoMa(string maXuatSach)
+        {
+            dgvXuatSach.DataSource = XuatSach_DAO.Instance.GetListXuatSachTheoMa(maXuatSach);
+            SetUpXuatSachDataGridView();
+
         }
         #endregion
 
@@ -93,9 +126,10 @@ namespace QL_ThuVien.UserControls
                 lblTongGiaBan.Text = row.Cells["tongGiaBan"].Value.ToString() + " VND";
 
                 maXuatSach = dgvXuatSach.Rows[e.RowIndex].Cells["maXuatSach"].Value.ToString();
+
+                HienThiChiTietXuatSach(maXuatSach);
             }
         }
-        #endregion
 
         private void txtSearch_Enter(object sender, EventArgs e)
         {
@@ -114,5 +148,13 @@ namespace QL_ThuVien.UserControls
                 txtSearch.ForeColor = Color.FromArgb(125, 137, 149);
             }
         }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            string maXuatSach = txtSearch.Text.Trim();
+            LoadDuLieuXuatSachTheoMa(maXuatSach);
+        }
+    #endregion
+
     }
 }

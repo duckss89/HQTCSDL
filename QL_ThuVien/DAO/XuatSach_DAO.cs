@@ -29,5 +29,11 @@ namespace QL_ThuVien.DAO
             string query = "Exec sp_LayDanhSachXuatSach";
             return DataProvider.Instance.ExecuteQuery(query);
         }
+
+        public DataTable GetListXuatSachTheoMa(string maXuatSach)
+        {
+            string query = "Exec sp_TimKiemXuatSachTheoMaXuat @maXuatSach = '" + maXuatSach+"'";
+            return DataProvider.Instance.ExecuteQuery(query);
+        }
     }
 }
