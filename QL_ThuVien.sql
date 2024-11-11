@@ -721,7 +721,7 @@ BEGIN
     VALUES (
         @maNhapSach, 
         @maNhanVien, 
-        GETDATE(),  -- Ngày nhập mặc định là ngày hiện tại
+        GETDATE(),
         @nguonNhap, 
         @soDienThoai, 
         @email, 
@@ -734,9 +734,9 @@ BEGIN
     );
 
     IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
+        RETURN 1;
     ELSE
-        RETURN 0;  -- Thêm không thành công
+        RETURN 0;
 END
 GO
 
@@ -798,7 +798,6 @@ AS
 BEGIN
     SELECT 
         xs.maXuatSach,
-        xs.maNhanVien,
         (SELECT nv.hoTenNhanVien 
          FROM NhanVien nv 
          WHERE nv.maNhanVien = xs.maNhanVien) AS hoTenNhanVien,
@@ -808,6 +807,7 @@ BEGIN
         XuatSach xs
 END
 GO
+
 
 -- Proc tìm kiếm xuất sách theo mã sách gần đúng
 CREATE PROCEDURE sp_TimKiemXuatSach

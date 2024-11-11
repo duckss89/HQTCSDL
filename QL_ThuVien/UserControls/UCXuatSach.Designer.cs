@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlDesktop = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlDataGridView = new System.Windows.Forms.Panel();
@@ -73,9 +73,8 @@
             this.pnlDesktop.Controls.Add(this.panel1);
             this.pnlDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDesktop.Location = new System.Drawing.Point(0, 0);
-            this.pnlDesktop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlDesktop.Name = "pnlDesktop";
-            this.pnlDesktop.Size = new System.Drawing.Size(1380, 855);
+            this.pnlDesktop.Size = new System.Drawing.Size(920, 556);
             this.pnlDesktop.TabIndex = 0;
             // 
             // panel1
@@ -85,52 +84,49 @@
             this.panel1.Controls.Add(this.pnlThongTinMuon);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1380, 855);
+            this.panel1.Size = new System.Drawing.Size(920, 556);
             this.panel1.TabIndex = 1;
             // 
             // pnlDataGridView
             // 
             this.pnlDataGridView.Controls.Add(this.dgvXuatSach);
             this.pnlDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDataGridView.Location = new System.Drawing.Point(0, 165);
-            this.pnlDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlDataGridView.Location = new System.Drawing.Point(0, 107);
             this.pnlDataGridView.Name = "pnlDataGridView";
-            this.pnlDataGridView.Size = new System.Drawing.Size(890, 690);
+            this.pnlDataGridView.Size = new System.Drawing.Size(593, 449);
             this.pnlDataGridView.TabIndex = 6;
             // 
             // dgvXuatSach
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvXuatSach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.dgvXuatSach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvXuatSach.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvXuatSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvXuatSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvXuatSach.ColumnHeadersHeight = 30;
             this.dgvXuatSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvXuatSach.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvXuatSach.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvXuatSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvXuatSach.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvXuatSach.Location = new System.Drawing.Point(0, 0);
-            this.dgvXuatSach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvXuatSach.Name = "dgvXuatSach";
             this.dgvXuatSach.RowHeadersVisible = false;
             this.dgvXuatSach.RowHeadersWidth = 62;
-            this.dgvXuatSach.Size = new System.Drawing.Size(890, 690);
+            this.dgvXuatSach.Size = new System.Drawing.Size(593, 449);
             this.dgvXuatSach.TabIndex = 0;
             this.dgvXuatSach.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvXuatSach.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -166,23 +162,21 @@
             this.pnlTool.CustomBorderThickness = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.pnlTool.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTool.Location = new System.Drawing.Point(0, 0);
-            this.pnlTool.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlTool.Name = "pnlTool";
-            this.pnlTool.Size = new System.Drawing.Size(890, 165);
+            this.pnlTool.Size = new System.Drawing.Size(593, 107);
             this.pnlTool.TabIndex = 5;
             // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 48;
-            this.iconPictureBox1.Location = new System.Drawing.Point(54, 60);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.iconPictureBox1.Location = new System.Drawing.Point(377, 38);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(48, 49);
+            this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
             this.iconPictureBox1.TabIndex = 1;
             this.iconPictureBox1.TabStop = false;
             // 
@@ -200,15 +194,17 @@
             this.txtSearch.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.txtSearch.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.txtSearch.Location = new System.Drawing.Point(40, 55);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(8);
+            this.txtSearch.Location = new System.Drawing.Point(27, 36);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PlaceholderText = "";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(602, 55);
+            this.txtSearch.Size = new System.Drawing.Size(342, 36);
             this.txtSearch.TabIndex = 19;
-            this.txtSearch.TextOffset = new System.Drawing.Point(45, 0);
+            this.txtSearch.TextOffset = new System.Drawing.Point(5, 0);
+            this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // pnlAdd
             // 
@@ -217,10 +213,9 @@
             this.pnlAdd.BorderRadius = 10;
             this.pnlAdd.BorderThickness = 2;
             this.pnlAdd.Controls.Add(this.btnAdd);
-            this.pnlAdd.Location = new System.Drawing.Point(669, 37);
-            this.pnlAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlAdd.Location = new System.Drawing.Point(446, 24);
             this.pnlAdd.Name = "pnlAdd";
-            this.pnlAdd.Size = new System.Drawing.Size(90, 92);
+            this.pnlAdd.Size = new System.Drawing.Size(60, 60);
             this.pnlAdd.TabIndex = 18;
             // 
             // btnAdd
@@ -235,9 +230,8 @@
             this.btnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdd.IconSize = 35;
             this.btnAdd.Location = new System.Drawing.Point(0, 0);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(90, 92);
+            this.btnAdd.Size = new System.Drawing.Size(60, 60);
             this.btnAdd.TabIndex = 17;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -249,10 +243,9 @@
             this.pnlRemove.BorderRadius = 10;
             this.pnlRemove.BorderThickness = 2;
             this.pnlRemove.Controls.Add(this.btnRemove);
-            this.pnlRemove.Location = new System.Drawing.Point(778, 37);
-            this.pnlRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlRemove.Location = new System.Drawing.Point(519, 24);
             this.pnlRemove.Name = "pnlRemove";
-            this.pnlRemove.Size = new System.Drawing.Size(90, 92);
+            this.pnlRemove.Size = new System.Drawing.Size(60, 60);
             this.pnlRemove.TabIndex = 1;
             // 
             // btnRemove
@@ -267,9 +260,8 @@
             this.btnRemove.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRemove.IconSize = 35;
             this.btnRemove.Location = new System.Drawing.Point(0, 0);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(90, 92);
+            this.btnRemove.Size = new System.Drawing.Size(60, 60);
             this.btnRemove.TabIndex = 17;
             this.btnRemove.UseVisualStyleBackColor = true;
             // 
@@ -286,10 +278,9 @@
             this.pnlThongTinMuon.Controls.Add(this.iconPictureBox2);
             this.pnlThongTinMuon.Controls.Add(this.btnTimViTri);
             this.pnlThongTinMuon.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlThongTinMuon.Location = new System.Drawing.Point(890, 0);
-            this.pnlThongTinMuon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlThongTinMuon.Location = new System.Drawing.Point(593, 0);
             this.pnlThongTinMuon.Name = "pnlThongTinMuon";
-            this.pnlThongTinMuon.Size = new System.Drawing.Size(490, 855);
+            this.pnlThongTinMuon.Size = new System.Drawing.Size(327, 556);
             this.pnlThongTinMuon.TabIndex = 2;
             // 
             // lblTenNV
@@ -297,10 +288,9 @@
             this.lblTenNV.AutoSize = true;
             this.lblTenNV.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenNV.ForeColor = System.Drawing.Color.Black;
-            this.lblTenNV.Location = new System.Drawing.Point(210, 220);
-            this.lblTenNV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenNV.Location = new System.Drawing.Point(140, 143);
             this.lblTenNV.Name = "lblTenNV";
-            this.lblTenNV.Size = new System.Drawing.Size(235, 25);
+            this.lblTenNV.Size = new System.Drawing.Size(148, 16);
             this.lblTenNV.TabIndex = 50;
             this.lblTenNV.Text = "Trần Đinh Hải Nguyên";
             // 
@@ -309,10 +299,9 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.label9.Location = new System.Drawing.Point(20, 220);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(13, 143);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(183, 25);
+            this.label9.Size = new System.Drawing.Size(117, 16);
             this.label9.TabIndex = 49;
             this.label9.Text = "Nhân viên xuất :";
             // 
@@ -321,22 +310,20 @@
             this.lblTongGiaBan.AutoSize = true;
             this.lblTongGiaBan.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongGiaBan.ForeColor = System.Drawing.Color.Black;
-            this.lblTongGiaBan.Location = new System.Drawing.Point(210, 345);
-            this.lblTongGiaBan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTongGiaBan.Location = new System.Drawing.Point(140, 224);
             this.lblTongGiaBan.Name = "lblTongGiaBan";
-            this.lblTongGiaBan.Size = new System.Drawing.Size(161, 25);
+            this.lblTongGiaBan.Size = new System.Drawing.Size(105, 16);
             this.lblTongGiaBan.TabIndex = 48;
-            this.lblTongGiaBan.Text = "1.000.000 vnđ";
+            this.lblTongGiaBan.Text = "1.000.000 VND";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.label7.Location = new System.Drawing.Point(74, 345);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(26, 224);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(158, 25);
+            this.label7.Size = new System.Drawing.Size(104, 16);
             this.label7.TabIndex = 47;
             this.label7.Text = "Tổng giá bán :";
             // 
@@ -345,10 +332,9 @@
             this.lblNgayXuat.AutoSize = true;
             this.lblNgayXuat.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNgayXuat.ForeColor = System.Drawing.Color.Black;
-            this.lblNgayXuat.Location = new System.Drawing.Point(210, 280);
-            this.lblNgayXuat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNgayXuat.Location = new System.Drawing.Point(140, 182);
             this.lblNgayXuat.Name = "lblNgayXuat";
-            this.lblNgayXuat.Size = new System.Drawing.Size(121, 25);
+            this.lblNgayXuat.Size = new System.Drawing.Size(75, 16);
             this.lblNgayXuat.TabIndex = 42;
             this.lblNgayXuat.Text = "25/9/2004";
             // 
@@ -357,12 +343,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.label6.Location = new System.Drawing.Point(63, 280);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(42, 182);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 25);
+            this.label6.Size = new System.Drawing.Size(85, 16);
             this.label6.TabIndex = 41;
-            this.label6.Text = "Ngày nhập :";
+            this.label6.Text = "Ngày xuất :";
             // 
             // lsvChiTietMuon
             // 
@@ -380,10 +365,9 @@
             this.lsvChiTietMuon.GridLines = true;
             this.lsvChiTietMuon.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lsvChiTietMuon.HideSelection = false;
-            this.lsvChiTietMuon.Location = new System.Drawing.Point(0, 402);
-            this.lsvChiTietMuon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lsvChiTietMuon.Location = new System.Drawing.Point(0, 262);
             this.lsvChiTietMuon.Name = "lsvChiTietMuon";
-            this.lsvChiTietMuon.Size = new System.Drawing.Size(490, 405);
+            this.lsvChiTietMuon.Size = new System.Drawing.Size(327, 263);
             this.lsvChiTietMuon.TabIndex = 31;
             this.lsvChiTietMuon.UseCompatibleStateImageBehavior = false;
             this.lsvChiTietMuon.View = System.Windows.Forms.View.Details;
@@ -414,11 +398,10 @@
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Truck;
             this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox2.IconSize = 150;
-            this.iconPictureBox2.Location = new System.Drawing.Point(177, 37);
-            this.iconPictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.iconPictureBox2.IconSize = 100;
+            this.iconPictureBox2.Location = new System.Drawing.Point(118, 24);
             this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(150, 154);
+            this.iconPictureBox2.Size = new System.Drawing.Size(100, 100);
             this.iconPictureBox2.TabIndex = 30;
             this.iconPictureBox2.TabStop = false;
             // 
@@ -435,22 +418,20 @@
             this.btnTimViTri.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
             this.btnTimViTri.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimViTri.ForeColor = System.Drawing.Color.White;
-            this.btnTimViTri.Location = new System.Drawing.Point(0, 807);
-            this.btnTimViTri.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnTimViTri.Location = new System.Drawing.Point(0, 525);
             this.btnTimViTri.Name = "btnTimViTri";
-            this.btnTimViTri.Size = new System.Drawing.Size(490, 48);
+            this.btnTimViTri.Size = new System.Drawing.Size(327, 31);
             this.btnTimViTri.TabIndex = 29;
             this.btnTimViTri.Text = "Sửa thông tin";
             // 
             // UCXuatSach
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlDesktop);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCXuatSach";
-            this.Size = new System.Drawing.Size(1380, 855);
+            this.Size = new System.Drawing.Size(920, 556);
             this.pnlDesktop.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.pnlDataGridView.ResumeLayout(false);

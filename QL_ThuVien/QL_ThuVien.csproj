@@ -63,10 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\ChiTietNhapSach_DAO.cs" />
+    <Compile Include="DAO\ChiTietXuatSach_DAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\DocGia_DAO.cs" />
     <Compile Include="DAO\XuatSach_DAO.cs" />
-    <Compile Include="DTO\ChiTietNhapSach_DTO.cs" />
+    <Compile Include="DTO\CtNhapSach_DTO.cs" />
+    <Compile Include="DTO\CtXuatSach_DTO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\XuatSach_DTO.cs" />
     <Compile Include="DAO\NhapSach_DAO.cs" />

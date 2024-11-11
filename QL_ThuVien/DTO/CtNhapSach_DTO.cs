@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace QL_ThuVien.DTO
 {
-    public class ChiTietNhapSach_DTO
+    public class CtNhapSach_DTO
     {
-        public ChiTietNhapSach_DTO(string maChiTietNhap, string maNhapSach, string maSach, int soLuongNhap, decimal giaNhap)
+        public CtNhapSach_DTO(string maChiTietNhap, string maNhapSach, string maSach, int soLuongNhap, decimal giaNhap)
         {
             this.MaChiTietNhap = maChiTietNhap;
             this.MaNhapSach = maNhapSach;
@@ -18,7 +18,7 @@ namespace QL_ThuVien.DTO
             this.GiaNhap = giaNhap;
         }
 
-        public ChiTietNhapSach_DTO(DataRow row)
+        public CtNhapSach_DTO(DataRow row)
         {
             this.MaChiTietNhap = row["maChiTietNhap"].ToString();
             this.MaNhapSach = row["maNhapSach"].ToString();

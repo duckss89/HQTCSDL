@@ -20,6 +20,10 @@ namespace QL_ThuVien.UserControls
             loadXuatSachList();
         }
 
+        #region Method
+
+        private string maXuatSach;
+
         private void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
@@ -27,23 +31,12 @@ namespace QL_ThuVien.UserControls
             pnlDesktop.Controls.Add(userControl);
             userControl.BringToFront();
         }
-        #region Method
-
-        private string maXuatSach;
 
         void addControlDesktopXuatSach()
         {
             this.pnlDesktop.Controls.Add(this.pnlTool);
             this.pnlDesktop.Controls.Add(this.pnlThongTinMuon);
             this.pnlDesktop.Controls.Add(this.pnlDataGridView);
-        }
-
-        private void addUserControlXuatSach(UserControl userControl)
-        {
-            userControl.Dock = DockStyle.Fill;
-            pnlDesktop.Controls.Clear();
-            pnlDesktop.Controls.Add(userControl);
-            userControl.BringToFront();
         }
 
         void loadXuatSachList()
@@ -57,9 +50,12 @@ namespace QL_ThuVien.UserControls
                 lblTenNV.Text = row.Cells["hoTenNhanVien"].Value.ToString();
                 lblNgayXuat.Text = row.Cells["ngayXuat"].Value.ToString();
                 lblTongGiaBan.Text = row.Cells["tongGiaBan"].Value.ToString();
-                maXuatSach = dgvXuatSach.Rows[0].Cells["maXuatSach"].Value.ToString();
+
+                maXuatSach = dgvXuatSach.Rows[0].Cells["maXuatSach"].Value.ToString() + " VND";
             }
         }
+
+
 
         void SetUpXuatSachDataGridView()
         {
@@ -78,11 +74,14 @@ namespace QL_ThuVien.UserControls
         }
         #endregion
 
+
+        #region Event
         private void btnAdd_Click(object sender, EventArgs e)
         {
             UCThemPhieuXuat uc = new UCThemPhieuXuat();
             addUserControl(uc);
         }
+
         private void dgvXuatSach_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -91,9 +90,28 @@ namespace QL_ThuVien.UserControls
 
                 lblTenNV.Text = row.Cells["hoTenNhanVien"].Value.ToString();
                 lblNgayXuat.Text = row.Cells["ngayXuat"].Value.ToString();
-                lblTongGiaBan.Text = row.Cells["tongGiaBan"].Value.ToString();
+                lblTongGiaBan.Text = row.Cells["tongGiaBan"].Value.ToString() + " VND";
 
-                maXuatSach = dgvXuatSach.Rows[e.RowIndex].Cells["maDocGia"].Value.ToString();
+                maXuatSach = dgvXuatSach.Rows[e.RowIndex].Cells["maXuatSach"].Value.ToString();
+            }
+        }
+        #endregion
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Nhập mã xuất sách cần tìm")
+            {
+                txtSearch.Text = null;
+                txtSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "")
+            {
+                txtSearch.Text = "Nhập mã xuất sách cần tìm";
+                txtSearch.ForeColor = Color.FromArgb(125, 137, 149);
             }
         }
     }
