@@ -19,13 +19,29 @@ namespace QL_ThuVien.DAO
         }
 
 
-        private NhanVien_DAO() { }
+        public NhanVien_DAO() { }
+
         public DataTable GetListNhanVien()
         {
             string query = "Exec sp_layDanhSachNhanVien";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
+
+        public List<NhanVien_DTO> GetNhanVien()
+        {
+            List<NhanVien_DTO> list = new List<NhanVien_DTO>();
+            string query = "SELECT * FROM NhanVien";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow item in data.Rows)
+            {
+                NhanVien_DTO nhanVien = new NhanVien_DTO(item);
+                list.Add(nhanVien);
+            }
+
+            return list;
+        }
 
         public DataTable GetListNhanVienTheoTen(string tenNhanVien)
         {

@@ -1,4 +1,6 @@
-﻿using QL_ThuVien.DAO;
+﻿using Newtonsoft.Json;
+using QL_ThuVien.DAO;
+using QL_ThuVien.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace QL_ThuVien.UserControls
 {
@@ -16,6 +19,8 @@ namespace QL_ThuVien.UserControls
         public UCThemPhieuNhap()
         {
             InitializeComponent();
+            loadNhanVien();
+            loadSach();
         }
 
         private void addUserControl(UserControl userControl)
@@ -31,96 +36,171 @@ namespace QL_ThuVien.UserControls
             this.pnlDesktop.Controls.Add(this.pnlTool);
         }
 
-        private bool IsValidEmail(string email)
+        void loadNhanVien()
         {
-            try
-            {
-                var mailAddress = new System.Net.Mail.MailAddress(email);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            NhanVien_DAO nhanVien = new NhanVien_DAO();
+            List<NhanVien_DTO> listNhanVien = nhanVien.GetNhanVien();
+
+            cboNhanVien.Items.Clear();
+            cboNhanVien.DataSource = listNhanVien;
+            cboNhanVien.DisplayMember = "HoTenNhanVien";
+            cboNhanVien.ValueMember = "MaNhanVien";
         }
+
+        void loadSach()
+        {
+            Sach_DAO sach = new Sach_DAO();
+            List<Sach_DTO> listSach = sach.GetSach();
+
+            cboSach.Items.Clear();
+            cboSach.DataSource = listSach;
+            cboSach.DisplayMember = "TenSach";
+            cboSach.ValueMember = "MaSach";
+        }
+
+        void tinhTongTien()
+        {
+            double tongTien = 0;
+
+            foreach (ListViewItem item in lsvChiTietMuon.Items)
+            {
+                double donGia = Convert.ToDouble(item.SubItems[3].Text);
+
+                tongTien += donGia;
+            }
+
+            txtTongTien.Text = tongTien.ToString("N0");
+        }
+
         private void btnReturn_Click_1(object sender, EventArgs e)
         {
             UCNhapSach uc = new UCNhapSach();
             addUserControl(uc);
         }
-        private void btnSaveNhapSach_Click(object sender, EventArgs e)
+
+        private void btnAddListView_Click(object sender, EventArgs e)
         {
-            // Lấy dữ liệu từ các điều khiển
-            string maNhanVien = cboNhanVien.SelectedValue?.ToString();
-            string nguonNhap = txtNguonNhap.Text.Trim();
-            string soDienThoai = txtEmail.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string tenDuong = txtTenDuong.Text.Trim();
-            string phuongXa = txtPhuongXa.Text.Trim();
-            string quanHuyen = txtQuanHuyen.Text.Trim();
-            string tinhThanhPho = txtThanhPho.Text.Trim();
-            DateTime ngayXuat = dtNgayNhap.Value;
-            int soLuong = (int)numSoLuong.Value;
-            string lyDo = cboSach.Text.Trim();
-            decimal tongTien;
-            decimal donGia;
+            Sach_DTO selectedSach = (Sach_DTO)cboSach.SelectedItem;
+            string maSach = selectedSach.MaSach;
+            string tenSach = selectedSach.TenSach;
+            int soLuong = Convert.ToInt32(numSoLuong.Value);
+            double donGia = Convert.ToDouble(selectedSach.GiaBan);
 
-            // Kiểm tra số điện thoại phải có 10 chữ số
-            if (soDienThoai.Length != 10)
+            bool sachExist = false;
+            foreach (ListViewItem item in lsvChiTietMuon.Items)
             {
-                MessageBox.Show("Số điện thoại phải gồm 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (item.Text == maSach)
+                {
+                    int currentSoLuong = Convert.ToInt32(item.SubItems[2].Text);
+                    item.SubItems[2].Text = (currentSoLuong + soLuong).ToString();
+
+                    item.SubItems[3].Text = (donGia * (currentSoLuong + soLuong)).ToString("N0");
+
+                    sachExist = true;
+                    break;
+                }
             }
 
-            // Kiểm tra email hợp lệ
-            if (!IsValidEmail(email))
+            if (!sachExist)
             {
-                MessageBox.Show("Địa chỉ email không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                ListViewItem item = new ListViewItem(maSach);
+                item.SubItems.Add(tenSach.ToString());
+                item.SubItems.Add(soLuong.ToString());
+                item.SubItems.Add((donGia * soLuong).ToString("N0"));
+
+                lsvChiTietMuon.Items.Add(item);
             }
 
-            // Kiểm tra tổng tiền và đơn giá
-            if (!decimal.TryParse(txtTongTien.Text.Trim(), out tongTien))
+            cboSach.ResetText();
+            numSoLuong.Value = 1;
+
+            tinhTongTien();
+        }
+    
+
+        private void btnRemoveListView_Click(object sender, EventArgs e)
+        {
+            if (lsvChiTietMuon.SelectedItems.Count > 0)
             {
-                MessageBox.Show("Tổng tiền không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                ListViewItem selectedItem = lsvChiTietMuon.SelectedItems[0];
+
+                lsvChiTietMuon.Items.Remove(selectedItem);
+
+                tinhTongTien();
             }
-
-            if (!decimal.TryParse(txtDonGia.Text.Trim(), out donGia))
-            {
-                MessageBox.Show("Đơn giá không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Kiểm tra ngày xuất không lớn hơn ngày hiện tại
-            if (ngayXuat > DateTime.Now)
-            {
-                MessageBox.Show("Ngày xuất không thể lớn hơn ngày hiện tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Thực hiện thêm dữ liệu vào bảng NhapSach
-            //if (NhapSach_DAO.Instance.ThemNhapSach( maNhanVien, nguonNhap, soDienThoai, email, tenDuong, phuongXa, quanHuyen, tinhThanhPho, tongTien, soLuong, donGia, ngayXuat, lyDo))
-            //{
-            //    MessageBox.Show("Thêm thông tin nhập sách thành công!", "Thông báo", MessageBoxButtons.OK);
-
-            //    // Xóa dữ liệu trong các textbox sau khi lưu thành công
-            //    cboNhanVien.SelectedIndex = -1;
-            //    cboSach.SelectedIndex = -1;
-            //    txtEmail.Clear();
-            //    txtSoDienThoai.Clear();
-            //    txtTenDuong.Clear();
-            //    txtPhuongXa.Clear();
-            //    txtQuanHuyen.Clear();
-            //    txtThanhPho.Clear();
-            //    txtTongTien.Clear();
-            //    txtDonGia.Clear();
-            //    numSoLuong.Value = 1;
-            //}
             else
             {
-                MessageBox.Show("Có lỗi khi thêm thông tin nhập sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn một mục để xóa.");
             }
+        }
+
+        private void txtDonGia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboSach_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboSach.SelectedItem != null)
+            {
+                Sach_DTO selectedSach = (Sach_DTO)cboSach.SelectedItem;
+
+                txtDonGia.Text = selectedSach.GiaBan.ToString("N0");
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            NhanVien_DTO selectedNhanVien = (NhanVien_DTO)cboNhanVien.SelectedItem;
+            string maNhanVien = selectedNhanVien.MaNhanVien;
+            string nguonNhap = txtNguonNhap.Text;
+            string soDienThoai = txtSoDienThoai.Text;
+            string email = txtEmail.Text;
+            string tenDuong = txtTenDuong.Text;
+            string phuongXa = txtPhuongXa.Text;
+            string quanHuyen = txtQuanHuyen.Text;
+            string tinhThanhPho = txtThanhPho.Text;
+            decimal tongTien = decimal.Parse(txtTongTien.Text);
+            string chiTietNhapSach = GetChiTietNhapSach();
+
+            NhapSach_DAO.Instance.ThemPhieuNhap(maNhanVien, nguonNhap, soDienThoai, email,
+                                            tenDuong, phuongXa, quanHuyen, tinhThanhPho,
+                                            tongTien, chiTietNhapSach);
+            MessageBox.Show("Thêm phiếu nhập thành công!");
+        }
+
+        private string GetChiTietNhapSach()
+        {
+            var chiTietList = new List<object>();
+
+            foreach (ListViewItem item in lsvChiTietMuon.Items)
+            {
+                string maSach = item.SubItems[0].Text;
+                int soLuongNhap = int.Parse(item.SubItems[2].Text);
+                decimal giaNhap = decimal.Parse(item.SubItems[3].Text);
+
+                var chiTiet = new
+                {
+                    maSach,
+                    soLuongNhap,
+                    giaNhap
+                };
+
+                chiTietList.Add(chiTiet);
+            }
+
+            return JsonConvert.SerializeObject(chiTietList);
         }
 
     }

@@ -165,20 +165,13 @@ Go
 
 --13. Bảng chi tiết nhập
 Create Table ChiTietNhapSach (
-    maChiTietNhap varchar(10) Primary Key,
+    maChiTietNhap varchar(255) Primary Key,
     maNhapSach varchar(10) Not Null,
     maSach varchar(10) Not Null,
     soLuongNhap Int Not Null,
     giaNhap Decimal(10,2) Not Null
 )
 Go
-
-CREATE PROCEDURE sp_LayDanhSacDocGia
-AS
-BEGIN
-	
-END
-GO
 
 --14. Bảng xuất sách
 Create Table XuatSach(
@@ -689,56 +682,108 @@ BEGIN
 END
 GO
 
+--Xóa thông tin trong bảng NhapSach
+CREATE PROC sp_XoaNhapSachTheoMaNhapSach
+    @maNhapSach VARCHAR(10)
+AS
+BEGIN
+    BEGIN TRANSACTION;
+
+		DELETE FROM ChiTietNhapSach
+		WHERE maNhapSach = @maNhapSach;
+
+		DELETE FROM NhapSach
+		WHERE maNhapSach = @maNhapSach;
+
+    COMMIT TRANSACTION;
+END
+GO
+
 -- Thêm thông tin vào bảng NhapSach
-CREATE PROCEDURE sp_ThemNhapSach
-    @maNhapSach VARCHAR(10),
+CREATE PROCEDURE sp_ThemPhieuNhap
     @maNhanVien VARCHAR(10),
     @nguonNhap NVARCHAR(100),
     @soDienThoai VARCHAR(10),
     @email VARCHAR(50),
-    @diaChiChiTiet NVARCHAR(255),
     @tenDuong NVARCHAR(100),
     @phuongXa NVARCHAR(100),
     @quanHuyen NVARCHAR(100),
     @tinhThanhPho NVARCHAR(100),
-    @tongTien DECIMAL(10, 2)
+    @tongTien DECIMAL(10,2),
+    @chiTietNhapSach NVARCHAR(255)
 AS
 BEGIN
+    DECLARE @maxID INT;
+
+    -- Lấy mã nhập sách mới
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maNhapSach, 3, LEN(maNhapSach) - 2) AS INT)), 0) + 1 
+    FROM NhapSach;
+
+    DECLARE @MaNhapSach VARCHAR(10);
+    SET @MaNhapSach = 'NS' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+    DECLARE @diaChiChiTiet NVARCHAR(50);
+    SET @diaChiChiTiet = @tenDuong + ', ' + @phuongXa + ', ' + @quanHuyen + ', ' + @tinhThanhPho;
+
+    SET NOCOUNT ON;
+
+    -- Bước 1: Thêm vào bảng NhapSach
     INSERT INTO NhapSach (
-        maNhapSach, 
-        maNhanVien, 
-        ngayNhap, 
-        nguonNhap, 
-        soDienThoai, 
-        email, 
-        diaChiChiTiet, 
-        tenDuong, 
-        phuongXa, 
-        quanHuyen, 
-        tinhThanhPho, 
-        tongTien
+        maNhapSach, maNhanVien, ngayNhap, nguonNhap, soDienThoai, email,
+        diaChiChiTiet, tenDuong, phuongXa, quanHuyen, tinhThanhPho, tongTien
     )
     VALUES (
-        @maNhapSach, 
-        @maNhanVien, 
-        GETDATE(),
-        @nguonNhap, 
-        @soDienThoai, 
-        @email, 
-        @diaChiChiTiet, 
-        @tenDuong, 
-        @phuongXa, 
-        @quanHuyen, 
-        @tinhThanhPho, 
-        @tongTien
+        @maNhapSach,
+        @maNhanVien, GETDATE(), @nguonNhap, @soDienThoai, @email,
+        @diaChiChiTiet, @tenDuong, @phuongXa, @quanHuyen, @tinhThanhPho, @tongTien
     );
 
+    -- Bước 2: Xử lý dữ liệu chi tiết nhập sách (JSON -> bảng ChiTietNhapSach)
+    DECLARE @json NVARCHAR(MAX) = @chiTietNhapSach;
+    DECLARE @maSach VARCHAR(10), @soLuongNhap INT, @giaNhap DECIMAL(10,2);
+
+    DECLARE @temp TABLE (
+        maSach VARCHAR(10),
+        soLuongNhap INT,
+        giaNhap DECIMAL(10,2)
+    );
+
+    INSERT INTO @temp (maSach, soLuongNhap, giaNhap)
+    SELECT 
+        JSON_VALUE(value, '$.maSach'),
+        JSON_VALUE(value, '$.soLuongNhap'),
+        JSON_VALUE(value, '$.giaNhap')
+    FROM OPENJSON(@json);
+
+    -- Bước 3: Thêm chi tiết nhập sách vào bảng ChiTietNhapSach
+    DECLARE cur CURSOR FOR
+    SELECT maSach, soLuongNhap, giaNhap FROM @temp;
+
+    OPEN cur;
+    FETCH NEXT FROM cur INTO @maSach, @soLuongNhap, @giaNhap;
+
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        INSERT INTO ChiTietNhapSach (
+            maChiTietNhap, maNhapSach, maSach, soLuongNhap, giaNhap
+        )
+        VALUES (
+            NEWID(), @maNhapSach, @maSach, @soLuongNhap, @giaNhap
+        );
+
+        FETCH NEXT FROM cur INTO @maSach, @soLuongNhap, @giaNhap;
+    END
+
+    CLOSE cur;
+    DEALLOCATE cur;
+
     IF @@ROWCOUNT > 0
-        RETURN 1;
+        RETURN 1; -- Thành công
     ELSE
-        RETURN 0;
+        RETURN 0; -- Thất bại
 END
 GO
+
 
 --Chi tiết nhập sách========================================================================================================
 

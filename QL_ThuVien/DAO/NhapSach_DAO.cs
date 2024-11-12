@@ -37,29 +37,31 @@ namespace QL_ThuVien.DAO
 
         public bool XoaNhapSach(string maNhapSach)
         {
-            string query = "Delete NhapSach Where maNhapSach = '" + maNhapSach + "'";
+            string query = "Exec sp_XoaNhapSachTheoMaNhapSach @maNhapSach = '" + maNhapSach + "'";
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-        public bool ThemNhapSach(string maNhapSach, string maNhanVien, string nguonNhap, string soDienThoai, string email,
-                         string diaChiChiTiet, string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho, decimal tongTien)
+        public bool ThemPhieuNhap(string maNhanVien, string nguonNhap, string soDienThoai, string email,
+                           string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho,
+                           decimal tongTien, string chiTietNhapSach)
         {
-            string query = "sp_ThemNhapSach "
-                         + "@maNhapSach = '" + maNhapSach + "', "
-                         + "@maNhanVien = '" + maNhanVien + "', "
-                         + "@nguonNhap = N'" + nguonNhap + "', "
-                         + "@soDienThoai = '" + soDienThoai + "', "
-                         + "@email = '" + email + "', "
-                         + "@diaChiChiTiet = N'" + diaChiChiTiet + "', "
-                         + "@tenDuong = N'" + tenDuong + "', "
-                         + "@phuongXa = N'" + phuongXa + "', "
-                         + "@quanHuyen = N'" + quanHuyen + "', "
-                         + "@tinhThanhPho = N'" + tinhThanhPho + "', "
-                         + "@tongTien = " + tongTien;
+            string query = "EXEC sp_ThemPhieuNhap "
+                          + "@maNhanVien = N'" + maNhanVien + "', "
+                          + "@nguonNhap = N'" + nguonNhap + "', "
+                          + "@soDienThoai = '" + soDienThoai + "', "
+                          + "@email = '" + email + "', "
+                          + "@tenDuong = N'" + tenDuong + "', "
+                          + "@phuongXa = N'" + phuongXa + "', "
+                          + "@quanHuyen = N'" + quanHuyen + "', "
+                          + "@tinhThanhPho = N'" + tinhThanhPho + "', "
+                          + "@tongTien = " + tongTien.ToString() + ", "
+                          + "@chiTietNhapSach = N'" + chiTietNhapSach + "'";
 
             int result = DataProvider.Instance.ExecuteNonQuery(query);
+
             return result > 0;
         }
+
 
 
         public bool SuaNhapSach(string maNhapSach, string maNhanVien, string nguonNhap, string soDienThoai, string email,
