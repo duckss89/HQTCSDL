@@ -153,7 +153,7 @@ Create Table NhapSach(
     ngayNhap Date Not Null Default Getdate(),
     nguonNhap Nvarchar(100),
     soDienThoai Varchar(10) Check (Len(soDienThoai) = 10),
-    email Varchar(50) Unique,
+    email Varchar(50),
     diaChiChiTiet Nvarchar(255),
     tenDuong Nvarchar(100),
     phuongXa Nvarchar(100),
@@ -778,12 +778,11 @@ BEGIN
     DEALLOCATE cur;
 
     IF @@ROWCOUNT > 0
-        RETURN 1; -- Thành công
+        RETURN 1;
     ELSE
-        RETURN 0; -- Thất bại
+        RETURN 0;
 END
 GO
-
 
 --Chi tiết nhập sách========================================================================================================
 
@@ -798,39 +797,6 @@ BEGIN
 		giaNhap
 	FROM ChiTietNhapSach
 	WHERE maNhapSach = @maNhapSach
-END
-GO
-
-
--- Thêm thông tin vào bảng ChiTietNhapSach
-CREATE PROCEDURE sp_ThemChiTietNhapSach
-    @maChiTietNhap VARCHAR(10),
-    @maNhapSach VARCHAR(10),
-    @maSach VARCHAR(10),
-    @soLuongNhap INT,
-    @giaNhap DECIMAL(10, 2)
-AS
-BEGIN
-    -- Thêm thông tin chi tiết nhập sách vào bảng ChiTietNhapSach
-    INSERT INTO ChiTietNhapSach (
-        maChiTietNhap,
-        maNhapSach,
-        maSach,
-        soLuongNhap,
-        giaNhap
-    )
-    VALUES (
-        @maChiTietNhap,
-        @maNhapSach,
-        @maSach,
-        @soLuongNhap,
-        @giaNhap
-    );
-
-    IF @@ROWCOUNT > 0
-        RETURN 1;  -- Thêm thành công
-    ELSE
-        RETURN 0;  -- Thêm không thành công
 END
 GO
 

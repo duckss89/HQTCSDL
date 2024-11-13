@@ -25,7 +25,8 @@ namespace QL_ThuVien.DAO
         private DataProvider(){}
 
         //Nguyên
-        private string connectionSTR = "Data Source=DESKTOP-I1S5SR8;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
+        public string connectionSTR = "Data Source=DESKTOP-I1S5SR8;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
+
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
@@ -91,6 +92,7 @@ namespace QL_ThuVien.DAO
 
             return data;
         }
+
 
         public object ExecuteScalar(string query, object[] parameter = null)
         {

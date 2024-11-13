@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using System.Xml.Linq;
 
 namespace QL_ThuVien.UserControls
@@ -21,6 +22,9 @@ namespace QL_ThuVien.UserControls
             InitializeComponent();
             loadNhanVien();
             loadSach();
+            dtNgayNhap.Value = DateTime.Now;
+            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void addUserControl(UserControl userControl)
@@ -62,7 +66,7 @@ namespace QL_ThuVien.UserControls
         {
             double tongTien = 0;
 
-            foreach (ListViewItem item in lsvChiTietMuon.Items)
+            foreach (ListViewItem item in lsvChiTietNhap.Items)
             {
                 double donGia = Convert.ToDouble(item.SubItems[3].Text);
 
@@ -70,6 +74,19 @@ namespace QL_ThuVien.UserControls
             }
 
             txtTongTien.Text = tongTien.ToString("N0");
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var mailAddress = new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void btnReturn_Click_1(object sender, EventArgs e)
@@ -87,7 +104,7 @@ namespace QL_ThuVien.UserControls
             double donGia = Convert.ToDouble(selectedSach.GiaBan);
 
             bool sachExist = false;
-            foreach (ListViewItem item in lsvChiTietMuon.Items)
+            foreach (ListViewItem item in lsvChiTietNhap.Items)
             {
                 if (item.Text == maSach)
                 {
@@ -108,7 +125,7 @@ namespace QL_ThuVien.UserControls
                 item.SubItems.Add(soLuong.ToString());
                 item.SubItems.Add((donGia * soLuong).ToString("N0"));
 
-                lsvChiTietMuon.Items.Add(item);
+                lsvChiTietNhap.Items.Add(item);
             }
 
             cboSach.ResetText();
@@ -120,11 +137,11 @@ namespace QL_ThuVien.UserControls
 
         private void btnRemoveListView_Click(object sender, EventArgs e)
         {
-            if (lsvChiTietMuon.SelectedItems.Count > 0)
+            if (lsvChiTietNhap.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = lsvChiTietMuon.SelectedItems[0];
+                ListViewItem selectedItem = lsvChiTietNhap.SelectedItems[0];
 
-                lsvChiTietMuon.Items.Remove(selectedItem);
+                lsvChiTietNhap.Items.Remove(selectedItem);
 
                 tinhTongTien();
             }
@@ -174,17 +191,53 @@ namespace QL_ThuVien.UserControls
             decimal tongTien = decimal.Parse(txtTongTien.Text);
             string chiTietNhapSach = GetChiTietNhapSach();
 
-            NhapSach_DAO.Instance.ThemPhieuNhap(maNhanVien, nguonNhap, soDienThoai, email,
-                                            tenDuong, phuongXa, quanHuyen, tinhThanhPho,
-                                            tongTien, chiTietNhapSach);
-            MessageBox.Show("Thêm phiếu nhập thành công!");
+            if (string.IsNullOrEmpty(nguonNhap) || string.IsNullOrEmpty(phuongXa) || string.IsNullOrEmpty(quanHuyen) || string.IsNullOrEmpty(tinhThanhPho) || string.IsNullOrEmpty(soDienThoai) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            else if (soDienThoai.Length != 10)
+            {
+                MessageBox.Show("Số điện thoại phải gồm 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            else if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            else if (tongTien == 0)
+            {
+                MessageBox.Show("Chưa chọn sách nhập.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }    
+
+            else
+            {
+                NhapSach_DAO.Instance.ThemPhieuNhap(maNhanVien, nguonNhap, soDienThoai, email, tenDuong, phuongXa, quanHuyen, tinhThanhPho, tongTien, chiTietNhapSach);
+                MessageBox.Show("Thêm phiếu nhập thành công!");
+
+                txtNguonNhap.Clear();
+                txtSoDienThoai.Clear();
+                txtPhuongXa.Clear();
+                txtQuanHuyen.Clear();
+                txtTenDuong.Clear();
+                txtThanhPho.Clear();
+                txtTongTien.Text = "0";
+                txtEmail.Clear();
+                lsvChiTietNhap.Clear();
+            }
+            
         }
 
         private string GetChiTietNhapSach()
         {
             var chiTietList = new List<object>();
 
-            foreach (ListViewItem item in lsvChiTietMuon.Items)
+            foreach (ListViewItem item in lsvChiTietNhap.Items)
             {
                 string maSach = item.SubItems[0].Text;
                 int soLuongNhap = int.Parse(item.SubItems[2].Text);
@@ -203,5 +256,33 @@ namespace QL_ThuVien.UserControls
             return JsonConvert.SerializeObject(chiTietList);
         }
 
+        private void txtSoDienThoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnResetText_Click(object sender, EventArgs e)
+        {
+            txtNguonNhap.Clear();
+            txtSoDienThoai.Clear();
+            txtPhuongXa.Clear();
+            txtQuanHuyen.Clear();
+            txtTenDuong.Clear();
+            txtThanhPho.Clear();
+            txtTongTien.Text = "0";
+            txtEmail.Clear();
+            lsvChiTietNhap.Clear();
+        }
     }
 }

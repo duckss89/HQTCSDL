@@ -18,6 +18,8 @@ namespace QL_ThuVien.UserControls
         {
             InitializeComponent();
             LoadDuLieuNhapSach();
+            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         #region Method
@@ -107,9 +109,6 @@ namespace QL_ThuVien.UserControls
 
                 lsvChiTietNhap.Items.Add(item);
             }
-
-            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            lsvChiTietNhap.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         #endregion
 

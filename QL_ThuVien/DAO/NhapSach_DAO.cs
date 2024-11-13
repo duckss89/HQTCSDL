@@ -41,28 +41,13 @@ namespace QL_ThuVien.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-        public bool ThemPhieuNhap(string maNhanVien, string nguonNhap, string soDienThoai, string email,
-                           string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho,
-                           decimal tongTien, string chiTietNhapSach)
+
+        public void ThemPhieuNhap(string maNhanVien, string nguonNhap, string soDienThoai, string email, string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho, decimal tongTien, string chiTietNhapSach)
         {
-            string query = "EXEC sp_ThemPhieuNhap "
-                          + "@maNhanVien = N'" + maNhanVien + "', "
-                          + "@nguonNhap = N'" + nguonNhap + "', "
-                          + "@soDienThoai = '" + soDienThoai + "', "
-                          + "@email = '" + email + "', "
-                          + "@tenDuong = N'" + tenDuong + "', "
-                          + "@phuongXa = N'" + phuongXa + "', "
-                          + "@quanHuyen = N'" + quanHuyen + "', "
-                          + "@tinhThanhPho = N'" + tinhThanhPho + "', "
-                          + "@tongTien = " + tongTien.ToString() + ", "
-                          + "@chiTietNhapSach = N'" + chiTietNhapSach + "'";
+            string query = "EXEC sp_ThemPhieuNhap @maNhanVien , @nguonNhap , @soDienThoai , @email , @tenDuong , @phuongXa , @quanHuyen , @tinhThanhPho , @tongTien , @chiTietNhapSach ";
 
-            int result = DataProvider.Instance.ExecuteNonQuery(query);
-
-            return result > 0;
+            DataProvider.Instance.ExecuteNonQuery(query, new object[] { maNhanVien , nguonNhap , soDienThoai , email , tenDuong , phuongXa , quanHuyen , tinhThanhPho , tongTien , chiTietNhapSach });
         }
-
-
 
         public bool SuaNhapSach(string maNhapSach, string maNhanVien, string nguonNhap, string soDienThoai, string email,
                          string diaChiChiTiet, string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho, decimal tongTien)
