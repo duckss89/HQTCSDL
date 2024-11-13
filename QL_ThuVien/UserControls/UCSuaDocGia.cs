@@ -122,6 +122,7 @@ namespace QL_ThuVien.UserControls
             if (DocGia_DAO.Instance.SuaDocGia(maDocGia, ho, hoLot, ten, ngaySinh, gioiTinh, tenDuong, phuongXa, quanHuyen, tinhThanhPho, soDienThoai, email))
             {
                 MessageBox.Show(string.Format("Bạn đã sửa thành công thông tin độc giả {0} {1} {2}", ho, hoLot, ten), "Thông báo");
+
                 UCDocGia uc = new UCDocGia();
                 addUserControl(uc);
             }

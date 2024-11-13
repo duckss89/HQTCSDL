@@ -61,15 +61,15 @@ namespace QL_ThuVien.UserControls
         void SetUpNhanVienDataGridView()
         {
 
-            dgvNhanVien.Columns["maNhanVien"].HeaderText = "MÃ NHÂN VIÊN ";
-            dgvNhanVien.Columns["hoTenNhanVien"].HeaderText = "HỌ VÀ TÊN ";
+            dgvNhanVien.Columns["maNhanVien"].HeaderText = "MÃ NHÂN VIÊN";
+            dgvNhanVien.Columns["hoTenNhanVien"].HeaderText = "HỌ VÀ TÊN";
+            dgvNhanVien.Columns["chucVu"].HeaderText = "CHỨC VỤ";
             dgvNhanVien.Columns["ngaySinh"].HeaderText = "NGÀY SINH";
             dgvNhanVien.Columns["gioiTinh"].HeaderText = "GIỚI TÍNH";
             dgvNhanVien.Columns["diaChiChiTiet"].HeaderText = "ĐỊA CHỈ";
             dgvNhanVien.Columns["soDienThoai"].HeaderText = "SỐ ĐIỆN THOẠI";
             dgvNhanVien.Columns["email"].HeaderText = "EMAIL";
-            dgvNhanVien.Columns["chucVu"].HeaderText = "CHỨC VỤ ";
-            dgvNhanVien.Columns["ngayLamViec"].HeaderText = " NGÀY LÀM VIỆC  ";
+            dgvNhanVien.Columns["ngayLamViec"].HeaderText = " NGÀY LÀM VIỆC";
 
             dgvNhanVien.Columns["ngaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
             dgvNhanVien.Columns["ngayLamViec"].DefaultCellStyle.Format = "dd/MM/yyyy";
@@ -152,7 +152,15 @@ namespace QL_ThuVien.UserControls
                 maNhanVien = dgvNhanVien.Rows[e.RowIndex].Cells["maNhanVien"].Value.ToString();
             }
         }
+
+
         #endregion
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            UCSuaNhanVien uc = new UCSuaNhanVien(maNhanVien);
+            addUserControl(uc);
+        }
     }
 }
 

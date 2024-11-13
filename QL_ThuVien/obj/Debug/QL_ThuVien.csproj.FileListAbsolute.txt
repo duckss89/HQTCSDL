@@ -251,3 +251,4 @@ D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\bin\De
 D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.csproj.Up2Date
 D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\bin\Debug\Newtonsoft.Json.dll
 D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\bin\Debug\Newtonsoft.Json.xml
+D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaNhanVien.resources

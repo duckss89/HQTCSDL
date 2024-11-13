@@ -924,14 +924,14 @@ BEGIN
 SELECT 
 	[maNhanVien],
 	[hoTenNhanVien],
-	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
-	[gioiTinh],
-	[soDienThoai],
-	[email],
 	CASE
 	WHEN chucVu = 0 THEN 'Admin'
 	ELSE 'Staff'
 	END  AS  chucVu,
+	CONVERT(VARCHAR(10), ngaySinh, 103) AS ngaySinh, 
+	[gioiTinh],
+	[soDienThoai],
+	[email],
 	CONVERT(VARCHAR(10), ngayLamViec, 103) AS ngayLamViec, 
 	[diaChiChiTiet]
 FROM NhanVien
@@ -946,18 +946,134 @@ BEGIN
 SELECT
 	[maNhanVien],
 	[hoTenNhanVien],
-	[ngaySinh],
-	[gioiTinh],
-	[soDienThoai],
-	[email],
 	CASE
 	WHEN chucVu = 0 THEN 'Admin'
 	ELSE 'Staff'
 	END  AS  chucVu,
 	CONVERT(VARCHAR(10), ngayLamViec, 103) AS ngayLamViec, 
+	[ngaySinh],
+	[gioiTinh],
+	[soDienThoai],
+	[email],
 	[diaChiChiTiet]
 FROM NhanVien
 WHERE 
         dbo.fn_ConvertToUnsign(hoTenNhanVien) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenNhanVien) + '%';
+END
+GO
+
+--Thêm nhân viên
+CREATE PROCEDURE sp_ThemNhanVien
+    @ho NVARCHAR(10),
+    @hoLot NVARCHAR(20) = NULL,
+    @ten NVARCHAR(10),
+    @ngaySinh DATE,
+    @gioiTinh NVARCHAR(10),
+    @tenDuong NVARCHAR(100),
+    @phuongXa NVARCHAR(100),
+    @quanHuyen NVARCHAR(100),
+    @tinhThanhPho NVARCHAR(100),
+    @soDienThoai VARCHAR(10),
+    @email VARCHAR(50),
+	@chucVu BIT
+AS
+BEGIN
+    DECLARE @maxID INT;
+
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maNhanVien, 3, LEN(maNhanVien) - 2) AS INT)), 0) + 1 
+    FROM NhanVien;
+
+    DECLARE @maNhanVien VARCHAR(10);
+    SET @maNhanVien = 'NV' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+    DECLARE @hoTen NVARCHAR(50);
+    SET @hoTen = @ho + ISNULL(' ' + @hoLot, '') + ' ' + @ten;
+
+	DECLARE @diaChiChiTiet NVARCHAR(150);
+	SET @diaChiChiTiet = @tenDuong + ', ' + @phuongXa + ', ' + @quanHuyen + ', ' + @tinhThanhPho;
+
+    INSERT INTO NhanVien 
+	(
+       [maNhanVien], [hoTenNhanVien], [ho], [hoLot], [ten], [ngaySinh], [gioiTinh], [soDienThoai], [email], [chucVu], [ngayLamViec], [diaChiChiTiet], [tenDuong], [phuongXa], [quanHuyen], [tinhThanhPho]
+    )
+    VALUES 
+	(
+        @maNhanVien, @hoTen, @ho, @hoLot, @ten, @ngaySinh, @gioiTinh, @soDienThoai, @email, @chucVu, GETDATE(), @diaChiChiTiet, @tenDuong, @phuongXa, @quanHuyen, @tinhThanhPho
+    )
+
+    IF @@ROWCOUNT > 0 
+        RETURN 1
+    ELSE 
+        RETURN 0;
+END
+GO
+
+-- Lấy thông tin nhân viên theo mã nhân viên
+CREATE PROCEDURE sp_LayThongTinNhanVienTheoMa
+	@maNhanVien varchar(10)
+AS
+BEGIN
+    SELECT 
+		[maNhanVien], 
+		[hoTenNhanVien], 
+		[ho], 
+		[hoLot], 
+		[ten], 
+		[ngaySinh], 
+		[gioiTinh], 
+		[soDienThoai], 
+		[email], 
+		[chucVu], 
+		[ngayLamViec], 
+		[diaChiChiTiet], 
+		[tenDuong],
+		[phuongXa],
+		[quanHuyen], 
+		[tinhThanhPho]
+    FROM 
+        NhanVien
+	WHERE maNhanVien = @maNhanVien
+END
+GO
+
+-- Sửa nhân viên
+CREATE PROCEDURE sp_SuaNhanVien
+	@maNhanVien VARCHAR(10),
+    @ho NVARCHAR(10),
+    @hoLot NVARCHAR(20) = NULL,
+    @ten NVARCHAR(10),
+    @ngaySinh DATE,
+    @gioiTinh NVARCHAR(10),
+    @tenDuong NVARCHAR(100),
+    @phuongXa NVARCHAR(100),
+    @quanHuyen NVARCHAR(100),
+    @tinhThanhPho NVARCHAR(100),
+    @soDienThoai VARCHAR(10),
+    @email VARCHAR(50),
+	@chucVu BIT
+AS
+BEGIN
+	UPDATE NhanVien
+    SET
+		hoTenNhanVien = @ho + ISNULL(' ' + @hoLot, '') + ' ' + @ten,
+        ho = @Ho,
+        hoLot = @HoLot,
+        ten = @Ten,
+        ngaySinh = @NgaySinh,
+        gioiTinh = @GioiTinh,
+        diaChiChiTiet =  @tenDuong + ', ' + @phuongXa + ', ' + @quanHuyen + ', ' + @tinhThanhPho, 
+        tenDuong = @TenDuong,
+        phuongXa = @PhuongXa,
+        quanHuyen = @QuanHuyen,
+        tinhThanhPho = @TinhThanhPho,
+        soDienThoai = @SoDienThoai,
+        email = @Email,
+		chucVu = @chucVu
+    WHERE maNhanVien = @maNhanVien;
+
+    IF @@ROWCOUNT > 0 
+        RETURN 1
+    ELSE 
+        RETURN 0;
 END
 GO

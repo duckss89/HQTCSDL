@@ -56,6 +56,63 @@ namespace QL_ThuVien.DAO
             return result > 0;
         }
 
+        public bool ThemNhanVien(string ho, string hoLot, string ten, string ngaySinh, string gioiTinh, string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho, string soDienThoai, string email, bool chucVu)
+        {
+            string query = "EXEC sp_ThemNhanVien "
+                         + "@ho = N'" + ho + "', "
+                         + "@hoLot = N'" + hoLot + "', "
+                         + "@ten = N'" + ten + "', "
+                         + "@ngaySinh = '" + ngaySinh + "', "
+                         + "@gioiTinh = N'" + gioiTinh + "', "
+                         + "@tenDuong = N'" + tenDuong + "', "
+                         + "@phuongXa = N'" + phuongXa + "', "
+                         + "@quanHuyen = N'" + quanHuyen + "', "
+                         + "@tinhThanhPho = N'" + tinhThanhPho + "', "
+                         + "@soDienThoai = '" + soDienThoai + "', "
+                         + "@email = '" + email + "', "
+                         + "@chucVu = " + (chucVu ? "1" : "0");
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public List<NhanVien_DTO> LayThongTinNhanVienTheoMaNV(string maNhanVien)
+        {
+            List<NhanVien_DTO> list = new List<NhanVien_DTO>();
+
+            string query = "EXEc sp_LayThongTinNhanVienTheoMa @maNhanVien = '" + maNhanVien + "'";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow item in data.Rows)
+            {
+                NhanVien_DTO nv = new NhanVien_DTO(item);
+                list.Add(nv);
+            }
+
+            return list;
+        }
+
+        public bool SuaNhanVien(string maNhanVien, string ho, string hoLot, string ten, string ngaySinh, string gioiTinh, string tenDuong, string phuongXa, string quanHuyen, string tinhThanhPho, string soDienThoai, string email, bool chucVu)
+        {
+            string query = "EXEC sp_SuaNhanVien "
+                         + "@maNhanVien = '" + maNhanVien + "', "
+                         + "@ho = N'" + ho + "', "
+                         + "@hoLot = N'" + hoLot + "', "
+                         + "@ten = N'" + ten + "', "
+                         + "@ngaySinh = '" + ngaySinh + "', "
+                         + "@gioiTinh = N'" + gioiTinh + "', "
+                         + "@tenDuong = N'" + tenDuong + "', "
+                         + "@phuongXa = N'" + phuongXa + "', "
+                         + "@quanHuyen = N'" + quanHuyen + "', "
+                         + "@tinhThanhPho = N'" + tinhThanhPho + "', "
+                         + "@soDienThoai = '" + soDienThoai + "', "
+                         + "@email = '" + email + "', "
+                         + "@chucVu = " + (chucVu ? "1" : "0");
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
     }
 }
     

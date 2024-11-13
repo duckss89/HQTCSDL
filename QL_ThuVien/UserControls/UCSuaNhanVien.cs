@@ -1,4 +1,5 @@
 ﻿using QL_ThuVien.DAO;
+using QL_ThuVien.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,15 +12,16 @@ using System.Windows.Forms;
 
 namespace QL_ThuVien.UserControls
 {
-    public partial class UCThemDocGia : UserControl
+    public partial class UCSuaNhanVien : UserControl
     {
-        public UCThemDocGia()
+        private string maNhanVien;
+        public UCSuaNhanVien(string maNhanVien)
         {
             InitializeComponent();
-            dtpNgaySinh.Value = DateTime.Now;
+            this.maNhanVien = maNhanVien;
+            LoadThongTinNhanVien();
         }
 
-        #region Method
         private void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
@@ -28,9 +30,30 @@ namespace QL_ThuVien.UserControls
             userControl.BringToFront();
         }
 
-        void addControlDesktop()
+        public void LoadThongTinNhanVien()
         {
-            this.pnlDesktop.Controls.Add(this.pnlTool);
+            if (string.IsNullOrEmpty(maNhanVien) == false)
+            {
+                List<NhanVien_DTO> listNhanVien = NhanVien_DAO.Instance.LayThongTinNhanVienTheoMaNV(maNhanVien);
+                foreach (NhanVien_DTO item in listNhanVien)
+                {
+                    txtHo.Text = item.Ho;
+                    txtHoLot.Text = item.HoLot;
+                    txtTen.Text = item.Ten;
+                    txtTenDuong.Text = item.TenDuong;
+                    txtQuanHuyen.Text = item.QuanHuyen;
+                    txtPhuongXa.Text = item.PhuongXa;
+                    txtTinhThanhPho.Text = item.TinhThanhPho;
+                    dtpNgaySinh.Value = ((DateTime)item.NgaySinh);
+                    if (item.GioiTinh == "Nữ")
+                        rdoNu.Checked = true;
+                    else
+                        rdoNam.Checked = true;
+                    txtEmail.Text = item.Email;
+                    txtSoDienThoai.Text = item.SoDienThoai;
+                    cboChucVu.Text = (item.ChucVu == true) ? "Staff" : "Admin"; 
+                }
+            }
         }
 
         private bool IsValidEmail(string email)
@@ -45,13 +68,11 @@ namespace QL_ThuVien.UserControls
                 return false;
             }
         }
-        #endregion
 
-        #region Event
-        private void btnReturn_Click_1(object sender, EventArgs e)
+        private void btnReturn_Click(object sender, EventArgs e)
         {
-            UCDocGia uCDocGia = new UCDocGia();
-            addUserControl(uCDocGia);
+            UCNhanVien uc = new UCNhanVien();
+            addUserControl(uc);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -66,15 +87,22 @@ namespace QL_ThuVien.UserControls
             string phuongXa = txtPhuongXa.Text.Trim();
             string quanHuyen = txtQuanHuyen.Text.Trim();
             string tinhThanhPho = txtTinhThanhPho.Text.Trim();
+            bool chucVu;
+
             string gioiTinh = null;
             if (rdoNam.Checked)
                 gioiTinh = "Nam";
             else
                 gioiTinh = "Nữ";
 
+            if (cboChucVu.SelectedIndex == 0)
+                chucVu = false;
+            else
+                chucVu = true;
+
             if (string.IsNullOrEmpty(ho) || string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(soDienThoai) || string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin cá nhân của nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -98,31 +126,19 @@ namespace QL_ThuVien.UserControls
 
             if (string.IsNullOrEmpty(tenDuong) || string.IsNullOrEmpty(phuongXa) || string.IsNullOrEmpty(quanHuyen) || string.IsNullOrEmpty(tinhThanhPho))
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin địa chỉ của đọc giả.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin địa chỉ của nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (DocGia_DAO.Instance.ThemDocGia(ho, hoLot, ten, ngaySinh, gioiTinh, tenDuong, phuongXa, quanHuyen, tinhThanhPho, soDienThoai, email))
+            if (NhanVien_DAO.Instance.SuaNhanVien(maNhanVien,ho, hoLot, ten, ngaySinh, gioiTinh, tenDuong, phuongXa, quanHuyen, tinhThanhPho, soDienThoai, email, chucVu))
             {
-                MessageBox.Show(string.Format("Bạn đã thêm thành công độc giả {0} {1} {2}", ho, hoLot, ten), "Thông báo");
+                MessageBox.Show(string.Format("Bạn đã sửa thành công thông tin nhân viên {0} {1} {2}", ho, hoLot, ten), "Thông báo");
 
-                txtHo.Clear();
-                txtHoLot.Clear();
-                txtTen.Clear();
-                dtpNgaySinh.Value = DateTime.Now;
-                txtEmail.Clear();
-                txtSoDienThoai.Clear();
-                txtTenDuong.Clear();
-                txtPhuongXa.Clear();
-                txtQuanHuyen.Clear();
-                txtTinhThanhPho.Clear();
-                if (rdoNam.Checked)
-                    rdoNam.Checked = false;
-                else
-                    rdoNu.Checked = false;
+                UCNhanVien uc = new UCNhanVien();
+                addUserControl(uc);
             }
             else
-                MessageBox.Show("Có lỗi khi thêm khách hàng!", "Thông báo");
+                MessageBox.Show("Có lỗi khi sửa thông tin nhân viên!", "Thông báo");
         }
 
         private void txtHo_KeyPress(object sender, KeyPressEventArgs e)
@@ -188,24 +204,5 @@ namespace QL_ThuVien.UserControls
                 e.Handled = true;
             }
         }
-
-        private void btnResetText_Click(object sender, EventArgs e)
-        {
-            txtHo.Clear();
-            txtHoLot.Clear();
-            txtTen.Clear();
-            dtpNgaySinh.Value = DateTime.Now;
-            txtEmail.Clear();
-            txtSoDienThoai.Clear();
-            txtTenDuong.Clear();
-            txtPhuongXa.Clear();
-            txtQuanHuyen.Clear();
-            txtTinhThanhPho.Clear();
-            if (rdoNam.Checked)
-                rdoNam.Checked = false;
-            else
-                rdoNu.Checked = false;
-        }
-        #endregion
     }
 }

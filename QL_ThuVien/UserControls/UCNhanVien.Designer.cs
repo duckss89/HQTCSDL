@@ -44,7 +44,7 @@
             this.pnlRemove = new Guna.UI2.WinForms.Guna2Panel();
             this.btnRemove = new FontAwesome.Sharp.IconButton();
             this.pnlThongTinNhanVien = new System.Windows.Forms.Panel();
-            this.btnTimViTri = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSua = new Guna.UI2.WinForms.Guna2Button();
             this.lblChucVu = new System.Windows.Forms.Label();
             this.lblNgayLamViec = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -293,7 +293,7 @@
             // pnlThongTinNhanVien
             // 
             this.pnlThongTinNhanVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(224)))), ((int)(((byte)(199)))));
-            this.pnlThongTinNhanVien.Controls.Add(this.btnTimViTri);
+            this.pnlThongTinNhanVien.Controls.Add(this.btnSua);
             this.pnlThongTinNhanVien.Controls.Add(this.lblChucVu);
             this.pnlThongTinNhanVien.Controls.Add(this.lblNgayLamViec);
             this.pnlThongTinNhanVien.Controls.Add(this.label5);
@@ -314,24 +314,25 @@
             this.pnlThongTinNhanVien.Size = new System.Drawing.Size(255, 556);
             this.pnlThongTinNhanVien.TabIndex = 0;
             // 
-            // btnTimViTri
+            // btnSua
             // 
-            this.btnTimViTri.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.btnTimViTri.BorderRadius = 7;
-            this.btnTimViTri.BorderThickness = 1;
-            this.btnTimViTri.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTimViTri.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTimViTri.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTimViTri.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTimViTri.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTimViTri.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
-            this.btnTimViTri.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimViTri.ForeColor = System.Drawing.Color.White;
-            this.btnTimViTri.Location = new System.Drawing.Point(40, 505);
-            this.btnTimViTri.Name = "btnTimViTri";
-            this.btnTimViTri.Size = new System.Drawing.Size(187, 31);
-            this.btnTimViTri.TabIndex = 38;
-            this.btnTimViTri.Text = "Sửa thông tin";
+            this.btnSua.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.btnSua.BorderRadius = 7;
+            this.btnSua.BorderThickness = 1;
+            this.btnSua.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSua.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSua.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSua.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSua.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSua.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(110)))), ((int)(((byte)(99)))));
+            this.btnSua.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSua.ForeColor = System.Drawing.Color.White;
+            this.btnSua.Location = new System.Drawing.Point(40, 505);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(187, 31);
+            this.btnSua.TabIndex = 38;
+            this.btnSua.Text = "Sửa thông tin";
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // lblChucVu
             // 
@@ -539,7 +540,7 @@
         private System.Windows.Forms.Label lblSoDienThoai;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
-        private Guna.UI2.WinForms.Guna2Button btnTimViTri;
+        private Guna.UI2.WinForms.Guna2Button btnSua;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private FontAwesome.Sharp.IconButton iconButton1;
     }
