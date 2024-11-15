@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QL_ThuVien.UserControls
 {
-    public partial class UCThongKe : UserControl
+    public partial class UCThongKeDocGia : UserControl
     {
-        public UCThongKe()
+        public UCThongKeDocGia()
         {
             InitializeComponent();
         }

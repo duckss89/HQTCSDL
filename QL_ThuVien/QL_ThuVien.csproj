@@ -52,6 +52,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,11 +71,13 @@
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\DocGia_DAO.cs" />
     <Compile Include="DAO\Sach_DAO.cs" />
+    <Compile Include="DAO\TaiKhoan_DAO.cs" />
     <Compile Include="DAO\XuatSach_DAO.cs" />
     <Compile Include="DTO\CtNhapSach_DTO.cs" />
     <Compile Include="DTO\CtXuatSach_DTO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\Sach_DTO.cs" />
+    <Compile Include="DTO\TaiKhoan_DTO.cs" />
     <Compile Include="DTO\XuatSach_DTO.cs" />
     <Compile Include="DAO\NhapSach_DAO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
@@ -138,11 +141,23 @@
     <Compile Include="UserControls\UCSuaDocGia.Designer.cs">
       <DependentUpon>UCSuaDocGia.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCSuaTaiKhoan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSuaTaiKhoan.Designer.cs">
+      <DependentUpon>UCSuaTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCTacGiaTheLoai.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\UCTacGiaTheLoai.Designer.cs">
       <DependentUpon>UCTacGiaTheLoai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCTaiKhoan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCTaiKhoan.Designer.cs">
+      <DependentUpon>UCTaiKhoan.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCThemDocGia.cs">
       <SubType>UserControl</SubType>
@@ -192,11 +207,29 @@
     <Compile Include="UserControls\UCThemSach.Designer.cs">
       <DependentUpon>UCThemSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCThongKe.cs">
+    <Compile Include="UserControls\UCThemTaiKhoan.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UCThongKe.Designer.cs">
-      <DependentUpon>UCThongKe.cs</DependentUpon>
+    <Compile Include="UserControls\UCThemTaiKhoan.Designer.cs">
+      <DependentUpon>UCThemTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCThongKeDocGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCThongKeDocGia.Designer.cs">
+      <DependentUpon>UCThongKeDocGia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCThongKeMuonTra.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCThongKeMuonTra.Designer.cs">
+      <DependentUpon>UCThongKeMuonTra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCThongKeSach.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCThongKeSach.Designer.cs">
+      <DependentUpon>UCThongKeSach.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCThongTinSach.cs">
       <SubType>UserControl</SubType>
@@ -258,8 +291,14 @@
     <EmbeddedResource Include="UserControls\UCSuaDocGia.resx">
       <DependentUpon>UCSuaDocGia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSuaTaiKhoan.resx">
+      <DependentUpon>UCSuaTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCTacGiaTheLoai.resx">
       <DependentUpon>UCTacGiaTheLoai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCTaiKhoan.resx">
+      <DependentUpon>UCTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCThemDocGia.resx">
       <DependentUpon>UCThemDocGia.cs</DependentUpon>
@@ -285,8 +324,17 @@
     <EmbeddedResource Include="UserControls\UCThemSach.resx">
       <DependentUpon>UCThemSach.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCThongKe.resx">
-      <DependentUpon>UCThongKe.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UCThemTaiKhoan.resx">
+      <DependentUpon>UCThemTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCThongKeDocGia.resx">
+      <DependentUpon>UCThongKeDocGia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCThongKeMuonTra.resx">
+      <DependentUpon>UCThongKeMuonTra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCThongKeSach.resx">
+      <DependentUpon>UCThongKeSach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCThongTinSach.resx">
       <DependentUpon>UCThongTinSach.cs</DependentUpon>

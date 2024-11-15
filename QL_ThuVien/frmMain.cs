@@ -148,9 +148,7 @@ namespace QL_ThuVien
 
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
-            UCNhanVien uc = new UCNhanVien();
-            addUserControl(uc);
-            lblTitle.Text = "NHÂN VIÊN";
+            Open_DropdownMenu(ddmNhanVien, sender);
         }
 
         private void btnMuonTra_Click(object sender, EventArgs e)
@@ -179,9 +177,7 @@ namespace QL_ThuVien
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            UCThongKe uc = new UCThongKe();
-            addUserControl(uc);
-            lblTitle.Text = "THỐNG KÊ";
+            Open_DropdownMenu(ddmThongKe, sender);
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -196,6 +192,41 @@ namespace QL_ThuVien
             UCXuatSach uc = new UCXuatSach();
             addUserControl(uc);
             lblTitle.Text = "XUẤT SÁCH";
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            UCNhanVien uc = new UCNhanVien();
+            addUserControl(uc);
+            lblTitle.Text = "DANH SÁCH NHÂN VIÊN";
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            UCTaiKhoan uc = new UCTaiKhoan();
+            addUserControl(uc);
+            lblTitle.Text = "TÀI KHOẢN NHÂN VIÊN";
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            UCThongKeSach uc = new UCThongKeSach();
+            addUserControl(uc);
+            lblTitle.Text = "THỐNG KÊ SÁCH";
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            UCThongKeDocGia uc = new UCThongKeDocGia();
+            addUserControl(uc);
+            lblTitle.Text = "THỐNG KÊ ĐỌC GIẢ";
+        }
+
+        private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UCThongKeMuonTra uc = new UCThongKeMuonTra();
+            addUserControl(uc);
+            lblTitle.Text = "THỐNG KÊ MƯỢN TRẢ";
         }
     }
 }

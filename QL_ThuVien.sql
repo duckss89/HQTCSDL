@@ -11,7 +11,7 @@ Go
 --1. Bảng đọc giả
 Create Table DocGia (
 	maDocGia varchar(10) Primary Key,
-	hoTen Nvarchar(50) Not Null, 
+	hoTen Nvarchar(50) Not Null,
 	ho Nvarchar(10) Not Null,
 	hoLot Nvarchar(20) Not Null,
 	ten Nvarchar(10) Not Null,
@@ -97,7 +97,7 @@ Create Table TaiKhoan(
 	maTaiKhoan varchar(10) Primary Key,
 	tenDangNhap Varchar(50) Not Null Unique,
 	matKhau Varchar(50) Not Null,
-	maNhanVien varchar(10) Not Null,
+	maNhanVien varchar(10) Not Null Unique,
 	trangThai Bit Default 1, --0. Khóa, --1. Hoạt động
 	ngayTao Date Not Null Default Getdate()
 )
@@ -320,6 +320,7 @@ Go
 --5. Sách
 INSERT INTO Sach (maSach, tenSach, biaSach, ISBN, namXuatBan, soLuong, giaBan, maTheLoai, maTacGia, maNhaXuatBan, viTri) 
 VALUES 
+('S003', N'Tiểu thuyết', N'Bìa mềm', '978-3-16-148410-2', 2020, 10, 150000, 'TL001', 'TG001', 'NXB001', N'Kệ A1'),
 ('S001', N'Tiểu thuyết đầu lòng', N'Bìa mềm', '978-3-16-148410-0', 2020, 10, 150000, 'TL001', 'TG001', 'NXB001', N'Kệ A1'),
 ('S002', N'Tự truyện của tôi', N'Bìa cứng', '978-3-16-148410-1', 2019, 5, 200000, 'TL002', 'TG002', 'NXB002', N'Kệ B1')
 Go
@@ -342,11 +343,8 @@ GO
 -- 7. Bảng Tài Khoản
 INSERT INTO TaiKhoan (maTaiKhoan, tenDangNhap, matKhau, maNhanVien, trangThai)
 VALUES
-    ('TK001', 'nguyenvana', 'password1', 'NV001', 1),
-    ('TK002', 'tranbich', 'password2', 'NV002', 1),
-    ('TK003', 'vominh', 'password3', 'NV003', 1),
-    ('TK004', 'phamhuong', 'password4', 'NV004', 1),
-    ('TK005', 'lekhoa', 'password5', 'NV005', 1)
+    ('TK001', 'tk01', '1', 'NV001', 1),
+    ('TK002', 'tk02', '2', 'NV002', 1)
 GO
 
 -- 8. Bảng Phiếu Mượn
@@ -1077,3 +1075,126 @@ BEGIN
         RETURN 0;
 END
 GO
+
+--Tài khoản====================================================================================================
+
+--Lấy danh sách tài khoản
+CREATE PROCEDURE sp_LayDanhSachTaiKhoan
+AS
+BEGIN
+SELECT
+	[maTaiKhoan],
+	[tenDangNhap], 
+	[matKhau], 
+	 (SELECT nv.hoTenNhanVien 
+         FROM NhanVien nv 
+         WHERE nv.maNhanVien = TaiKhoan.maNhanVien) AS hoTenNhanVien,
+	CASE
+	WHEN trangThai = 0 THEN N'Khóa'
+	ELSE N'Hoạt động'
+	END  AS  trangThai,
+	CONVERT(VARCHAR(10), ngayTao, 103) AS ngayTao
+FROM TaiKhoan
+END
+GO
+
+--Tìm kiếm tài khoản theo tên nhân viên
+CREATE PROCEDURE sp_TimKiemTaiKhoanTheoTen
+    @tenNhanVien NVARCHAR(50)
+AS
+BEGIN
+    SELECT
+        [maTaiKhoan],
+        [tenDangNhap], 
+        [matKhau], 
+        nv.hoTenNhanVien AS hoTenNhanVien,
+        CASE
+            WHEN trangThai = 0 THEN N'Khóa'
+            ELSE N'Hoạt động'
+        END AS trangThai,
+        CONVERT(VARCHAR(10), ngayTao, 103) AS ngayTao
+    FROM 
+        TaiKhoan tk
+    JOIN 
+        NhanVien nv ON tk.maNhanVien = nv.maNhanVien
+    WHERE 
+        dbo.fn_ConvertToUnsign(nv.hoTenNhanVien) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenNhanVien) + '%';
+END
+GO
+
+--Hàm kiểm tra nhân viên đã có tài khoản chưa
+CREATE FUNCTION fn_KiemTraTaiKhoan (@maNhanVien VARCHAR(10))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @result BIT;
+    
+    IF EXISTS (SELECT 1 FROM TaiKhoan WHERE maNhanVien = @maNhanVien)
+        SET @result = 1;
+    ELSE
+        SET @result = 0;
+        
+    RETURN @result;
+END
+GO
+
+--Thêm tài khoản
+CREATE PROCEDURE sp_ThemTaiKhoan
+    @tenDangNhap VARCHAR(50),
+    @matKhau VARCHAR(50),
+    @maNhanVien VARCHAR(10),
+    @trangThai BIT = 1, 
+	@ngayTao Date
+AS
+BEGIN
+	DECLARE @maxID INT;
+
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maTaiKhoan, 3, LEN(maTaiKhoan) - 2) AS INT)), 0) + 1 
+    FROM TaiKhoan;
+
+    DECLARE @maTaiKhoan VARCHAR(10);
+    SET @maTaiKhoan = 'TK' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+	INSERT INTO TaiKhoan([maTaiKhoan], [tenDangNhap], [matKhau], [maNhanVien], [trangThai], [ngayTao])
+	VALUES (@maTaiKhoan, @tenDangNhap, @matKhau, @maNhanVien, @trangThai, @ngayTao)
+END
+GO
+
+
+--Lấy thông tin tài khoản bằng mã tài khoản
+CREATE PROC sp_LayThongTinTaiKhoanTheoMaTaiKhoan
+@maTaiKhoan VARCHAR(10)
+AS
+BEGIN
+    SELECT 
+		[maTaiKhoan], [tenDangNhap], [matKhau], [maNhanVien], [trangThai], [ngayTao]
+    FROM 
+        TaiKhoan
+	WHERE maTaiKhoan = @maTaiKhoan
+END
+GO
+
+--Sửa tài khoản
+CREATE PROCEDURE sp_SuaTaiKhoan
+    @maTaiKhoan VARCHAR(10),
+    @tenDangNhap VARCHAR(50),
+    @matKhau VARCHAR(50),
+    @maNhanVien VARCHAR(10),
+    @trangThai BIT
+AS
+BEGIN
+    UPDATE TaiKhoan
+    SET
+        tenDangNhap = @tenDangNhap,
+        matKhau = @matKhau,
+        maNhanVien = @maNhanVien,
+        trangThai = @trangThai
+    WHERE maTaiKhoan = @maTaiKhoan;
+
+    IF @@ROWCOUNT > 0 
+        RETURN 1
+    ELSE 
+        RETURN 0;
+END
+GO
+

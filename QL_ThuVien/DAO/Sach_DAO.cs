@@ -10,6 +10,16 @@ namespace QL_ThuVien.DAO
 {
     public class Sach_DAO
     {
+        private static Sach_DAO instance;
+
+        public static Sach_DAO Instance
+        {
+            get { if (instance == null) instance = new Sach_DAO(); return instance; }
+            private set { instance = value; }
+        }
+
+        public Sach_DAO() { }
+
         public List<Sach_DTO> GetSach()
         {
             List<Sach_DTO> list = new List<Sach_DTO>();
