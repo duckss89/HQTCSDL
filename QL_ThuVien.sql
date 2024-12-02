@@ -1398,7 +1398,307 @@ EXEC sp_ThemSach
     @maNhaXuatBan = 'NXB001', 
     @viTri = 'Kệ A1';
 
+--=======================================================================
+--Phiếu mượn
+--Proc lấy danh sách phiếu mượn
+CREATE PROCEDURE sp_LayDanhSachPhieuMuon
+AS
+BEGIN
+    SELECT 
+		maPhieuMuon
+        maDocGia,
+        maNhanVien,
+        CONVERT(VARCHAR(10), ngayMuon, 103) AS ngayMuon, 
+        CONVERT(VARCHAR(10), ngayHetHan, 103) AS ngayHetHan
+        
+    FROM 
+        PhieuMuon
+END
+GO
 
+select *from PhieuTra
+
+--Proc thêm phiếu mượn mới
+-- Thêm thông tin vào bảng PhieuMuon
+CREATE PROCEDURE sp_ThemPhieuMuon
+    @maDocGia VARCHAR(10),
+    @maNhanVien VARCHAR(10),
+    @ngayMuon DATE,
+    @ngayHetHan DATE,
+    @chiTietPhieuMuon NVARCHAR(MAX)  -- JSON containing chi tiết phiếu mượn
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Lấy mã mượn sách mới
+    DECLARE @maxID INT;
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maPhieuMuon, 3, LEN(maPhieuMuon) - 2) AS INT)), 0) + 1 
+    FROM PhieuMuon;
+
+    DECLARE @maPhieuMuon VARCHAR(10);
+    SET @maPhieuMuon = 'PM' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+     -- Bước 1: Thêm vào bảng MuonSach
+    INSERT INTO PhieuMuon (
+        maPhieuMuon, maDocGia, maNhanVien, ngayMuon, ngayHetHan
+    )
+    VALUES (
+        @maPhieuMuon, @maDocGia, @maNhanVien, @ngayMuon, @ngayHetHan
+    );
+
+     -- Bước 2: Xử lý dữ liệu chi tiết mượn sách (JSON -> bảng ChiTietMuonSach)
+    DECLARE @json NVARCHAR(MAX) = @chiTietPhieuMuon;
+
+    DECLARE @temp TABLE (
+        maSach VARCHAR(10),
+        soLuong INT,
+        tinhTrangSach NVARCHAR(50),
+        ghiChu NVARCHAR(255)
+    );
+
+    INSERT INTO @temp (maSach, soLuong, tinhTrangSach, ghiChu)
+    SELECT 
+        JSON_VALUE(value, '$.maSach'),
+        JSON_VALUE(value, '$.soLuong'),
+        JSON_VALUE(value, '$.tinhTrangSach'),
+        JSON_VALUE(value, '$.ghiChu')
+    FROM OPENJSON(@json);
+
+    -- Bước 3: Thêm chi tiết nhập sách vào bảng ChiTietMuonSach
+    DECLARE @currentID INT = (
+        SELECT COALESCE(MAX(CAST(SUBSTRING(maCtPhieuMuon, 5, LEN(maCtPhieuMuon) - 4) AS INT)), 0) 
+        FROM ChiTietPhieuMuon
+    );
+
+    INSERT INTO ChiTietPhieuMuon (
+        maCtPhieuMuon, maPhieuMuon, maSach, soLuong, tinhTrangSach, ghiChu
+    )
+    SELECT 
+        'CTPM' + RIGHT('000' + CAST(ROW_NUMBER() OVER (ORDER BY maSach) + @currentID AS VARCHAR(3)), 3),
+        @maPhieuMuon, 
+        maSach, 
+        soLuong, 
+        tinhTrangSach, 
+        ghiChu
+    FROM @temp;
+END;
+
+drop proc dbo.sp_ThemPhieuMuon
+
+-- Proc Tìm kiếm phiếu mượn theo tên sách hoặc mã đọc giả
+CREATE PROCEDURE sp_LayDSPMTheoSachHoacDocGia
+    @SearchText NVARCHAR(50),
+    @SearchType NVARCHAR(10)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @SQL NVARCHAR(MAX);
+
+    SET @SQL = 'SELECT pm.maPhieuMuon, pm.maDocGia, nv.maNhanVien, pm.ngayMuon, pm.ngayHetHan
+                FROM PhieuMuon pm
+                JOIN DocGia dg ON pm.maDocGia = dg.maDocGia
+                JOIN NhanVien nv ON pm.maNhanVien = nv.maNhanVien';
+
+    IF @SearchType = 'TenSach'
+    BEGIN
+        SET @SQL = @SQL + '
+        JOIN ChiTietPhieuMuon ctpm ON pm.maPhieuMuon = ctpm.maPhieuMuon
+        JOIN Sach s ON ctpm.maSach = s.maSach
+        WHERE LOWER(s.tenSach) LIKE LOWER(N''%' + @SearchText + '%'')';;
+    END
+    ELSE IF @SearchType = 'TenDocGia'
+    BEGIN
+        SET @SQL = @SQL + '
+        WHERE LOWER(dg.hoTen) LIKE LOWER(N''%' + @SearchText + '%'')';
+    END
+
+    EXEC sp_executesql @SQL, N'@SearchText NVARCHAR(50)', @SearchText;
+END
+
+drop proc sp_LayDSPMTheoSachHoacDocGia
+
+-- proc xóa phiếu mượn
+CREATE PROCEDURE sp_XoaPhieuMuon
+    @maPhieuMuon NVARCHAR(50)
+AS
+BEGIN
+     -- Bắt đầu một transaction để đảm bảo tính toàn vẹn của dữ liệu
+    BEGIN TRANSACTION
+
+    BEGIN TRY
+         -- Xóa từ bảng ChiTietPhieuTra, dựa vào mã Phiếu Trả (maPhieuTra) liên kết với Phiếu Mượn
+        DELETE FROM ChiTietPhieuTra
+        WHERE maPhieuTra = (SELECT maPhieuTra FROM PhieuTra WHERE maPhieuMuon = @maPhieuMuon);
+
+        -- Xóa từ bảng PhieuTra với điều kiện mã Phiếu Mượn
+        DELETE FROM PhieuTra
+        WHERE maPhieuMuon = @maPhieuMuon;
+
+        -- Xóa từ bảng ChiTietPhieuMuon, nơi chứa thông tin chi tiết về Phiếu Mượn
+        DELETE FROM ChiTietPhieuMuon
+        WHERE maPhieuMuon = @maPhieuMuon;
+
+        -- Xóa từ bảng PhieuMuon dựa trên mã Phiếu Mượn
+        DELETE FROM PhieuMuon
+        WHERE maPhieuMuon = @maPhieuMuon;
+
+        COMMIT TRANSACTION
+    END TRY
+    BEGIN CATCH
+         -- Lùi lại nếu có lỗi xảy ra
+        ROLLBACK TRANSACTION
+        --ném lại thông báo lỗi hoặc ghi lại log lỗi ở đây
+        THROW;
+    END CATCH
+END
+
+--===========================================================================
+--Phiếu Trả
+--Proc lấy danh sách phiếu trả
+CREATE PROCEDURE sp_LayDanhSachPhieuTra
+AS
+BEGIN
+    SELECT 
+		maPhieuTra,
+        maPhieuMuon,
+        maNhanVien,
+        CONVERT(VARCHAR(10), ngayTra, 103) AS ngayMuon,
+		trangThai
+    FROM 
+        PhieuTra
+END;
+
+--Proc thêm phiếu trả mới
+-- Thêm thông tin vào bảng PhieuTra
+CREATE PROCEDURE sp_ThemPhieuTra
+    @maPhieuMuon VARCHAR(10),
+    @maNhanVien VARCHAR(10),
+    @ngayTra DATE,
+    @trangThai NVARCHAR(50),
+    @chiTietPhieuTra NVARCHAR(MAX)  -- JSON containing chi tiết phiếu trả
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Lấy mã trả sách mới
+    DECLARE @maxID INT;
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maPhieuTra, 3, LEN(maPhieuTra) - 2) AS INT)), 0) + 1 
+    FROM PhieuTra;
+
+    DECLARE @maPhieuTra VARCHAR(10);
+    SET @maPhieuTra = 'PT' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+	-- Bước 1: Thêm vào bảng TraSach
+    INSERT INTO PhieuTra (
+        maPhieuTra, maPhieuMuon, maNhanVien, ngayTra, trangThai
+    )
+    VALUES (
+        @maPhieuTra, @maPhieuMuon, @maNhanVien, @ngayTra, @trangThai
+    );
+
+    -- Bước 2: Xử lý dữ liệu chi tiết trả sách (JSON -> bảng ChiTietTraSach)
+    DECLARE @json NVARCHAR(MAX) = @chiTietPhieuTra;
+
+    DECLARE @temp TABLE (
+        maSach VARCHAR(10),
+        phiPhatSinh DECIMAL(10,2),
+        tinhTrangSach NVARCHAR(50),
+        ghiChu NVARCHAR(255)
+    );
+
+    INSERT INTO @temp (maSach, phiPhatSinh, tinhTrangSach, ghiChu)
+    SELECT 
+        JSON_VALUE(value, '$.maSach'),
+        JSON_VALUE(value, '$.phiPhatSinh'),
+        JSON_VALUE(value, '$.tinhTrangSach'),
+        JSON_VALUE(value, '$.ghiChu')
+    FROM OPENJSON(@json);
+
+-- Bước 3: Thêm chi tiết nhập sách vào bảng ChiTietTraSach
+    DECLARE @currentID INT = (
+        SELECT COALESCE(MAX(CAST(SUBSTRING(maCtPhieuTra, 5, LEN(maCtPhieuTra) - 4) AS INT)), 0) 
+        FROM ChiTietPhieuTra
+    );
+
+    INSERT INTO ChiTietPhieuTra (
+        maCtPhieuTra, maPhieuTra, maSach, phiPhatSinh, tinhTrangSach, ghiChu
+    )
+    SELECT 
+        'CTPT' + RIGHT('000' + CAST(ROW_NUMBER() OVER (ORDER BY maSach) + @currentID AS VARCHAR(3)), 3),
+        @maPhieuTra, 
+        maSach, 
+        phiPhatSinh, 
+        tinhTrangSach, 
+        ghiChu
+    FROM @temp;
+END;
+
+drop proc dbo.sp_ThemPhieuTra
+
+-- Proc Tìm kiếm phiếu trả theo tên sách hoặc mã đọc giả
+CREATE PROCEDURE sp_LayDSPTTheoSachHoacDocGia
+    @SearchText NVARCHAR(50),
+    @SearchType NVARCHAR(10)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @SQL NVARCHAR(MAX);
+
+    SET @SQL = 'SELECT DISTINCT(pt.maPhieuTra), pt.maPhieuMuon, dg.hoTen AS hoTenDocGia, nv.maNhanVien, pt.ngayTra, pt.trangThai
+                FROM PhieuTra pt
+				JOIN PhieuMuon pm ON pm.maPhieuMuon = pt.maPhieuMuon
+                JOIN DocGia dg ON pm.maDocGia = dg.maDocGia
+                JOIN NhanVien nv ON pt.maNhanVien = nv.maNhanVien';
+
+    IF @SearchType = 'TenSach'
+    BEGIN
+        SET @SQL = @SQL + '
+        JOIN ChiTietPhieuTra ctp ON pt.maPhieuTra = ctp.maPhieuTra
+        JOIN Sach s ON ctp.maSach = s.maSach
+        WHERE LOWER(s.tenSach) LIKE LOWER(N''%' + @SearchText + '%'')';
+    END
+    ELSE IF @SearchType = 'TenDocGia'
+    BEGIN
+        SET @SQL = @SQL + '
+        WHERE LOWER(dg.hoTen) LIKE LOWER(N''%' + @SearchText + '%'')';
+    END
+
+    EXEC sp_executesql @SQL, N'@SearchText NVARCHAR(50)', @SearchText;
+END
+
+drop proc sp_LayDSPTTheoSachHoacDocGia
+
+--proc xóa phieu tra
+CREATE PROCEDURE sp_XoaPhieuTra
+    @maPhieuTra NVARCHAR(50)
+AS
+BEGIN
+    -- Bắt đầu một transaction để đảm bảo tính toàn vẹn của dữ liệu
+    BEGIN TRANSACTION
+
+    BEGIN TRY
+        -- Xóa từ bảng ChiTietPhieuTra, dựa vào mã Phiếu Trả (maPhieuTra)
+        DELETE FROM ChiTietPhieuTra
+        WHERE maPhieuTra = @maPhieuTra;
+
+        -- Xóa từ bảng PhieuTra với điều kiện mã Phiếu Trả
+        DELETE FROM PhieuTra
+        WHERE maPhieuTra = @maPhieuTra;
+
+        -- Commit transaction nếu mọi thứ đều thành công
+        COMMIT TRANSACTION
+    END TRY
+    BEGIN CATCH
+        -- Lùi lại transaction nếu có lỗi xảy ra
+        ROLLBACK TRANSACTION
+        -- Ném lại thông báo lỗi hoặc ghi lại log lỗi ở đây
+        THROW;
+    END CATCH
+END
+
+drop proc sp_XoaPhieuTra
 
 
 

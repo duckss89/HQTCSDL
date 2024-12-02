@@ -276,3 +276,46 @@ C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserC
 C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeDocGia.resources
 C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeMuonTra.resources
 C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeSach.resources
+F:\HQTCSDL\QL_ThuVien\bin\Debug\QL_ThuVien.exe.config
+F:\HQTCSDL\QL_ThuVien\bin\Debug\QL_ThuVien.exe
+F:\HQTCSDL\QL_ThuVien\bin\Debug\QL_ThuVien.pdb
+F:\HQTCSDL\QL_ThuVien\bin\Debug\FontAwesome.Sharp.dll
+F:\HQTCSDL\QL_ThuVien\bin\Debug\Guna.UI2.dll
+F:\HQTCSDL\QL_ThuVien\bin\Debug\Newtonsoft.Json.dll
+F:\HQTCSDL\QL_ThuVien\bin\Debug\RJCodeAdance.RJControls.dll
+F:\HQTCSDL\QL_ThuVien\bin\Debug\Newtonsoft.Json.xml
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.csproj.AssemblyReference.cache
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.frmLogin.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.frmMain.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.Properties.Resources.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaNhanVien.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCDocGia.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCMuonSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCNhanVien.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCNhapSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCNhaXuatBan.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaDocGia.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaTaiKhoan.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCTacGiaTheLoai.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCTaiKhoan.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemDocGia.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemNhanVien.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemNhaXuatBan.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemPhieuMuon.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemPhieuNhap.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemPhieuTra.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemPhieuXuat.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemTaiKhoan.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeDocGia.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeMuonTra.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongTinSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCTrangChu.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCTraSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCXuatSach.resources
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.csproj.GenerateResource.cache
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.csproj.CoreCompileInputs.cache
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.csproj.Up2Date
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.exe
+F:\HQTCSDL\QL_ThuVien\obj\Debug\QL_ThuVien.pdb

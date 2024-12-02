@@ -67,10 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\ChiTietNhapSach_DAO.cs" />
+    <Compile Include="DAO\ChiTietPhieuMuon_DAO.cs" />
+    <Compile Include="DAO\ChiTietPhieuTra_DAO.cs" />
     <Compile Include="DAO\ChiTietXuatSach_DAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\DocGia_DAO.cs" />
     <Compile Include="DAO\NhaXuatBan_DAO.cs" />
+    <Compile Include="DAO\PhieuMuon_DAO.cs" />
+    <Compile Include="DAO\PhieuTra_DAO.cs" />
     <Compile Include="DAO\Sach_DAO.cs" />
     <Compile Include="DAO\TacGia_DAO.cs" />
     <Compile Include="DAO\TaiKhoan_DAO.cs" />
@@ -78,10 +82,14 @@
     <Compile Include="DAO\ThongKeDocGia_DAO.cs" />
     <Compile Include="DAO\ThongKeSach.cs" />
     <Compile Include="DAO\XuatSach_DAO.cs" />
+    <Compile Include="DTO\ChiTietPhieuMuon_DTO.cs" />
+    <Compile Include="DTO\ChiTietPhieuTra_DTO.cs" />
     <Compile Include="DTO\CtNhapSach_DTO.cs" />
     <Compile Include="DTO\CtXuatSach_DTO.cs" />
     <Compile Include="DTO\DocGia_DTO.cs" />
     <Compile Include="DTO\NhaXuatBan_DTO.cs" />
+    <Compile Include="DTO\PhieuMuon_DTO.cs" />
+    <Compile Include="DTO\PhieuTra_DTO.cs" />
     <Compile Include="DTO\Sach_DTO.cs" />
     <Compile Include="DTO\TacGia_DTO.cs" />
     <Compile Include="DTO\TaiKhoan_DTO.cs" />
