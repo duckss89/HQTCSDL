@@ -25,7 +25,7 @@ namespace QL_ThuVien.DAO
         private DataProvider(){}
 
         //Nguyên
-        public string connectionSTR = "Data Source=DESKTOP-I1S5SR8;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
+        public string connectionSTR = "Data Source=DESKTOP-8O97R1M\\MSSQLSERVER10;Initial Catalog=QL_ThuVien;Integrated Security=True;TrustServerCertificate=True";
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
@@ -106,7 +106,9 @@ namespace QL_ThuVien.DAO
 
                 if (parameter != null)
                 {
-                    string[] listPara = query.Split(' ');
+                    //string[] listPara = query.Split(' ');
+                    //int i = 0;
+                    string[] listPara = query.Split(new char[] { ' ', ',', ')', '(', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                     int i = 0;
                     foreach (string item in listPara)
                     {

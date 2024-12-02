@@ -258,3 +258,21 @@ D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\obj\De
 D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeSach.resources
 D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeDocGia.resources
 D:\Năm 3\Kì 1\Hệ quản trị cơ sở dữ liệu\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeMuonTra.resources
+D:\ThuVien\QL_ThuVien\bin\Debug\Newtonsoft.Json.dll
+D:\ThuVien\QL_ThuVien\bin\Debug\Newtonsoft.Json.xml
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaNhanVien.resources
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaTaiKhoan.resources
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCTaiKhoan.resources
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemTaiKhoan.resources
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeDocGia.resources
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeMuonTra.resources
+D:\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeSach.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaNhanVien.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCSuaTaiKhoan.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCTaiKhoan.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThemTaiKhoan.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeDocGia.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeMuonTra.resources
+C:\Users\ndinh\OneDrive\Máy tính\ThuVien\QL_ThuVien\obj\Debug\QL_ThuVien.UserControls.UCThongKeSach.resources

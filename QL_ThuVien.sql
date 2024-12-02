@@ -1196,5 +1196,209 @@ BEGIN
     ELSE 
         RETURN 0;
 END
+
+--- proc ngày dky(tkdg)
+CREATE PROCEDURE sp_ThongKeNgayDangKyMoi
+    @TuNgay DATE,
+    @DenNgay DATE
+AS
+BEGIN
+    SELECT 
+        ngayDangKy,
+        COUNT(*) AS SoLuongDocGia
+    FROM DocGia
+    WHERE ngayDangKy BETWEEN @TuNgay AND @DenNgay
+    GROUP BY ngayDangKy
+    ORDER BY ngayDangKy;
+END;
 GO
+ drop PROCEDURE sp_ThongKeNgayDangKyMoi
+EXEC sp_ThongKeNgayDangKyMoi @TuNgay = '2024-01-01', @DenNgay = '2024-11-27';
+
+--- proc độ tuổi (tkdg)
+CREATE PROCEDURE sp_ThongKeDoTuoi
+AS
+BEGIN
+    SELECT 
+        CASE 
+            WHEN DATEDIFF(YEAR, ngaySinh, GETDATE()) < 18 THEN N'Dưới 18 tuổi'
+            WHEN DATEDIFF(YEAR, ngaySinh, GETDATE()) BETWEEN 18 AND 30 THEN N'Từ 18 đến 30 tuổi'
+            WHEN DATEDIFF(YEAR, ngaySinh, GETDATE()) BETWEEN 31 AND 50 THEN N'Từ 31 đến 50 tuổi'
+            ELSE N'Trên 50 tuổi'
+        END AS NhomTuoi,
+        COUNT(*) AS SoLuongDocGia
+    FROM DocGia
+    GROUP BY 
+        CASE 
+            WHEN DATEDIFF(YEAR, ngaySinh, GETDATE()) < 18 THEN N'Dưới 18 tuổi'
+            WHEN DATEDIFF(YEAR, ngaySinh, GETDATE()) BETWEEN 18 AND 30 THEN N'Từ 18 đến 30 tuổi'
+            WHEN DATEDIFF(YEAR, ngaySinh, GETDATE()) BETWEEN 31 AND 50 THEN N'Từ 31 đến 50 tuổi'
+            ELSE N'Trên 50 tuổi'
+        END;
+END;
+EXEC sp_ThongKeDoTuoi;
+GO
+--- proc giới tính (tkdg)
+CREATE PROCEDURE sp_ThongKeGioiTinh
+    @GioiTinh NVARCHAR(10) = NULL  
+AS
+BEGIN
+    SELECT gioiTinh, COUNT(*) AS SoLuong
+    FROM DocGia
+    WHERE (@GioiTinh IS NULL OR gioiTinh = @GioiTinh)
+    GROUP BY gioiTinh;
+END;
+
+GO
+EXEC sp_ThongKeGioiTinh;
+ drop proc sp_ThongKeGioiTinh;
+ --- Proc tổng số sách( tkts)
+ CREATE PROCEDURE sp_TongSoSach
+AS
+BEGIN
+    SELECT COUNT(*) AS TongSoSach FROM Sach;
+END;
+GO
+EXEC sp_TongSoSach;
+-- tổng số sachs chưa đưọc mượn 
+CREATE PROCEDURE sp_TongSoSachChuaDuocMuon
+AS
+BEGIN
+    -- Lấy danh sách tên sách và số lượng sách chưa từng được mượn
+    SELECT 
+        tenSach AS TenSach, 
+        soLuong AS SoLuong
+    FROM Sach
+    WHERE maSach NOT IN (
+        SELECT DISTINCT maSach 
+        FROM ChiTietPhieuMuon
+    );
+END;
+GO
+
+EXEC sp_TongSoSachChuaDuocMuon;
+drop PROCEDURE sp_TongSoSachChuaDuocMuon;
+---- proc thể loại 
+CREATE PROCEDURE sp_ThongKeTheoTheLoai
+AS
+BEGIN
+    SELECT 
+        t.tenTheLoai,
+        COUNT(s.maSach) AS SoLuongSach
+    FROM Sach s
+    JOIN TheLoai t ON s.maTheLoai = t.maTheLoai
+    GROUP BY t.tenTheLoai
+    ORDER BY SoLuongSach DESC;
+END;
+GO
+EXEC sp_ThongKeTheoTheLoai;
+
+-------------Sách------------------------
+
+-------------Lấy Danh Sách--------------------
+
+CREATE PROCEDURE sp_LayDanhSachThongTinSach
+AS
+BEGIN
+    SELECT 
+        S.[maSach], 
+        S.[tenSach], 
+        S.[biaSach], 
+        S.[ISBN], 
+        S.[namXuatBan], 
+        S.[soLuong], 
+        S.[giaBan], 
+        TL.[tenTheLoai], 
+        TG.[tenTacGia], 
+        NXB.[tenNhaXuatBan], 
+        S.[viTri]
+    FROM 
+        Sach S, TheLoai TL, TacGia TG, NhaXuatBan NXB
+    WHERE 
+        S.maTheLoai = TL.maTheLoai
+        AND S.maTacGia = TG.maTacGia
+        AND S.maNhaXuatBan = NXB.maNhaXuatBan
+END
+GO
+EXEC sp_LayDanhSachThongTinSach;
+---------------------Tìm Kiếm----------------------------
+
+CREATE PROCEDURE sp_TimKiemThongTinSachTheoTen
+    @tenSach NVARCHAR(50)
+AS
+BEGIN
+    SELECT 
+        S.[maSach],
+        S.[tenSach],
+        S.[biaSach],
+        S.[ISBN],
+        S.[namXuatBan],
+        S.[soLuong],
+        S.[giaBan],
+        TL.[tenTheLoai],
+        TG.[tenTacGia],
+        NXB.[tenNhaXuatBan],
+        S.[viTri]
+    FROM 
+        Sach S, TheLoai TL, TacGia TG, NhaXuatBan NXB
+    WHERE 
+        S.maTheLoai = TL.maTheLoai
+        AND S.maTacGia = TG.maTacGia
+        AND S.maNhaXuatBan = NXB.maNhaXuatBan
+        AND dbo.fn_ConvertToUnsign(S.tenSach) LIKE N'%' + dbo.fn_ConvertToUnsign(@tenSach) + '%';
+END
+GO
+EXEC sp_TimKiemThongTinSachTheoTen @tenSach = N'Tiểu thuyết';
+
+CREATE PROCEDURE sp_ThemSach
+    @tenSach NVARCHAR(50),
+    @biaSach VARCHAR(100) = NULL,
+    @ISBN VARCHAR(20),
+    @namXuatBan INT,
+    @soLuong INT,
+    @giaBan DECIMAL(10, 2),
+    @maTheLoai VARCHAR(10),
+    @maTacGia VARCHAR(10),
+    @maNhaXuatBan VARCHAR(10),
+    @viTri VARCHAR(50)
+AS
+BEGIN
+    DECLARE @maxID INT;
+
+    -- Generate the next ID based on the current max ID in the Sach table
+    SELECT @maxID = COALESCE(MAX(CAST(SUBSTRING(maSach, 3, LEN(maSach) - 2) AS INT)), 0) + 1 
+    FROM Sach;
+
+    DECLARE @maSach VARCHAR(10);
+    SET @maSach = 'SA' + RIGHT('000' + CAST(@maxID AS VARCHAR(3)), 3);
+
+    -- Insert the new book information into the Sach table
+    INSERT INTO Sach (
+        maSach, tenSach, biaSach, ISBN, namXuatBan, soLuong, giaBan, maTheLoai, maTacGia, maNhaXuatBan, viTri
+    )
+    VALUES (
+        @maSach, @tenSach, @biaSach, @ISBN, @namXuatBan, @soLuong, @giaBan, @maTheLoai, @maTacGia, @maNhaXuatBan, @viTri
+    );
+
+    IF @@ROWCOUNT > 0 
+        RETURN 1;
+    ELSE 
+        RETURN 0;
+END
+GO
+EXEC sp_ThemSach 
+    @tenSach = N'Tên sách mẫu', 
+    @biaSach = 'duong_dan_bia_sach.jpg', 
+    @ISBN = '1234567890123', 
+    @namXuatBan = 2024, 
+    @soLuong = 100, 
+    @giaBan = 199.99, 
+    @maTheLoai = 'TL001', 
+    @maTacGia = 'TG001', 
+    @maNhaXuatBan = 'NXB001', 
+    @viTri = 'Kệ A1';
+
+
+
+
 

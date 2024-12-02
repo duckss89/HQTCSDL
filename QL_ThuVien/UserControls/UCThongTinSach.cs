@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QL_ThuVien.DAO;
+using QL_ThuVien.DTO;
+
 
 namespace QL_ThuVien.UserControls
 {
@@ -15,6 +18,50 @@ namespace QL_ThuVien.UserControls
         public UCThongTinSach()
         {
             InitializeComponent();
+            loadThongTinSachList();
+        }
+        private string maSach;
+
+        void loadThongTinSachList()
+        {
+            dtgvSach.DataSource = Sach_DAO.Instance.GetListSach();
+            SetUpThongTinSachDataGridView();
+            if (dtgvSach.Rows.Count > 0)
+            {
+                DataGridViewRow row = dtgvSach.Rows[0];
+
+                lblTenSach.Text = row.Cells["tenSach"].Value.ToString();
+                lblTacGia.Text = row.Cells["tenTacGia"].Value.ToString();
+                lblISNB.Text = row.Cells["ISBN"].Value.ToString();
+                lblNamXuatBan.Text = row.Cells["namXuatBan"].Value.ToString();
+                lblTheLoai.Text = row.Cells["tenTheLoai"].Value.ToString();
+                lblNXB.Text = row.Cells["tenNhaXuatBan"].Value.ToString();
+                lblGiaBan.Text = row.Cells["giaBan"].Value.ToString();
+                lblSoLuong.Text = row.Cells["soLuong"].Value.ToString();
+
+                maSach = dtgvSach.Rows[0].Cells["maSach"].Value.ToString();
+            }
+        }
+
+        void SetUpThongTinSachDataGridView()
+        {
+            dtgvSach.Columns["maSach"].HeaderText = "MÃ SÁCH";
+            dtgvSach.Columns["tenSach"].HeaderText = "TÊN SÁCH";
+            dtgvSach.Columns["biaSach"].HeaderText = "BÌA SÁCH";
+            dtgvSach.Columns["ISBN"].HeaderText = "ISBN";
+            dtgvSach.Columns["namXuatBan"].HeaderText = "NĂM XUẤT BẢN";
+            dtgvSach.Columns["soLuong"].HeaderText = "SỐ LƯỢNG";
+            dtgvSach.Columns["giaBan"].HeaderText = "GIÁ BÁN";
+            dtgvSach.Columns["tenTheLoai"].HeaderText = "THỂ LOẠI";
+            dtgvSach.Columns["tenTacGia"].HeaderText = "TÁC GIẢ";
+            dtgvSach.Columns["tenNhaXuatBan"].HeaderText = "NHÀ XUẤT BẢN";
+            dtgvSach.Columns["viTri"].HeaderText = "VỊ TRÍ";
+
+            dtgvSach.AllowUserToAddRows = false;
+            dtgvSach.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dtgvSach.AutoResizeColumns();
+            dtgvSach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgvSach.RowTemplate.Height = 40;
         }
 
         private void btnAdd_MouseEnter(object sender, EventArgs e)
@@ -75,6 +122,57 @@ namespace QL_ThuVien.UserControls
             addControlDesktop();
             UCThemSach uc = new UCThemSach();
             addUserControl(uc);
+        }
+
+        private void dtgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dtgvSach.Rows[e.RowIndex];
+
+                lblTenSach.Text = row.Cells["tenSach"].Value.ToString();
+                lblTacGia.Text = row.Cells["tenTacGia"].Value.ToString();
+                lblISNB.Text = row.Cells["ISBN"].Value.ToString();
+                lblNamXuatBan.Text = row.Cells["namXuatBan"].Value.ToString();
+                lblTheLoai.Text = row.Cells["tenTheLoai"].Value.ToString();
+                lblNXB.Text = row.Cells["tenNhaXuatBan"].Value.ToString();
+                lblGiaBan.Text = row.Cells["giaBan"].Value.ToString();
+                lblSoLuong.Text = row.Cells["soLuong"].Value.ToString();
+
+                maSach = dtgvSach.Rows[0].Cells["maSach"].Value.ToString();
+            }
+        }
+
+        void loadDanhSachNhanVienTheoTen(string tenSach)
+        {
+            dtgvSach.DataSource = Sach_DAO.Instance.GetListSachTheoTen(tenSach);
+            SetUpThongTinSachDataGridView();
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            string tenSach = txtSearch.Text.Trim();
+            loadDanhSachNhanVienTheoTen(tenSach);
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (maSach == null)
+                MessageBox.Show("Bạn chưa chọn sách", "Thông báo!");
+            else
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa sách này?", "Thông báo", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    if (Sach_DAO.Instance.XoaSach(maSach))
+                    {
+                        MessageBox.Show("Đã xóa thành công (1) sách!", "Thông báo");
+                        loadThongTinSachList();
+                    }
+                    else
+                        MessageBox.Show("Lỗi", "Thông báo");
+                }
+            }
         }
     }
 }
