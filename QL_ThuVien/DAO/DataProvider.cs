@@ -127,6 +127,36 @@ namespace QL_ThuVien.DAO
 
             return data;
         }
+        public delegate T IFunction<T>(SqlCommand command);
+        public T Function<T>(string statement, IFunction<T> function)
+        {
+            T result;
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                using (SqlCommand command = new SqlCommand(statement, connection))
+                {
+                    connection.Open();
+                    result = function(command);
+                }
+            }
+            return result;
+        }
+
+        public T Function<T>(string statement, IFunction<T> function, params SqlParameter[] parameters)
+        {
+            T result;
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                using (SqlCommand command = new SqlCommand(statement, connection))
+                {
+                    command.Parameters.AddRange(parameters); // Add parameters to the command
+                    connection.Open();
+                    result = function(command);
+                }
+            }
+            return result;
+        }
     }
+
 }
 
